@@ -8,6 +8,7 @@ on:
 env:
   IMAGE_NAME: nextjs
   IMAGE_HOST: ghcr.io/${{ github.repository }}
+  NAMESPACE: test
 
 jobs:
   apply:
@@ -53,9 +54,14 @@ jobs:
           cluster-name: "${{ secrets.CLUSTER_NAME }}"
         id: login
 
+      - name: Create namespace
+        run: |
+          kubectl create namespace ${{ env.NAMESPACE }} --dry-run -o json | kubectl apply -f -
+
       - name: aks apply
         uses: Azure/k8s-deploy@v1.4
         with:
+          namespace: ${{ env.NAMESPACE }}
           manifests: |
             ./k8s/test.yaml
           images: |

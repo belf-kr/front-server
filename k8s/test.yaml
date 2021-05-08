@@ -30,12 +30,3 @@ spec:
     - port: 3000
   selector:
     app: front-server
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: external-front-server
-  namespace: ingress-basic
-spec:
-  type: ExternalName
-  externalName: front-server.test
