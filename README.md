@@ -1,6 +1,5 @@
 # front-server
 
-Web Front End 👋  
 front-end를 위한 repo입니다.
 
 # Stack
