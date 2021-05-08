@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: front-server
-          image: ghcr.io/belf-kr/front-server/next.js:v0.1.0
+          image: ghcr.io/belf-kr/front-server/nextjs:v0.1.0
           ports:
             - containerPort: 3000
 ---
