@@ -14,16 +14,16 @@ jobs:
   apply:
     runs-on: ubuntu-latest
     steps:
-      - name: Repo checkout
+      - name: repo checkout
         uses: actions/checkout@v2
 
-      - name: Build image
+      - name: build image
         run: docker build . --file Dockerfile --tag $IMAGE_NAME
 
-      - name: Log into registry
+      - name: log into registry
         run: echo "${{ secrets.CR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-      - name: Push image
+      - name: push image
         run: |
           IMAGE_ID=ghcr.io/${{ github.repository }}/$IMAGE_NAME
 
@@ -54,11 +54,11 @@ jobs:
           cluster-name: "${{ secrets.CLUSTER_NAME }}"
         id: login
 
-      - name: Create namespace
+      - name: create namespace
         run: |
           kubectl create namespace ${{ env.NAMESPACE }} --dry-run -o json | kubectl apply -f -
 
-      - name: aks apply
+      - name: aks apply object
         uses: Azure/k8s-deploy@v1.4
         with:
           namespace: ${{ env.NAMESPACE }}
@@ -67,14 +67,14 @@ jobs:
           images: |
             ${{ env.IMAGE_HOST }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
-      - name: aks apply
+      - name: aks apply service for ingress
         uses: Azure/k8s-deploy@v1.4
         with:
           namespace: ingress-basic
           manifests: |
             ./k8s/test-external.yaml
 
-      - name: Slack Notification
+      - name: slack notification
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
