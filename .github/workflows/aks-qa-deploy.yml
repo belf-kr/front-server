@@ -67,6 +67,13 @@ jobs:
           images: |
             ${{ env.IMAGE_HOST }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
+      - name: aks apply
+        uses: Azure/k8s-deploy@v1.4
+        with:
+          namespace: ingress-basic
+          manifests: |
+            ./k8s/test-external.yaml
+
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
         env:
