@@ -10,7 +10,7 @@ on:
 env:
   IMAGE_HOST: ghcr.io/${{ github.repository }}
   IMAGE_NAME: nextjs
-  TMAGE_TAG: test # ${{ github.sha }}
+  IMAGE_TAG: test # ${{ github.sha }}
   NAMESPACE: test
 
 jobs:
@@ -28,8 +28,8 @@ jobs:
 
       - name: push image
         run: |
-          docker tag $IMAGE_NAME $IMAGE_HOST/$IMAGE_NAME:$TMAGE_TAG
-          docker push $IMAGE_HOST/$IMAGE_NAME:$TMAGE_TAG
+          docker tag $IMAGE_NAME $IMAGE_HOST/$IMAGE_NAME:$IMAGE_TAG
+          docker push $IMAGE_HOST/$IMAGE_NAME:$IMAGE_TAG
 
       - name: aks login
         uses: azure/aks-set-context@v1
@@ -50,7 +50,7 @@ jobs:
           manifests: |
             ./k8s/test.yaml
           images: |
-            $IMAGE_HOST/$IMAGE_NAME:$TMAGE_TAG
+            $IMAGE_HOST/$IMAGE_NAME:$IMAGE_TAG
 
       - name: aks apply service for ingress
         uses: Azure/k8s-deploy@v1.4
