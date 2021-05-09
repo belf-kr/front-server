@@ -9,7 +9,7 @@ env:
   IMAGE_HOST: ghcr.io/${{ github.repository }}
   IMAGE_NAME: nextjs
   IMAGE_TAG: "null"
-  NAMESPACE: test
+  NAMESPACE: prod
 
 jobs:
   apply:
@@ -49,7 +49,7 @@ jobs:
         with:
           namespace: ${{ env.NAMESPACE }}
           manifests: |
-            ./k8s/test.yaml
+            ./k8s/prod.yaml
           images: |
             ${{ env.IMAGE_HOST }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
 
@@ -58,7 +58,7 @@ jobs:
         with:
           namespace: ingress-basic
           manifests: |
-            ./k8s/test-external.yaml
+            ./k8s/prod-external.yaml
 
       - name: slack notification
         uses: rtCamp/action-slack-notify@v2
