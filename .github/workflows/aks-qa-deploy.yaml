@@ -3,7 +3,7 @@ name: aks qa deploy
 on:
   pull_request:
     branches:
-      - release
+      - develop
 
 env:
   IMAGE_HOST: ghcr.io/${{ github.repository }}
