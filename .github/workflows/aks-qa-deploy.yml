@@ -1,0 +1,81 @@
+name: aks qa deploy
+
+on:
+  pull_request:
+    branches:
+      - release
+
+env:
+  IMAGE_HOST: ghcr.io/${{ github.repository }}
+  IMAGE_NAME: nextjs
+  TMAGE_TAG: ${{ github.sha }}
+  NAMESPACE: test
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: repo checkout
+        uses: actions/checkout@v2
+
+      - name: build image
+        run: docker build . --file Dockerfile --tag $IMAGE_NAME
+
+      - name: log into registry
+        run: echo "${{ secrets.CR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: push image
+        run: |
+          IMAGE_ID=ghcr.io/${{ github.repository }}/$IMAGE_NAME
+
+          # 모두 대문자를 소문자로 변경
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+
+          # 버전에서 git ref 접두사 제거
+          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+
+          # 태그 이름에서 "v" 접두사 제거
+          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+
+          # Docker `latest` 태그 규칙 사용
+          [ "$VERSION" == "main" ] && VERSION=latest
+
+          echo IMAGE_ID=$IMAGE_ID
+          echo VERSION=$VERSION
+          echo TAG=${{ env.TMAGE_TAG }}
+
+          docker tag $IMAGE_NAME $IMAGE_ID:${{ env.TMAGE_TAG }}
+          docker push $IMAGE_ID:${{ env.TMAGE_TAG }}
+
+      - name: aks login
+        uses: azure/aks-set-context@v1
+        with:
+          creds: "${{ secrets.AZURE_CREDENTIALS }}"
+          resource-group: "${{ secrets.CLUSTER_RESOURCE_GROUP }}"
+          cluster-name: "${{ secrets.CLUSTER_NAME }}"
+        id: login
+
+      - name: create namespace
+        run: |
+          kubectl create namespace ${{ env.NAMESPACE }} --dry-run -o json | kubectl apply -f -
+
+      - name: aks apply object
+        uses: Azure/k8s-deploy@v1.4
+        with:
+          namespace: ${{ env.NAMESPACE }}
+          manifests: |
+            ./k8s/test.yaml
+          images: |
+            ${{ env.IMAGE_HOST }}/${{ env.IMAGE_NAME }}:${{ env.TMAGE_TAG }}
+
+      - name: aks apply service for ingress
+        uses: Azure/k8s-deploy@v1.4
+        with:
+          namespace: ingress-basic
+          manifests: |
+            ./k8s/test-external.yaml
+
+      - name: slack notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
