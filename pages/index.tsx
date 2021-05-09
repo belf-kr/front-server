@@ -37,6 +37,7 @@ export default IndexPage;
 =======
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 
 export const Home = (): JSX.Element => (
   <div className="container">
@@ -98,6 +99,9 @@ export const Home = (): JSX.Element => (
     <div>
       <h1>기능 추가1</h1>
       <h1>기능 추가2</h1>
+      <Link href="/home">
+        <a>HomePage</a>
+      </Link>
     </div>
 
     <style jsx>{`
