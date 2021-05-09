@@ -1,4 +1,4 @@
-name: aks qa deploy
+name: aks test deploy
 
 on:
   push:
