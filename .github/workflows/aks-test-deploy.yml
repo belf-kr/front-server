@@ -1,13 +1,16 @@
+# ❗️주의❗️: aks cicd를 태스트 하기 위한 workflows 이므로 image tag가 `test`으로 고정되어있습니다.
+
 name: aks test deploy
 
 on:
   push:
     branches:
-      - main
+      - test
 
 env:
-  IMAGE_NAME: nextjs
   IMAGE_HOST: ghcr.io/${{ github.repository }}
+  IMAGE_NAME: nextjs
+  TMAGE_TAG: ${{ github.sha }}
   NAMESPACE: test
 
 jobs:
@@ -41,10 +44,10 @@ jobs:
 
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
-          echo TAG=${{ github.sha }}
+          echo TAG=${{ env.TMAGE_TAG }}
 
-          docker tag $IMAGE_NAME $IMAGE_ID:${{ github.sha }}
-          docker push $IMAGE_ID:${{ github.sha }}
+          docker tag $IMAGE_NAME $IMAGE_ID:${{ env.TMAGE_TAG }}
+          docker push $IMAGE_ID:${{ env.TMAGE_TAG }}
 
       - name: aks login
         uses: azure/aks-set-context@v1
@@ -65,7 +68,7 @@ jobs:
           manifests: |
             ./k8s/test.yaml
           images: |
-            ${{ env.IMAGE_HOST }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+            ${{ env.IMAGE_HOST }}/${{ env.IMAGE_NAME }}:${{ env.TMAGE_TAG }}
 
       - name: aks apply service for ingress
         uses: Azure/k8s-deploy@v1.4
