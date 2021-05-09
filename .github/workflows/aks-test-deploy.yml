@@ -28,26 +28,8 @@ jobs:
 
       - name: push image
         run: |
-          IMAGE_ID=ghcr.io/${{ github.repository }}/$IMAGE_NAME
-
-          # 모두 대문자를 소문자로 변경
-          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
-
-          # 버전에서 git ref 접두사 제거
-          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-
-          # 태그 이름에서 "v" 접두사 제거
-          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-
-          # Docker `latest` 태그 규칙 사용
-          [ "$VERSION" == "main" ] && VERSION=latest
-
-          echo IMAGE_ID=$IMAGE_ID
-          echo VERSION=$VERSION
-          echo TAG=${{ env.TMAGE_TAG }}
-
-          docker tag $IMAGE_NAME $IMAGE_ID:${{ env.TMAGE_TAG }}
-          docker push $IMAGE_ID:${{ env.TMAGE_TAG }}
+          docker tag $IMAGE_NAME $IMAGE_HOST/$IMAGE_NAME:$TMAGE_TAG
+          docker push $IMAGE_HOST/$IMAGE_NAME:$TMAGE_TAG
 
       - name: aks login
         uses: azure/aks-set-context@v1
@@ -59,16 +41,16 @@ jobs:
 
       - name: create namespace
         run: |
-          kubectl create namespace ${{ env.NAMESPACE }} --dry-run -o json | kubectl apply -f -
+          kubectl create namespace $NAMESPACE --dry-run -o json | kubectl apply -f -
 
       - name: aks apply object
         uses: Azure/k8s-deploy@v1.4
         with:
-          namespace: ${{ env.NAMESPACE }}
+          namespace: $NAMESPACE
           manifests: |
             ./k8s/test.yaml
           images: |
-            ${{ env.IMAGE_HOST }}/${{ env.IMAGE_NAME }}:${{ env.TMAGE_TAG }}
+            $IMAGE_HOST/$IMAGE_NAME:$TMAGE_TAG
 
       - name: aks apply service for ingress
         uses: Azure/k8s-deploy@v1.4
