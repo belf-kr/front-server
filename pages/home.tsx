@@ -6,6 +6,8 @@ const HomePage: FC = () => {
       <h1>HomePage</h1>
       <p>Hi, What a wonderful day!</p>
       <p>Ok</p>
+      <p>기능 추가1</p>
+      <p>기능 추가2</p>
     </div>
   );
 };
