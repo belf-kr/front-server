@@ -8,7 +8,7 @@ on:
 env:
   IMAGE_HOST: ghcr.io/${{ github.repository }}
   IMAGE_NAME: nextjs
-  TMAGE_TAG: ${{ github.sha }}
+  IMAGE_TAG: ${{ github.sha }}
   NAMESPACE: qa
 
 jobs:
@@ -26,26 +26,8 @@ jobs:
 
       - name: push image
         run: |
-          IMAGE_ID=ghcr.io/${{ github.repository }}/$IMAGE_NAME
-
-          # 모두 대문자를 소문자로 변경
-          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
-
-          # 버전에서 git ref 접두사 제거
-          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-
-          # 태그 이름에서 "v" 접두사 제거
-          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-
-          # Docker `latest` 태그 규칙 사용
-          [ "$VERSION" == "main" ] && VERSION=latest
-
-          echo IMAGE_ID=$IMAGE_ID
-          echo VERSION=$VERSION
-          echo TAG=${{ env.TMAGE_TAG }}
-
-          docker tag $IMAGE_NAME $IMAGE_ID:${{ env.TMAGE_TAG }}
-          docker push $IMAGE_ID:${{ env.TMAGE_TAG }}
+          docker tag $IMAGE_NAME $IMAGE_HOST/$IMAGE_NAME:$IMAGE_TAG
+          docker push $IMAGE_HOST/$IMAGE_NAME:$IMAGE_TAG
 
       - name: aks login
         uses: azure/aks-set-context@v1
@@ -66,7 +48,7 @@ jobs:
           manifests: |
             ./k8s/qa.yaml
           images: |
-            ${{ env.IMAGE_HOST }}/${{ env.IMAGE_NAME }}:${{ env.TMAGE_TAG }}
+            ${{ env.IMAGE_HOST }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
 
       - name: aks apply service for ingress
         uses: Azure/k8s-deploy@v1.4
