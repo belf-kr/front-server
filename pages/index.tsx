@@ -58,6 +58,11 @@ export const Home = (): JSX.Element => (
       </a>
     </footer>
 
+    <div>
+      <h1>기능 추가1</h1>
+      <h1>기능 추가2</h1>
+    </div>
+
     <style jsx>{`
       .container {
         min-height: 100vh;
