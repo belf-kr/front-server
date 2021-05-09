@@ -69,20 +69,12 @@ export const Home = (): JSX.Element => (
           <p>Find in-depth information about Next.js features and API.</p>
         </a>
 
-        <a href="https://nextjs.org/learn" className="card">
-          <h3>Learn &rarr;</h3>
-          <p>Learn about Next.js in an interactive course with quizzes!</p>
-        </a>
-
-        <a href="https://github.com/vercel/next.js/tree/master/examples" className="card">
-          <h3>Examples &rarr;</h3>
-          <p>Discover and deploy boilerplate example Next.js projects.</p>
-        </a>
-
-        <a href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app" className="card">
-          <h3>Deploy &rarr;</h3>
-          <p>Instantly deploy your Next.js site to a public URL with Vercel.</p>
-        </a>
+        <Link href="/home">
+          <a className="card">
+            <h3>HomePage &rarr;</h3>
+            <p>테스트를 위해 이동해보세요!</p>
+          </a>
+        </Link>
       </div>
     </main>
 
@@ -95,14 +87,6 @@ export const Home = (): JSX.Element => (
         Powered by <Image src="/vercel.svg" alt="Vercel Logo" height={"32"} width={"64"} />
       </a>
     </footer>
-
-    <div>
-      <h1>기능 추가1</h1>
-      <h1>기능 추가2</h1>
-      <Link href="/home">
-        <a>HomePage</a>
-      </Link>
-    </div>
 
     <style jsx>{`
       .container {
