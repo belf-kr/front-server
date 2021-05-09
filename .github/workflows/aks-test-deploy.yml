@@ -10,7 +10,7 @@ on:
 env:
   IMAGE_HOST: ghcr.io/${{ github.repository }}
   IMAGE_NAME: nextjs
-  IMAGE_TAG: test # ${{ github.sha }}
+  IMAGE_TAG: test
   NAMESPACE: test
 
 jobs:
