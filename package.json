@@ -27,7 +27,8 @@
   "dependencies": {
     "next": "latest",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "recoil": "^0.2.0"
   },
   "devDependencies": {
     "@types/node": "^14.14.25",
