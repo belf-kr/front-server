@@ -3,5 +3,5 @@ export default function IndexPage(): JSX.Element {
     <>
       <p>Home</p>
     </>
-  );
+  )
 }
