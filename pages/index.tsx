@@ -1,11 +1,12 @@
 import React from "react";
 import Link from "next/link";
 import Input from "../components/Input";
+import H2Style from "../styles/H2Style";
 
 function IndexPage(): JSX.Element {
   return (
     <>
-      <h2>Home</h2>
+      <H2Style highlight>Home</H2Style>
       <Input />
       <p>
         <Link href="/about">
