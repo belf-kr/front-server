@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Display from "../components/Display";
 
-export default function AboutPage(): JSX.Element {
+function AboutPage(): JSX.Element {
   return (
     <>
       <h2>About</h2>
@@ -13,3 +13,5 @@ export default function AboutPage(): JSX.Element {
     </>
   );
 }
+
+export default AboutPage;

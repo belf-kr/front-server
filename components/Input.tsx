@@ -1,7 +1,7 @@
 import { useRecoilState } from "recoil";
 import { nameState } from "./states";
 
-export default function Input(): JSX.Element {
+function Input(): JSX.Element {
   const [name, setName] = useRecoilState(nameState);
 
   return (
@@ -11,3 +11,5 @@ export default function Input(): JSX.Element {
     </>
   );
 }
+
+export default Input;

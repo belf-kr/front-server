@@ -2,7 +2,7 @@ import React from "react";
 import { AppProps } from "next/app";
 import { RecoilRoot } from "recoil";
 
-export default function App({ Component, pageProps }: AppProps): JSX.Element {
+function App({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <>
       <RecoilRoot>
@@ -11,3 +11,5 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
     </>
   );
 }
+
+export default App;
