@@ -46,6 +46,7 @@ npx create-next-app --example with-typescript-eslint-jest front-server
 - states : recoil 전역 상태
 - styles : 스타일
 - utils : 기능 메소드들 (axios 포함)
+- components : 컴포넌트들
 
 # Commit message 컨벤션
 
