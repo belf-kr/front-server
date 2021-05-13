@@ -1,16 +1,16 @@
-import { atom, selector } from "recoil"
+import { atom, selector } from "recoil";
 
 const nameState = atom({
-  key: 'nameState',
-  default: ''
-})
+  key: "nameState",
+  default: "",
+});
 
 const charState = selector({
-  key: 'charState',
-  get: ({get}) => {
+  key: "charState",
+  get: ({ get }) => {
     const name = get(nameState);
-    return name.length
-  }
-})
+    return name.length;
+  },
+});
 
-export {nameState, charState}
+export { nameState, charState };

@@ -1,6 +1,6 @@
-import React from "react"
-import Link from 'next/link'
-import Input from "../components/Input"
+import React from "react";
+import Link from "next/link";
+import Input from "../components/Input";
 
 export default function IndexPage(): JSX.Element {
   return (
@@ -13,5 +13,5 @@ export default function IndexPage(): JSX.Element {
         </Link>
       </p>
     </>
-  )
+  );
 }
