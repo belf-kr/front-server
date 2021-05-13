@@ -17,10 +17,14 @@ front-end를 위한 repo입니다.
 npx create-next-app --example with-typescript-eslint-jest front-server
 ```
 
-1. `.git`을 제외하고 숨김파일까지 모두 찾아서 마이그레이션 헀습니다.
-1. jest는 사용하지 않음으로 의존성을 제거하였습니다.
+1. `.git`을 제외하고 숨김파일까지 모두 찾아서 마이그레이션
+1. yarn 부분 모두 npm 으로 마이그레이션
+1. jest는 사용하지 않음으로 파일 및 의존성을 제거
+1. push시 자동으로 prettier format 하도록 script 수정
+   > husky.hooks.pre-push
 
 ## 패키지 버전
+
 ```json
 "recoil": "^0.2.0"
 
@@ -37,6 +41,7 @@ npx create-next-app --example with-typescript-eslint-jest front-server
 ├── styles
 └── utils
 ```
+
 - hooks : 모든 커스텀 훅
 - pages : 외부 노출 페이지
 - public : static 에셋
