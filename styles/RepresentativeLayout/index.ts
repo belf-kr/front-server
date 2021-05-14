@@ -1,11 +1,11 @@
-import ContentsLayout from "./ContentsLayout";
-import Header from "./Header";
+import ContentsSection from "./ContentsSection";
+import HeaderSection from "./HeaderSection";
 import HeaderBackground from "./HeaderBackground";
 
 const RepresentativeLayout = {
-  Header: Header,
+  HeaderSection: HeaderSection,
   HeaderBackground: HeaderBackground,
-  ContentsLayout: ContentsLayout,
+  ContentsSection: ContentsSection,
 };
 
 export default RepresentativeLayout;
