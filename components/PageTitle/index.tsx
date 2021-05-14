@@ -1,15 +1,11 @@
-import { default as S } from '../../styles/PageTitle';
+import { default as S } from "../../styles/PageTitle";
 
 type props = {
-  titleText: string
-}
+  titleText: string;
+};
 
 function PageTitle({ titleText }: props): JSX.Element {
-  return (
-    <S.Title>
-      {titleText}
-    </S.Title>
-  );
+  return <S.Title>{titleText}</S.Title>;
 }
 
 export default PageTitle;
