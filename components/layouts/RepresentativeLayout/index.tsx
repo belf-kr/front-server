@@ -17,7 +17,7 @@ function RepresentativeLayout({ children, MainTitle, title = "page", pageType = 
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <S.HeaderBackGround pageType={pageType}/>
+      <S.HeaderBackGround pageType={pageType} />
       <S.Header>
         <MainTitle />
       </S.Header>
