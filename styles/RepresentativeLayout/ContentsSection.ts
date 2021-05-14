@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-const ContentsLayout = styled.div`
+const ContentsSection = styled.div`
   margin-bottom: 90px;
   overflow-y: auto;
 `;
 
-export default ContentsLayout;
+export default ContentsSection;

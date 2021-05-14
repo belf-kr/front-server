@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-const Header = styled.div`
+const HeaderSection = styled.div`
   height: 55px;
   line-height: 55px;
   position: sticky;
 `;
 
-export default Header;
+export default HeaderSection;

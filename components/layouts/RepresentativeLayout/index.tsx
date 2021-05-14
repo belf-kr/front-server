@@ -20,11 +20,11 @@ function RepresentativeLayout({ children, title = "page", pageType = "" }: Props
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <S.HeaderBackground pageType={pageType} />
-      <S.Header>
+      <S.HeaderSection>
         <PageTitle titleText={title} />
         <NotificationButton />
-      </S.Header>
-      <S.ContentsLayout>{children}</S.ContentsLayout>
+      </S.HeaderSection>
+      <S.ContentsSection>{children}</S.ContentsSection>
     </>
   );
 }
