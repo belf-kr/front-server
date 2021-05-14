@@ -21,10 +21,10 @@ function RepresentativeLayout({ children, title = "page", pageType = "" }: Props
       </Head>
       <S.HeaderBackground pageType={pageType} />
       <S.Header>
-        <PageTitle titleText={title}/>
-        <NotificationButton/>
+        <PageTitle titleText={title} />
+        <NotificationButton />
       </S.Header>
-      {children}
+      <S.ContentsLayout>{children}</S.ContentsLayout>
     </>
   );
 }
