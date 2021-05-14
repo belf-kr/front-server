@@ -4,7 +4,7 @@ import RepresentativeLayout from "../components/layouts/RepresentativeLayout";
 
 function IndexPage(): JSX.Element {
   return (
-    <RepresentativeLayout title="Today" MainTitle={() => <a>test</a>} pageType="today">
+    <RepresentativeLayout title="Today" pageType="today">
       <>
         <p>
           <Link href="/about">

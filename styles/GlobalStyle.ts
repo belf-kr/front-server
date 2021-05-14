@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   body{
-    margin: 0;
+    margin: 0 20px;
     padding: 0;
     background-color: #FFF6EF;
     font-family: "SF Mono", "Consolas", "Menlo", monospace;

@@ -4,7 +4,7 @@ import RepresentativeLayout from "../components/layouts/RepresentativeLayout";
 
 function AboutPage(): JSX.Element {
   return (
-    <RepresentativeLayout title="Today" MainTitle={() => <a>test</a>}>
+    <RepresentativeLayout title="About" pageType="course">
       <>
         <p>
           <Link href="/">

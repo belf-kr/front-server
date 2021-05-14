@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 const Header = styled.div`
-  margin: 0px 20px;
   height: 55px;
+  line-height: 55px;
+  position: sticky;
 `;
 
 export default Header;
