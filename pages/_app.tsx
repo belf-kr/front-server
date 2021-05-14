@@ -1,5 +1,6 @@
 import { AppProps } from "next/app";
 import { RecoilRoot } from "recoil";
+import GlobalStyle from "../styles/GlobalStyle";
 
 import { version } from "../package.json";
 
