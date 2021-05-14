@@ -1,6 +1,9 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
+  html{
+    overflow:hidden;
+  }
   body{
     margin: 0 20px;
     padding: 0;
@@ -8,7 +11,6 @@ const GlobalStyle = createGlobalStyle`
     font-family: "SF Mono", "Consolas", "Menlo", monospace;
     overflow-y: scroll;
     overflow-x: hidden;
-    max-width: 390px;
   }
 `;
 
