@@ -1,6 +1,7 @@
 import Head from "next/head";
 import React, { ReactNode } from "react";
 import { default as S } from "../../../styles/RepresentativeLayout";
+import NotificationButton from "../../NotificationButton";
 import PageTitle from "../../PageTitle";
 
 type Props = {
@@ -21,6 +22,7 @@ function RepresentativeLayout({ children, title = "page", pageType = "" }: Props
       <S.HeaderBackground pageType={pageType} />
       <S.Header>
         <PageTitle titleText={title}/>
+        <NotificationButton/>
       </S.Header>
       {children}
     </>
