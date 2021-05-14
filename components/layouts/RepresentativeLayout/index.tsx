@@ -1,6 +1,7 @@
 import Head from "next/head";
 import React, { ReactNode } from "react";
 import { default as S } from "../../../styles/RepresentativeLayout";
+import PageTitle from "../../PageTitle";
 
 type Props = {
   children?: ReactNode;
@@ -9,7 +10,7 @@ type Props = {
   pageType?: string;
 };
 
-function RepresentativeLayout({ children, MainTitle, title = "page", pageType = "" }: Props): JSX.Element {
+function RepresentativeLayout({ children, title = "page", pageType = "" }: Props): JSX.Element {
   return (
     <>
       <Head>
@@ -17,9 +18,9 @@ function RepresentativeLayout({ children, MainTitle, title = "page", pageType = 
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <S.HeaderBackGround pageType={pageType} />
+      <S.HeaderBackground pageType={pageType} />
       <S.Header>
-        <MainTitle />
+        <PageTitle titleText={title}/>
       </S.Header>
       {children}
     </>

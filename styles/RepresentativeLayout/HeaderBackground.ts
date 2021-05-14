@@ -1,24 +1,35 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-type HeaderBackGroundType = {
+type HeaderBackgroundType = {
   pageType?: string;
 };
 
-const HeaderBackGround = styled.div<HeaderBackGroundType>`
+const todayPage = css`
+  top: -40px;
+  border-radius: 50%;
+`;
+const coursePage = css`
+  border-radius: 0%;
+  top: -70px;
+`;
+
+const HeaderBackground = styled.div<HeaderBackgroundType>`
   background-color: #ffab74;
-  width: 550px;
+  width: 520px;
   height: 390px;
   position: fixed;
   z-index: -1;
   left: 50%;
   transform: translate(-50%, -50%);
   transition: 1s;
-  border-radius: ${(props) => {
-    if (props.pageType == "today") {
-      return "50%";
+  ${(props) => {
+    switch(props.pageType){
+      case "today":
+        return todayPage;
+      case "course":
+        return coursePage;
     }
-    return "30%";
   }};
 `;
 
-export default HeaderBackGround;
+export default HeaderBackground;

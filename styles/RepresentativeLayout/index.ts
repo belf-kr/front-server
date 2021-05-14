@@ -1,9 +1,9 @@
 import Header from "./Header";
-import HeaderBackGround from "./HeaderBackground";
+import HeaderBackground from "./HeaderBackground";
 
 const RepresentativeLayout = {
   Header: Header,
-  HeaderBackGround: HeaderBackGround,
+  HeaderBackground: HeaderBackground,
 };
 
 export default RepresentativeLayout;
