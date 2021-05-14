@@ -6,9 +6,10 @@ type Props = {
   children?: ReactNode;
   MainTitle?: () => JSX.Element;
   title?: string;
+  pageType?: string;
 };
 
-function RepresentativeLayout({ children, MainTitle, title = "page" }: Props): JSX.Element {
+function RepresentativeLayout({ children, MainTitle, title = "page", pageType = "" }: Props): JSX.Element {
   return (
     <>
       <Head>
@@ -16,6 +17,7 @@ function RepresentativeLayout({ children, MainTitle, title = "page" }: Props): J
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
+      <S.HeaderBackGround pageType={pageType}/>
       <S.Header>
         <MainTitle />
       </S.Header>
