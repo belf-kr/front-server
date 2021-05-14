@@ -23,7 +23,7 @@ const HeaderBackground = styled.div<HeaderBackgroundType>`
   transform: translate(-50%, -50%);
   transition: 1s;
   ${(props) => {
-    switch(props.pageType){
+    switch (props.pageType) {
       case "today":
         return todayPage;
       case "course":
