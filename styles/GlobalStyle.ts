@@ -9,7 +9,6 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     background-color: #FFF6EF;
     font-family: "SF Mono", "Consolas", "Menlo", monospace;
-    overflow-y: scroll;
     overflow-x: hidden;
   }
 `;
