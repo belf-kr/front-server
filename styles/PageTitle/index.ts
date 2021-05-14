@@ -1,7 +1,7 @@
 import Title from "./Title";
 
-const MainTitle = {
+const PageTitle = {
   Title: Title,
 };
 
-export default MainTitle;
+export default PageTitle;
