@@ -1,17 +1,11 @@
 import React from "react";
-import Link from "next/link";
 import RepresentativeLayout from "../components/layouts/RepresentativeLayout";
+import TodayLayout from "../components/layouts/TodayLayout";
 
 function IndexPage(): JSX.Element {
   return (
     <RepresentativeLayout title="Today" pageType="today">
-      <>
-        <p>
-          <Link href="/about">
-            <a>About</a>
-          </Link>
-        </p>
-      </>
+      <TodayLayout />
     </RepresentativeLayout>
   );
 }
