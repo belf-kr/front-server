@@ -15,7 +15,7 @@ const coursePage = css`
 
 const HeaderBackground = styled.div<HeaderBackgroundType>`
   background-color: #ffab74;
-  width: 520px;
+  width: 150%;
   height: 390px;
   position: fixed;
   z-index: -1;
