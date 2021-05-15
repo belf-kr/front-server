@@ -4,7 +4,7 @@ const PlantingGlassSection = styled.div`
   max-width: 350px;
   height: 120px;
   margin: auto;
-  margin-top: 20px;
+  margin-top: 10px;
   overflow: hidden;
 `;
 
