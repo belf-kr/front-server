@@ -1,9 +1,12 @@
 import { default as S } from "../../../styles/TodayLayout";
+import PlantingGlass from "../../PlantingGlass";
 
 function TodayLayout(): JSX.Element {
   return (
     <>
-      <S.PlantingGlassSection></S.PlantingGlassSection>
+      <S.PlantingGlassSection>
+        <PlantingGlass />
+      </S.PlantingGlassSection>
       <S.TodoListSection></S.TodoListSection>
     </>
   );

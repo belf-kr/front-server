@@ -5,6 +5,7 @@ const PlantingGlassSection = styled.div`
   height: 120px;
   margin: auto;
   margin-top: 20px;
+  overflow: hidden;
 `;
 
 export default PlantingGlassSection;
