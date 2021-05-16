@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const ContentsSection = styled.div`
   margin-bottom: 90px;
-  overflow-y: auto;
+  overflow:visible;
 `;
 
 export default ContentsSection;
