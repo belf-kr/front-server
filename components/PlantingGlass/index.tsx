@@ -4,14 +4,10 @@ import { plantingGlassState } from "../../states/plantingGlass";
 import Component from "./Component";
 
 function PlantingGlass(): JSX.Element {
-  const user = useRecoilValueLoadable(plantingGlassState);
-  switch (user.state) {
+  const con = useRecoilValueLoadable(plantingGlassState);
+  switch (con.state) {
     case "hasValue":
-      return (
-        <>
-          <Component />
-        </>
-      );
+      return <Component />;
     case "loading":
       return <>loading...</>;
     case "hasError":
