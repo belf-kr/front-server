@@ -1,5 +1,6 @@
 import { default as S } from "../../../styles/TodayLayout";
 import PlantingGlass from "../../PlantingGlass";
+import TodayTodoList from "../../TodayTodoList";
 
 function TodayLayout(): JSX.Element {
   return (
@@ -7,7 +8,9 @@ function TodayLayout(): JSX.Element {
       <S.PlantingGlassSection>
         <PlantingGlass />
       </S.PlantingGlassSection>
-      <S.TodoListSection></S.TodoListSection>
+      <S.TodoListSection>
+        <TodayTodoList/>
+      </S.TodoListSection>
     </>
   );
 }
