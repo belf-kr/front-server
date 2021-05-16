@@ -18,7 +18,7 @@ const HeaderBackground = styled.div<HeaderBackgroundType>`
   width: 150%;
   height: 390px;
   position: fixed;
-  z-index: -1;
+  z-index: 1;
   left: 50%;
   transform: translate(-50%, -50%);
   transition: 1s;

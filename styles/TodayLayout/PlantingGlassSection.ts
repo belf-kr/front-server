@@ -5,7 +5,10 @@ const PlantingGlassSection = styled.div`
   height: 120px;
   margin: auto;
   margin-top: 10px;
-  overflow: hidden;
+  overflow: visible;
+  position: sticky;
+  top: 75px;
+  z-index: 2;
 `;
 
 export default PlantingGlassSection;
