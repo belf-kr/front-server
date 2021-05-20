@@ -1,6 +1,6 @@
 import { atom, selector } from "recoil";
 import getPlantingGlass from "../../utils/axios/getPlantingGlass";
-import { Glass } from "../../utils/type/plantingGlass";
+import { Glass } from "../../utils/type/PlantingGlass";
 
 export const plantingGlassState = atom<Glass[]>({
   key: "plantingGlassState",

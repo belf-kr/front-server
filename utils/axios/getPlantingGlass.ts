@@ -1,6 +1,6 @@
 // import axios from "axios";
 import plantingGlass from "../../data/plantingGlass.json";
-import { DateTime, Glass } from "../type/plantingGlass";
+import { DateTime, Glass } from "../type/PlantingGlass";
 
 const getPlantingGlass = async (): Promise<Glass[]> => {
   try {
