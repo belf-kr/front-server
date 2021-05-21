@@ -15,7 +15,7 @@ type props = {
 
 function TodayTodoItem({ todoItem }: props): JSX.Element {
   const [itemLeft, setItemLeft] = useState<number>(0);
-
+  
   const refClickComponent = useClick(() => {
     if (itemLeft === 0) {
       setItemLeft(-120);
