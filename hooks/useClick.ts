@@ -5,16 +5,16 @@ const useClick = (onClick: () => void): RefObject<HTMLDivElement> => {
 
   useEffect(() => {
     if (element.current) {
-      element.current.addEventListener('click', onClick);
+      element.current.addEventListener("click", onClick);
     }
 
     return () => {
       if (element.current) {
-        element.current.removeEventListener('click', onClick);
+        element.current.removeEventListener("click", onClick);
       }
-    }
+    };
   });
   return element;
-}
+};
 
 export default useClick;

@@ -6,19 +6,18 @@ import { default as S } from "../../styles/TodayTodoItem";
 import { TodoItem } from "../../libs/type/TodoTodayItem/indes";
 
 type props = {
-  todoItem: TodoItem,
-}
+  todoItem: TodoItem;
+};
 
 function TodayTodoItem({ todoItem }: props): JSX.Element {
   const [itemLeft, setItemLeft] = useState<number>(0);
-  const refClickComponent = useClick(()=>{
-    if(itemLeft === 0){
+  const refClickComponent = useClick(() => {
+    if (itemLeft === 0) {
       setItemLeft(-120);
-    }
-    else{
+    } else {
       setItemLeft(0);
     }
-  })
+  });
 
   return (
     <S.TodoItemSection>
@@ -34,12 +33,12 @@ function TodayTodoItem({ todoItem }: props): JSX.Element {
           <S.Icon width={bigCheck.width} height={bigCheck.height} fill={bigCheck.fill}>
             <path d={bigCheck.d} />
           </S.Icon>
-        </S.EventButton> 
+        </S.EventButton>
         <S.EventButton>
           <S.Icon width={bigDelete.width} height={bigDelete.height} fill={bigDelete.fill}>
             <path d={bigDelete.d} />
           </S.Icon>
-        </S.EventButton> 
+        </S.EventButton>
       </S.ButtonSection>
     </S.TodoItemSection>
   );

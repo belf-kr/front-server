@@ -6,7 +6,7 @@ const getPlantingGlass = async (): Promise<Glass[]> => {
   try {
     // const res = await axios.get("http://localhost:3001/1/glass");
     // const json: DateTime[] = await res.data;
-    const json:DateTime[] = plantingGlass;
+    const json: DateTime[] = plantingGlass;
 
     const glass: Glass[] = json.map(
       (e: DateTime): Glass => {

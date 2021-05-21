@@ -9,7 +9,7 @@ function TodayLayout(): JSX.Element {
         <PlantingGlass />
       </S.PlantingGlassSection>
       <S.TodoListSection>
-        <TodayTodoList/>
+        <TodayTodoList />
       </S.TodoListSection>
     </>
   );

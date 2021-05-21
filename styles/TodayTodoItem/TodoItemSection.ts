@@ -5,7 +5,7 @@ const TodoItemSection = styled.div`
   height: 55px;
   margin-bottom: 10px;
   position: relative;
-  z-index:0;
+  z-index: 0;
 `;
 
 export default TodoItemSection;
