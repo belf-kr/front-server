@@ -1,6 +1,6 @@
 import { RefObject, useEffect, useRef } from "react";
 
-const useClick = (onClick: () => void): RefObject<HTMLDivElement> => {
+function useClick(onClick: () => void): RefObject<HTMLDivElement> {
   const element: RefObject<HTMLDivElement> = useRef(null);
 
   useEffect(() => {
@@ -15,6 +15,6 @@ const useClick = (onClick: () => void): RefObject<HTMLDivElement> => {
     };
   });
   return element;
-};
+}
 
 export default useClick;

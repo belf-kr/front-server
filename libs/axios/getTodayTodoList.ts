@@ -1,8 +1,10 @@
 // import axios from "axios";
+
 import { TodoItem } from "../type/TodoTodayItem/indes";
+
 import todayTodoList from "../../data/todayTodoList.json";
 
-const getTodayTodoList = async (): Promise<TodoItem[]> => {
+async function getTodayTodoList(): Promise<TodoItem[]> {
   try {
     // const res = await axios.get("url");
     // const json: TodoItem[] = await res.data;
@@ -12,6 +14,6 @@ const getTodayTodoList = async (): Promise<TodoItem[]> => {
   } catch (e) {
     return [];
   }
-};
+}
 
 export default getTodayTodoList;

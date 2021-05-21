@@ -1,8 +1,10 @@
 // import axios from "axios";
+
 import plantingGlass from "../../data/plantingGlass.json";
+
 import { DateTime, Glass } from "../type/PlantingGlass";
 
-const getPlantingGlass = async (): Promise<Glass[]> => {
+async function getPlantingGlass(): Promise<Glass[]> {
   try {
     // const res = await axios.get("http://localhost:3001/1/glass");
     // const json: DateTime[] = await res.data;
@@ -23,6 +25,6 @@ const getPlantingGlass = async (): Promise<Glass[]> => {
   } catch (e) {
     return [];
   }
-};
+}
 
 export default getPlantingGlass;

@@ -1,6 +1,7 @@
-import { default as S } from "../../../styles/TodayLayout";
 import PlantingGlass from "../../PlantingGlass";
 import TodayTodoList from "../../TodayTodoList";
+
+import { default as S } from "../../../styles/TodayLayout";
 
 function TodayLayout(): JSX.Element {
   return (

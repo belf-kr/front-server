@@ -1,6 +1,7 @@
-import React from "react";
 import { useRecoilValueLoadable } from "recoil";
+
 import { todayTodoListState } from "../../states/TodayTodoList";
+
 import Component from "./Component";
 
 function TodayTodoList(): JSX.Element {

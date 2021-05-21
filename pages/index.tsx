@@ -1,4 +1,3 @@
-import React from "react";
 import RepresentativeLayout from "../components/layouts/RepresentativeLayout";
 import TodayLayout from "../components/layouts/TodayLayout";
 

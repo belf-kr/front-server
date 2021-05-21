@@ -1,12 +1,14 @@
 import Head from "next/head";
-import React, { ReactNode } from "react";
-import { default as S } from "../../../styles/RepresentativeLayout";
+import { ReactNode } from "react";
+
 import NotificationButton from "../../NotificationButton";
 import PageTitle from "../../PageTitle";
 
+import { default as S } from "../../../styles/RepresentativeLayout";
+
 type Props = {
   children?: ReactNode;
-  MainTitle?: () => JSX.Element;
+  MainTitle?(): JSX.Element;
   title?: string;
   pageType?: string;
 };

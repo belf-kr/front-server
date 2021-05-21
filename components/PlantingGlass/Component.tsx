@@ -1,10 +1,10 @@
-import React from "react";
 import { useRecoilValue } from "recoil";
+
 import { countAvg, platingGlass2dArray } from "../../states/plantingGlass";
 import { default as S } from "../../styles/PlantingGlass";
 import { Glass } from "../../libs/type/PlantingGlass";
 
-const colorGenerator = (avg: number, value: number): string => {
+function colorGenerator(avg: number, value: number): string {
   if (value === 0) {
     return "#EBEDF0";
   } else if (value <= avg / 2) {
@@ -16,7 +16,7 @@ const colorGenerator = (avg: number, value: number): string => {
   } else {
     return "#FF8433";
   }
-};
+}
 
 function Component(): JSX.Element {
   const array = useRecoilValue(platingGlass2dArray);
