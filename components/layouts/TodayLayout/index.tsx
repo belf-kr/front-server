@@ -1,7 +1,7 @@
 import PlantingGlass from "../../PlantingGlass";
 import TodayTodoList from "../../TodayTodoList";
 
-import { default as S } from "../../../styles/TodayLayout";
+import { default as S } from "./style";
 
 function TodayLayout(): JSX.Element {
   return (
