@@ -2,7 +2,7 @@ import React from "react";
 import { useRecoilValue } from "recoil";
 import { countAvg, platingGlass2dArray } from "../../states/plantingGlass";
 import { default as S } from "../../styles/PlantingGlass";
-import { Glass } from "../../utils/type/PlantingGlass";
+import { Glass } from "../../libs/type/PlantingGlass";
 
 const colorGenerator = (avg: number, value: number): string => {
   if (value === 0) {

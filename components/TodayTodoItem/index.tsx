@@ -3,7 +3,7 @@ import useClick from "../../hooks/useClick";
 import bigCheck from "../../icons/bigCheck";
 import bigDelete from "../../icons/bigDelete";
 import { default as S } from "../../styles/TodayTodoItem";
-import { TodoItem } from "../../utils/type/TodoTodayItem/indes";
+import { TodoItem } from "../../libs/type/TodoTodayItem/indes";
 
 type props = {
   todoItem: TodoItem,

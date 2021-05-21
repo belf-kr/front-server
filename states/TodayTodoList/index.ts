@@ -1,6 +1,6 @@
 import { atom, selector } from "recoil";
-import getTodayTodoList from "../../utils/axios/getTodayTodoList";
-import { TodoItem } from "../../utils/type/TodoTodayItem/indes";
+import getTodayTodoList from "../../libs/axios/getTodayTodoList";
+import { TodoItem } from "../../libs/type/TodoTodayItem/indes";
 
 export const todayTodoListState = atom<TodoItem[]>({
   key: "todayTodoListState",
