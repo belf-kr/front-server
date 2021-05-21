@@ -13,8 +13,8 @@ export const plantingGlassState = atom<Glass[]>({
   }),
 });
 
-export const countAvg = selector({
-  key: "countAvg",
+export const getCountAvgSelector = selector({
+  key: "getCountAvgSelector",
   get: ({ get }) => {
     const json = get(plantingGlassState);
     let avg = 0;
@@ -28,8 +28,8 @@ export const countAvg = selector({
   },
 });
 
-export const platingGlass2dArray = selector({
-  key: "platingGlass2dArray",
+export const getPlatingGlass2dArraySelector = selector({
+  key: "getPlatingGlass2dArraySelector",
   get: ({ get }) => {
     const json = [...get(plantingGlassState)];
     const array = [];
