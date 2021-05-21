@@ -5,7 +5,7 @@ import useClick from "../../hooks/useClick";
 import bigCheck from "../../icons/bigCheck";
 import bigDelete from "../../icons/bigDelete";
 
-import { default as S } from "../../styles/TodayTodoItem";
+import { default as S } from "./style";
 
 import { TodoItem } from "../../libs/type/TodoTodayItem/indes";
 
@@ -35,12 +35,12 @@ function TodayTodoItem({ todoItem }: props): JSX.Element {
       </S.TodoItemCard>
       <S.ButtonSection>
         <S.EventButton>
-          <S.Icon width={bigCheck.width} height={bigCheck.height} fill={bigCheck.fill}>
+          <S.Icon {...bigCheck}>
             <path d={bigCheck.d} />
           </S.Icon>
         </S.EventButton>
         <S.EventButton>
-          <S.Icon width={bigDelete.width} height={bigDelete.height} fill={bigDelete.fill}>
+          <S.Icon {...bigDelete}>
             <path d={bigDelete.d} />
           </S.Icon>
         </S.EventButton>

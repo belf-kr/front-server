@@ -1,7 +1,9 @@
 import { useRecoilValue } from "recoil";
 
 import { getCountAvgSelector, getPlatingGlass2dArraySelector } from "../../states/plantingGlass";
-import { default as S } from "../../styles/PlantingGlass";
+
+import { default as S } from "./style";
+
 import { Glass } from "../../libs/type/PlantingGlass";
 
 function colorGenerator(avg: number, value: number): string {

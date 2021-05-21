@@ -1,4 +1,4 @@
-import { default as S } from "../../styles/PageTitle";
+import { default as S } from "./style";
 
 type props = {
   titleText: string;

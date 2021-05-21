@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 import NotificationButton from "../../NotificationButton";
 import PageTitle from "../../PageTitle";
 
-import { default as S } from "../../../styles/RepresentativeLayout";
+import { default as S } from "./style";
 
 type Props = {
   children?: ReactNode;

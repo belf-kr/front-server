@@ -6,4 +6,8 @@ const Title = styled.a`
   color: white;
 `;
 
-export default Title;
+const style = {
+  Title: Title,
+};
+
+export default style;
