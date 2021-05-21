@@ -1,8 +1,12 @@
 import { useState } from "react";
+
 import useClick from "../../hooks/useClick";
+
 import bigCheck from "../../icons/bigCheck";
 import bigDelete from "../../icons/bigDelete";
+
 import { default as S } from "../../styles/TodayTodoItem";
+
 import { TodoItem } from "../../libs/type/TodoTodayItem/indes";
 
 type props = {
@@ -11,6 +15,7 @@ type props = {
 
 function TodayTodoItem({ todoItem }: props): JSX.Element {
   const [itemLeft, setItemLeft] = useState<number>(0);
+
   const refClickComponent = useClick(() => {
     if (itemLeft === 0) {
       setItemLeft(-120);

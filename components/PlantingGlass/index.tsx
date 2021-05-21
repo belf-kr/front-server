@@ -1,6 +1,7 @@
-import React from "react";
 import { useRecoilValueLoadable } from "recoil";
+
 import { plantingGlassState } from "../../states/plantingGlass";
+
 import Component from "./Component";
 
 function PlantingGlass(): JSX.Element {
