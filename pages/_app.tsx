@@ -1,6 +1,8 @@
 import { AppProps } from "next/app";
 import { RecoilRoot } from "recoil";
 import GlobalStyle from "../styles/GlobalStyle";
+import { ThemeProvider } from "styled-components";
+import lightTheme from "../theme/lightTheme";
 
 import { version } from "../package.json";
 
