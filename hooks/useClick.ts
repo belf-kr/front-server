@@ -15,6 +15,6 @@ function useClick(onClick: () => void): RefObject<HTMLDivElement> {
     };
   });
   return element;
-};
+}
 
 export default useClick;

@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import RepresentativeLayout from "../components/layouts/RepresentativeLayout";
 
 import RepresentativeLayout from "../layouts/RepresentativeLayout";
