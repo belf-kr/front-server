@@ -2,8 +2,8 @@ import { useState } from "react";
 
 import useClick from "../../hooks/useClick";
 
-import bigCheck from "../../Assets/icons/bigCheck";
-import bigDelete from "../../Assets/icons/bigDelete";
+import bigCheck from "../../assets/icons/bigCheck";
+import bigDelete from "../../assets/icons/bigDelete";
 
 import { default as S } from "./style";
 
