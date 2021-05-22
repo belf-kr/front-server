@@ -8,7 +8,6 @@ import { default as S } from "./style";
 
 type Props = {
   children?: ReactNode;
-  MainTitle?(): JSX.Element;
   title?: string;
   pageType?: string;
 };
