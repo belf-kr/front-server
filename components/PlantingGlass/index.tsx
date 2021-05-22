@@ -1,11 +1,12 @@
 import { useRecoilValueLoadable } from "recoil";
 
-import { plantingGlassState } from "../../states/plantingGlass";
+import { getPlantingGlassSelector } from "../../states/plantingGlass";
 
 import Component from "./Component";
 
 function PlantingGlass(): JSX.Element {
-  const con = useRecoilValueLoadable(plantingGlassState);
+  const con = useRecoilValueLoadable(getPlantingGlassSelector);
+
   switch (con.state) {
     case "hasValue":
       return <Component />;

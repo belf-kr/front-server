@@ -1,22 +1,18 @@
-import { atom, selector } from "recoil";
+import { selector } from "recoil";
 
 import getPlantingGlass from "../../libs/axios/getPlantingGlass";
-import { Glass } from "../../libs/type/PlantingGlass";
 
-export const plantingGlassState = atom<Glass[]>({
-  key: "plantingGlassState",
-  default: selector({
-    key: "plantingGlassState/default",
-    get: async () => {
-      return await getPlantingGlass();
-    },
-  }),
+export const getPlantingGlassSelector = selector({
+  key: "getPlantingGlassSelector",
+  get: async () => {
+    return await getPlantingGlass();
+  },
 });
 
 export const getCountAvgSelector = selector({
   key: "getCountAvgSelector",
   get: ({ get }) => {
-    const json = get(plantingGlassState);
+    const json = get(getPlantingGlassSelector);
     let avg = 0;
     json.forEach((value) => {
       avg += value.count;
@@ -31,7 +27,7 @@ export const getCountAvgSelector = selector({
 export const getPlatingGlass2dArraySelector = selector({
   key: "getPlatingGlass2dArraySelector",
   get: ({ get }) => {
-    const json = [...get(plantingGlassState)];
+    const json = [...get(getPlantingGlassSelector)];
     const array = [];
     while (json.length) array.push(json.splice(0, 7));
 

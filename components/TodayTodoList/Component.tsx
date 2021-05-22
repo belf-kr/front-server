@@ -1,13 +1,13 @@
 import { useRecoilValue } from "recoil";
 
-import { todayTodoListState } from "../../states/TodayTodoList";
+import { getTodayTodoListSelector } from "../../states/TodayTodoList";
 
 import { TodoItem } from "../../libs/type/TodoTodayItem/indes";
 
 import TodayTodoItem from "../TodayTodoItem";
 
 function Component(): JSX.Element {
-  const todoTodayList = useRecoilValue(todayTodoListState);
+  const todoTodayList = useRecoilValue(getTodayTodoListSelector);
 
   return (
     <>
