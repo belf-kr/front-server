@@ -1,4 +1,4 @@
-import bell from "../../assets2/icons/bell";
+import bell from "../../assets/icons/bell";
 
 import { default as S } from "./style";
 
