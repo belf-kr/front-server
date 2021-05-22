@@ -32,24 +32,8 @@ const HeaderBackground = styled.div<HeaderBackgroundType>`
   }};
 `;
 
-const ContentsSection = styled.div`
-  margin-bottom: 90px;
-  overflow: visible;
-`;
-
-const HeaderSection = styled.div`
-  height: 55px;
-  line-height: 55px;
-  position: sticky;
-  top: 10px;
-  margin-top: 10px;
-  z-index: 3;
-`;
-
 const style = {
-  HeaderSection: HeaderSection,
   HeaderBackground: HeaderBackground,
-  ContentsSection: ContentsSection,
 };
 
 export default style;

@@ -1,19 +1,11 @@
-import PlantingGlass from "../../components/PlantingGlass";
-import TodayTodoList from "../../components/TodayTodoList";
+import { ReactNode } from "react";
 
-import { default as S } from "./style";
+type Props = {
+  children?: ReactNode;
+};
 
-function TodayLayout(): JSX.Element {
-  return (
-    <>
-      <S.PlantingGlassSection>
-        <PlantingGlass />
-      </S.PlantingGlassSection>
-      <S.TodoListSection>
-        <TodayTodoList />
-      </S.TodoListSection>
-    </>
-  );
+function TodayLayout({ children }: Props): JSX.Element {
+  return <>{children}</>;
 }
 
 export default TodayLayout;
