@@ -1,4 +1,4 @@
-import { Icon } from "../libs/type/Icon";
+import { Icon } from "../../libs/type/Icon";
 
 const bigCheck: Icon = {
   d:
