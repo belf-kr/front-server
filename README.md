@@ -1,3 +1,7 @@
+# 소개
+
+Belf 프로젝트의 Front 서버입니다.
+
 # front-server
 
 front-end를 위한 repo입니다.
@@ -21,13 +25,6 @@ npx create-next-app --example with-typescript-eslint-jest front-server
 1. yarn 부분 모두 npm 으로 마이그레이션
 1. jest는 사용하지 않음으로 파일 및 의존성을 제거
 
-## 패키지 버전
-
-```json
-"recoil": "^0.2.0"
-
-```
-
 ## 폴더 구조
 
 ```text
@@ -46,6 +43,7 @@ npx create-next-app --example with-typescript-eslint-jest front-server
 - states : recoil 전역 상태
 - styles : 스타일
 - utils : 기능 메소드들 (axios 포함)
+- components : 컴포넌트들
 
 # Commit message 컨벤션
 

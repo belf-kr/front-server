@@ -1,17 +1,35 @@
-import React from "react";
-import Link from "next/link";
-import Input from "../components/Input";
+import NotificationButton from "../components/NotificationButton";
+import PageTitle from "../components/PageTitle";
+import PlantingGlass from "../components/PlantingGlass";
+import TodayTodoList from "../components/TodayTodoList";
 
-export default function IndexPage(): JSX.Element {
+import RepresentativeLayout from "../layouts/RepresentativeLayout";
+import ContentsSection from "../layouts/RepresentativeLayout/ContentsSection";
+import HeaderSection from "../layouts/RepresentativeLayout/HeaderSection";
+import TodayLayout from "../layouts/TodayLayout";
+import PlantingGlassSection from "../layouts/TodayLayout/PlantingGlassSection";
+import TodoListSection from "../layouts/TodayLayout/TodoListSection";
+
+function IndexPage(): JSX.Element {
+  const pageTitle = "Today";
   return (
-    <>
-      <h2>Home</h2>
-      <Input />
-      <p>
-        <Link href="/about">
-          <a>About</a>
-        </Link>
-      </p>
-    </>
+    <RepresentativeLayout title={pageTitle} pageType="today">
+      <HeaderSection>
+        <PageTitle titleText={pageTitle} />
+        <NotificationButton />
+      </HeaderSection>
+      <ContentsSection>
+        <TodayLayout>
+          <PlantingGlassSection>
+            <PlantingGlass />
+          </PlantingGlassSection>
+          <TodoListSection>
+            <TodayTodoList />
+          </TodoListSection>
+        </TodayLayout>
+      </ContentsSection>
+    </RepresentativeLayout>
   );
 }
+
+export default IndexPage;
