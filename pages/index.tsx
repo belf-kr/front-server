@@ -1,5 +1,5 @@
-import RepresentativeLayout from "../components/layouts/RepresentativeLayout";
-import TodayLayout from "../components/layouts/TodayLayout";
+import RepresentativeLayout from "../layouts/RepresentativeLayout";
+import TodayLayout from "../layouts/TodayLayout";
 
 function IndexPage(): JSX.Element {
   return (

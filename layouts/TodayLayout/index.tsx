@@ -1,5 +1,5 @@
-import PlantingGlass from "../../PlantingGlass";
-import TodayTodoList from "../../TodayTodoList";
+import PlantingGlass from "../../components/PlantingGlass";
+import TodayTodoList from "../../components/TodayTodoList";
 
 import { default as S } from "./style";
 

@@ -1,8 +1,8 @@
 import Head from "next/head";
 import { ReactNode } from "react";
 
-import NotificationButton from "../../NotificationButton";
-import PageTitle from "../../PageTitle";
+import NotificationButton from "../../components/NotificationButton";
+import PageTitle from "../../components/PageTitle";
 
 import { default as S } from "./style";
 
