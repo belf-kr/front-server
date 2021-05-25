@@ -11,8 +11,8 @@ const PlantingGlassSection = styled.div`
   z-index: 2;
 `;
 
-const RepresentativeLayout = {
+const style = {
   PlantingGlassSection: PlantingGlassSection,
 };
 
-export default RepresentativeLayout;
+export default style;

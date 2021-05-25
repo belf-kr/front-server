@@ -15,8 +15,8 @@ const InfoSection = styled.div`
   background-color: blue;
 `;
 
-const CourseListLayout = {
+const style = {
   InfoSection: InfoSection,
 };
 
-export default CourseListLayout;
+export default style;
