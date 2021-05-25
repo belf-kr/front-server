@@ -13,7 +13,7 @@ import TodoListSection from "../layouts/TodayLayout/TodoListSection";
 function IndexPage(): JSX.Element {
   const pageTitle = "Today";
   return (
-    <RepresentativeLayout title={pageTitle} pageType="today">
+    <RepresentativeLayout title={pageTitle} pageType={pageTitle}>
       <HeaderSection>
         <PageTitle titleText={pageTitle} />
         <NotificationButton />
