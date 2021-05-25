@@ -2,6 +2,7 @@ import NotificationButton from "../../components/NotificationButton";
 import PageTitle from "../../components/PageTitle";
 
 import CourseListLayout from "../../layouts/CourseListLayout";
+import CourseListSection from "../../layouts/CourseListLayout/CourseListSection";
 import InfoSection from "../../layouts/CourseListLayout/InfoSection";
 import RepresentativeLayout from "../../layouts/RepresentativeLayout";
 import ContentsSection from "../../layouts/RepresentativeLayout/ContentsSection";
@@ -18,6 +19,7 @@ function CourseListPage(): JSX.Element {
       <ContentsSection>
         <CourseListLayout>
           <InfoSection></InfoSection>
+          <CourseListSection></CourseListSection>
         </CourseListLayout>
       </ContentsSection>
     </RepresentativeLayout>
