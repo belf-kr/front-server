@@ -16,6 +16,9 @@ const GlobalStyle = createGlobalStyle`
   button{
     cursor: pointer;
   }
+  div{
+    box-sizing: border-box;
+  }
 `;
 
 export default GlobalStyle;
