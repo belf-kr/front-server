@@ -8,8 +8,8 @@ const TodoListSection = styled.div`
   z-index: -1;
 `;
 
-const RepresentativeLayout = {
+const style = {
   TodoListSection: TodoListSection,
 };
 
-export default RepresentativeLayout;
+export default style;
