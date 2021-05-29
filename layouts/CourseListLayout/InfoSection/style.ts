@@ -9,10 +9,6 @@ const InfoSection = styled.div`
   position: sticky;
   top: 75px;
   z-index: 2;
-
-  padding: 7px;
-
-  background-color: blue;
 `;
 
 const style = {
