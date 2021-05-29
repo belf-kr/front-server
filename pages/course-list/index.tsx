@@ -1,3 +1,4 @@
+import AddCourseButton from "../../components/AddCourseButton";
 import AllBelfCount from "../../components/AllBelfCount";
 import AllLikeCount from "../../components/AllLikeCount";
 import NotificationButton from "../../components/NotificationButton";
@@ -23,6 +24,7 @@ function CourseListPage(): JSX.Element {
           <InfoSection>
             <AllLikeCount />
             <AllBelfCount />
+            <AddCourseButton />
           </InfoSection>
           <CourseListSection></CourseListSection>
         </CourseListLayout>
