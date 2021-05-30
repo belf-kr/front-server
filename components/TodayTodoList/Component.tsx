@@ -2,7 +2,7 @@ import { useRecoilValue } from "recoil";
 
 import { getTodayTodoListSelector } from "../../states/TodayTodoList";
 
-import { TodoItem } from "../../libs/type/TodoTodayItem/indes";
+import { TodoItem } from "../../libs/type/TodoTodayItem";
 
 import TodayTodoItem from "../TodayTodoItem";
 
