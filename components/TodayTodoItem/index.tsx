@@ -7,7 +7,7 @@ import bigDelete from "../../assets/icons/bigDelete";
 
 import { default as S } from "./style";
 
-import { TodoItem } from "../../libs/type/TodoTodayItem/indes";
+import { TodoItem } from "../../libs/type/TodoTodayItem";
 
 type props = {
   todoItem: TodoItem;

@@ -1,6 +1,6 @@
 // import axios from "axios";
 
-import { TodoItem } from "../type/TodoTodayItem/indes";
+import { TodoItem } from "../type/TodoTodayItem";
 
 import todayTodoList from "../../data/todayTodoList.json";
 
