@@ -4,6 +4,7 @@ import useClick from "../../hooks/useClick";
 
 import bigCheck from "../../assets/icons/bigCheck";
 import bigDelete from "../../assets/icons/bigDelete";
+import dragBar from "../../assets/icons/dragBar";
 
 import { default as S } from "./style";
 
@@ -39,6 +40,11 @@ function CourseItem({ courseItem }: props): JSX.Element {
             ))}
           </S.Tags>
         </S.ContentSection>
+        <S.DragArea>
+          <S.Icon {...dragBar}>
+            <path d={dragBar.d} />
+          </S.Icon>
+        </S.DragArea>
       </S.Card>
       <S.ButtonSection>
         <S.EventButton>
