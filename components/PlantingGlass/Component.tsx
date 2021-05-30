@@ -1,10 +1,10 @@
-import { useRecoilValue } from "recoil";
-
-import { getCountAvgSelector, getPlatingGlass2dArraySelector } from "../../states/plantingGlass";
-
 import { default as S } from "./style";
 
 import { Glass } from "../../libs/type/PlantingGlass";
+
+type props = {
+  plantingGlass: Glass[];
+};
 
 function colorGenerator(avg: number, value: number): string {
   if (value === 0) {
@@ -20,9 +20,28 @@ function colorGenerator(avg: number, value: number): string {
   }
 }
 
-function Component(): JSX.Element {
-  const array = useRecoilValue(getPlatingGlass2dArraySelector);
-  const avg = useRecoilValue(getCountAvgSelector);
+const plantingGlassTo2dArray = (plantingGlass: Glass[]) => {
+  const array = [...plantingGlass];
+  const newArr = [];
+  while (array.length) newArr.push(array.splice(0, 7));
+
+  return newArr;
+};
+
+const plantingGlassCountAvg = (plantingGlass: Glass[]) => {
+  let avg = 0;
+  plantingGlass.forEach((value) => {
+    avg += value.count;
+  });
+
+  avg = avg / plantingGlass.length;
+
+  return avg;
+};
+
+function Component({ plantingGlass }: props): JSX.Element {
+  const array = plantingGlassTo2dArray(plantingGlass);
+  const avg = plantingGlassCountAvg(plantingGlass);
 
   return (
     <S.Card>

@@ -1,20 +1,23 @@
-import { useRecoilValueLoadable } from "recoil";
+import { useEffect, useState } from "react";
 
-import { getPlantingGlassSelector } from "../../states/plantingGlass";
+import getPlantingGlass from "../../libs/axios/getPlantingGlass";
 
 import Component from "./Component";
 
 function PlantingGlass(): JSX.Element {
-  const con = useRecoilValueLoadable(getPlantingGlassSelector);
+  const [component, setComponent] = useState<JSX.Element>(<>Loading...</>);
 
-  switch (con.state) {
-    case "hasValue":
-      return <Component />;
-    case "loading":
-      return <>loading...</>;
-    case "hasError":
-      return <>error...</>;
-  }
+  useEffect(() => {
+    getPlantingGlass()
+      .then((res) => {
+        setComponent(<Component plantingGlass={res} />);
+      })
+      .catch(() => {
+        setComponent(<>Error...</>);
+      });
+  }, []);
+
+  return component;
 }
 
 export default PlantingGlass;
