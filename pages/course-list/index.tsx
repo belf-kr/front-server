@@ -1,6 +1,7 @@
 import AddCourseButton from "../../components/AddCourseButton";
 import AllBelfCount from "../../components/AllBelfCount";
 import AllLikeCount from "../../components/AllLikeCount";
+import CourseList from "../../components/CourseList";
 import NotificationButton from "../../components/NotificationButton";
 import PageTitle from "../../components/PageTitle";
 
@@ -26,7 +27,9 @@ function CourseListPage(): JSX.Element {
             <AllBelfCount />
             <AddCourseButton />
           </InfoSection>
-          <CourseListSection></CourseListSection>
+          <CourseListSection>
+            <CourseList />
+          </CourseListSection>
         </CourseListLayout>
       </ContentsSection>
     </RepresentativeLayout>
