@@ -62,6 +62,7 @@ const Card = styled.div<{ left?: number }>`
   cursor: pointer;
   height: 100%;
   width: 100%;
+  position: relative;
 `;
 
 const CourseItemSection = styled.div`
@@ -88,6 +89,15 @@ const CourseTitleSection = styled.div`
   position: relative;
 `;
 
+const DragArea = styled.div`
+  height: 100%;
+  width: 72px;
+  float: right;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+`;
+
 const style = {
   CourseTitleSection: CourseTitleSection,
   CourseColor: CourseColor,
@@ -100,6 +110,7 @@ const style = {
   ButtonSection: ButtonSection,
   EventButton: EventButton,
   Icon: Icon,
+  DragArea: DragArea,
 };
 
 export default style;
