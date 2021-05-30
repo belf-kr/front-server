@@ -33,7 +33,11 @@ function CourseItem({ courseItem }: props): JSX.Element {
         </S.CourseTitleSection>
         <S.ContentSection>
           <S.Explaination>{courseItem.explaination}</S.Explaination>
-          <S.Tags>{courseItem.tag_list}</S.Tags>
+          <S.Tags>
+            {courseItem.tag_list.map((tag: string, index: number) => (
+              <a key={"i_" + index}>#tag &nbsp;</a>
+            ))}
+          </S.Tags>
         </S.ContentSection>
       </S.Card>
       <S.ButtonSection>
