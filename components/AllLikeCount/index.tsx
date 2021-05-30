@@ -1,20 +1,23 @@
-import { useRecoilValueLoadable } from "recoil";
+import { useEffect, useState } from "react";
 
-import { getPlantingGlassSelector } from "../../states/plantingGlass";
+import getAllLikeCount from "../../libs/axios/getAllLikeCount";
 
 import Component from "./Component";
 
 function AllLikeCount(): JSX.Element {
-  const con = useRecoilValueLoadable(getPlantingGlassSelector);
+  const [component, setComponent] = useState<JSX.Element>(<>Loading...</>);
 
-  switch (con.state) {
-    case "hasValue":
-      return <Component />;
-    case "loading":
-      return <>loading...</>;
-    case "hasError":
-      return <>error...</>;
-  }
+  useEffect(() => {
+    getAllLikeCount()
+      .then((res) => {
+        setComponent(<Component count={res} />);
+      })
+      .catch(() => {
+        setComponent(<>Error...</>);
+      });
+  }, []);
+
+  return component;
 }
 
 export default AllLikeCount;

@@ -1,20 +1,23 @@
-import { useRecoilValueLoadable } from "recoil";
+import { useEffect, useState } from "react";
 
-import { getPlantingGlassSelector } from "../../states/plantingGlass";
+import getAllBelfCount from "../../libs/axios/getAllBelfCount";
 
 import Component from "./Component";
 
 function AllBelfCount(): JSX.Element {
-  const con = useRecoilValueLoadable(getPlantingGlassSelector);
+  const [component, setComponent] = useState<JSX.Element>(<>Loading...</>);
 
-  switch (con.state) {
-    case "hasValue":
-      return <Component />;
-    case "loading":
-      return <>loading...</>;
-    case "hasError":
-      return <>error...</>;
-  }
+  useEffect(() => {
+    getAllBelfCount()
+      .then((res) => {
+        setComponent(<Component count={res} />);
+      })
+      .catch(() => {
+        setComponent(<>Error...</>);
+      });
+  }, []);
+
+  return component;
 }
 
 export default AllBelfCount;

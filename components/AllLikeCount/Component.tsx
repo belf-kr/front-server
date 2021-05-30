@@ -3,7 +3,11 @@ import { default as S } from "./style";
 import bar from "../../assets/icons/bar";
 import like from "../../assets/icons/like";
 
-function Component(): JSX.Element {
+type props = {
+  count: number;
+};
+
+function Component({ count }: props): JSX.Element {
   return (
     <>
       <S.Box>
@@ -17,7 +21,7 @@ function Component(): JSX.Element {
             <path d={bar.d} />
           </S.Icon>
         </S.BarArea>
-        <S.TextArea>100k</S.TextArea>
+        <S.TextArea>{count}</S.TextArea>
       </S.Box>
     </>
   );
