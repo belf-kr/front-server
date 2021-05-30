@@ -34,7 +34,7 @@ function NavigationBar({ pageType }: props): JSX.Element {
   const [menuList, setMenuList] = useState<menuType[]>([
     {
       icon: home,
-      isActive: true,
+      isActive: false,
       pageType: "Today",
       uri: "/",
     },
