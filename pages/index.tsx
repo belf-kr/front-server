@@ -1,4 +1,3 @@
-import NavigationBar from "../components/NavigationBar";
 import NotificationButton from "../components/NotificationButton";
 import PageTitle from "../components/PageTitle";
 import PlantingGlass from "../components/PlantingGlass";
@@ -29,7 +28,6 @@ function IndexPage(): JSX.Element {
           </TodoListSection>
         </TodayLayout>
       </ContentsSection>
-      <NavigationBar />
     </RepresentativeLayout>
   );
 }
