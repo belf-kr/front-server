@@ -6,9 +6,6 @@ const CourseListSection = styled.div`
   margin-top: 30px;
   overflow-x: visible;
   z-index: -1;
-
-  background-color: blue;
-  height: 1000px;
 `;
 
 const style = {
