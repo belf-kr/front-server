@@ -7,10 +7,6 @@ import lightTheme from "../theme/lightTheme";
 
 import { version } from "../package.json";
 
-import GlobalStyle from "../styles/GlobalStyle";
-import { ThemeProvider } from "styled-components";
-import lightTheme from "../theme/lightTheme";
-
 function App({ Component, pageProps }: AppProps): JSX.Element {
   console.log(`version: ${version}`);
   return (
