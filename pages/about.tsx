@@ -2,8 +2,6 @@ import Link from "next/link";
 
 import RepresentativeLayout from "../layouts/RepresentativeLayout";
 
-import RepresentativeLayout from "../layouts/RepresentativeLayout";
-
 function AboutPage(): JSX.Element {
   return (
     <RepresentativeLayout title="About" pageType="course">
