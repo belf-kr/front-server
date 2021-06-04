@@ -60,14 +60,14 @@ const MenuIconArea = styled.button`
 `;
 
 const style = {
-  Icon: Icon,
-  Frame: Frame,
-  Card: Card,
-  MenuSection: MenuSection,
-  ButtonSection: ButtonSection,
-  AddButton: AddButton,
-  MenuIconSection: MenuIconSection,
-  MenuIconArea: MenuIconArea,
+  Icon,
+  Frame,
+  Card,
+  MenuSection,
+  ButtonSection,
+  AddButton,
+  MenuIconSection,
+  MenuIconArea,
 };
 
 export default style;

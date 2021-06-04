@@ -6,7 +6,7 @@ const ContentsSection = styled.div`
 `;
 
 const style = {
-  ContentsSection: ContentsSection,
+  ContentsSection,
 };
 
 export default style;

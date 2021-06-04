@@ -9,7 +9,7 @@ const CourseListSection = styled.div`
 `;
 
 const style = {
-  CourseListSection: CourseListSection,
+  CourseListSection,
 };
 
 export default style;

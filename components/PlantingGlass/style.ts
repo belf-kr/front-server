@@ -45,11 +45,11 @@ const WeekItem = styled.div`
 `;
 
 const style = {
-  Card: Card,
-  Grid: Grid,
-  WeekGrid: WeekGrid,
-  WeekItem: WeekItem,
-  DayItem: DayItem,
+  Card,
+  Grid,
+  WeekGrid,
+  WeekItem,
+  DayItem,
 };
 
 export default style;

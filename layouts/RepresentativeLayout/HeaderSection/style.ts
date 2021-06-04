@@ -10,7 +10,7 @@ const HeaderSection = styled.div`
 `;
 
 const style = {
-  HeaderSection: HeaderSection,
+  HeaderSection,
 };
 
 export default style;

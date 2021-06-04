@@ -26,9 +26,9 @@ const Frame = styled.div`
 `;
 
 const style = {
-  Frame: Frame,
-  Icon: Icon,
-  Display: Display,
+  Frame,
+  Icon,
+  Display,
 };
 
 export default style;

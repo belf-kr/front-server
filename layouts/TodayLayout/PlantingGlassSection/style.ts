@@ -12,7 +12,7 @@ const PlantingGlassSection = styled.div`
 `;
 
 const style = {
-  PlantingGlassSection: PlantingGlassSection,
+  PlantingGlassSection,
 };
 
 export default style;

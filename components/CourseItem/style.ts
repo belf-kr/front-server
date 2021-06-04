@@ -99,18 +99,18 @@ const DragArea = styled.div`
 `;
 
 const style = {
-  CourseTitleSection: CourseTitleSection,
-  CourseColor: CourseColor,
-  Card: Card,
-  Tags: Tags,
-  ContentSection: ContentSection,
-  CourseTitle: CourseTitle,
-  Explaination: Explaination,
-  CourseItemSection: CourseItemSection,
-  ButtonSection: ButtonSection,
-  EventButton: EventButton,
-  Icon: Icon,
-  DragArea: DragArea,
+  CourseTitleSection,
+  CourseColor,
+  Card,
+  Tags,
+  ContentSection,
+  CourseTitle,
+  Explaination,
+  CourseItemSection,
+  ButtonSection,
+  EventButton,
+  Icon,
+  DragArea,
 };
 
 export default style;
