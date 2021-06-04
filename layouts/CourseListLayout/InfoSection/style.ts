@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-const PlantingGlassSection = styled.div`
+const InfoSection = styled.div`
   max-width: 350px;
-  height: 120px;
+  height: 40px;
   margin: auto;
   margin-top: 10px;
   overflow: visible;
@@ -12,7 +12,7 @@ const PlantingGlassSection = styled.div`
 `;
 
 const style = {
-  PlantingGlassSection: PlantingGlassSection,
+  InfoSection: InfoSection,
 };
 
 export default style;

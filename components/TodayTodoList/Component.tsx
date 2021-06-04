@@ -1,17 +1,15 @@
-import { useRecoilValue } from "recoil";
-
-import { getTodayTodoListSelector } from "../../states/TodayTodoList";
-
-import { TodoItem } from "../../libs/type/TodoTodayItem/indes";
+import { TodoItem } from "../../libs/type/TodoTodayItem";
 
 import TodayTodoItem from "../TodayTodoItem";
 
-function Component(): JSX.Element {
-  const todoTodayList = useRecoilValue(getTodayTodoListSelector);
+type props = {
+  todoList: TodoItem[];
+};
 
+function Component({ todoList }: props): JSX.Element {
   return (
     <>
-      {todoTodayList.map((todoItem: TodoItem, index: number) => (
+      {todoList.map((todoItem: TodoItem, index: number) => (
         <TodayTodoItem key={"i_" + index} todoItem={todoItem} />
       ))}
     </>

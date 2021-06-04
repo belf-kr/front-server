@@ -1,15 +1,15 @@
 import styled from "styled-components";
 
-const TodoListSection = styled.div`
+const CourseListSection = styled.div`
   max-width: 350px;
   margin: auto;
-  margin-top: 10px;
+  margin-top: 30px;
   overflow-x: visible;
   z-index: -1;
 `;
 
 const style = {
-  TodoListSection: TodoListSection,
+  CourseListSection: CourseListSection,
 };
 
 export default style;
