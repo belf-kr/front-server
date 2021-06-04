@@ -12,7 +12,7 @@ const InfoSection = styled.div`
 `;
 
 const style = {
-  InfoSection: InfoSection,
+  InfoSection,
 };
 
 export default style;
