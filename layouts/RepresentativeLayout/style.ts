@@ -33,7 +33,7 @@ const HeaderBackground = styled.div<HeaderBackgroundType>`
 `;
 
 const style = {
-  HeaderBackground: HeaderBackground,
+  HeaderBackground,
 };
 
 export default style;

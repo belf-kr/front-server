@@ -14,7 +14,7 @@ const Button = styled.button`
 `;
 
 const style = {
-  Button: Button,
+  Button,
 };
 
 export default style;

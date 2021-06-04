@@ -38,11 +38,11 @@ const TextArea = styled.span`
 `;
 
 const style = {
-  Box: Box,
-  Icon: Icon,
-  IconArea: IconArea,
-  BarArea: BarArea,
-  TextArea: TextArea,
+  Box,
+  Icon,
+  IconArea,
+  BarArea,
+  TextArea,
 };
 
 export default style;
