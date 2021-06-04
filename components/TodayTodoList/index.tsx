@@ -1,19 +1,23 @@
-import { useRecoilValueLoadable } from "recoil";
+import { useEffect, useState } from "react";
 
-import { getTodayTodoListSelector } from "../../states/TodayTodoList";
+import getTodayTodoList from "../../libs/axios/getTodayTodoList";
 
 import Component from "./Component";
 
 function TodayTodoList(): JSX.Element {
-  const con = useRecoilValueLoadable(getTodayTodoListSelector);
-  switch (con.state) {
-    case "hasValue":
-      return <Component />;
-    case "loading":
-      return <>loading...</>;
-    case "hasError":
-      return <>error...</>;
-  }
+  const [component, setComponent] = useState<JSX.Element>(<>Loading...</>);
+
+  useEffect(() => {
+    getTodayTodoList()
+      .then((res) => {
+        setComponent(<Component todoList={res} />);
+      })
+      .catch(() => {
+        setComponent(<>Error...</>);
+      });
+  }, []);
+
+  return component;
 }
 
 export default TodayTodoList;

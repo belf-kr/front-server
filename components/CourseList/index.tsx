@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
-
-import getPlantingGlass from "../../libs/axios/getPlantingGlass";
+import getCourseList from "../../libs/axios/getCourseList";
 
 import Component from "./Component";
 
-function PlantingGlass(): JSX.Element {
+function CourseList(): JSX.Element {
   const [component, setComponent] = useState<JSX.Element>(<>Loading...</>);
 
   useEffect(() => {
-    getPlantingGlass()
+    getCourseList()
       .then((res) => {
-        setComponent(<Component plantingGlass={res} />);
+        setComponent(<Component courseList={res} />);
       })
       .catch(() => {
         setComponent(<>Error...</>);
@@ -20,4 +19,4 @@ function PlantingGlass(): JSX.Element {
   return component;
 }
 
-export default PlantingGlass;
+export default CourseList;

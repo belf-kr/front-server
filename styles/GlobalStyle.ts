@@ -7,6 +7,8 @@ const GlobalStyle = createGlobalStyle`
     overflow-x:hidden;
     overflow-y: auto;
     background-color: #FFF6EF;
+    max-width: 350px;
+    margin: auto;
     font-family: "SF Mono", "Consolas", "Menlo", monospace;
   }
   body{
@@ -15,6 +17,9 @@ const GlobalStyle = createGlobalStyle`
   }
   button{
     cursor: pointer;
+  }
+  div{
+    box-sizing: border-box;
   }
 `;
 

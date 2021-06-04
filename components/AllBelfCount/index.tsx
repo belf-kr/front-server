@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 
-import getPlantingGlass from "../../libs/axios/getPlantingGlass";
+import getAllBelfCount from "../../libs/axios/getAllBelfCount";
 
 import Component from "./Component";
 
-function PlantingGlass(): JSX.Element {
+function AllBelfCount(): JSX.Element {
   const [component, setComponent] = useState<JSX.Element>(<>Loading...</>);
 
   useEffect(() => {
-    getPlantingGlass()
+    getAllBelfCount()
       .then((res) => {
-        setComponent(<Component plantingGlass={res} />);
+        setComponent(<Component count={res} />);
       })
       .catch(() => {
         setComponent(<>Error...</>);
@@ -20,4 +20,4 @@ function PlantingGlass(): JSX.Element {
   return component;
 }
 
-export default PlantingGlass;
+export default AllBelfCount;

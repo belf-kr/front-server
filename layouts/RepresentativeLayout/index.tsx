@@ -1,7 +1,9 @@
-import Head from "next/head";
 import { ReactNode } from "react";
+import Head from "next/head";
 
 import { default as S } from "./style";
+
+import NavigationBar from "../../components/NavigationBar";
 
 type Props = {
   children?: ReactNode;
@@ -19,6 +21,7 @@ function RepresentativeLayout({ children, title = "page", pageType = "" }: Props
       </Head>
       <S.HeaderBackground pageType={pageType} />
       {children}
+      <NavigationBar pageType={pageType} />
     </>
   );
 }

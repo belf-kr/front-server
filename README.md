@@ -29,21 +29,30 @@ npx create-next-app --example with-typescript-eslint-jest front-server
 
 ```text
 ./
+├── assets
+├── components
+├── data
 ├── hooks
+├── layouts
+├── libs
 ├── pages
 ├── public
 ├── states
 ├── styles
-└── utils
+└── theme
 ```
 
+- assets : icon 등 여러 에셋
+- components : 컴포넌트
+- data : 임시 json 데이터
 - hooks : 모든 커스텀 훅
+- layouts : 모든 레이아웃 컴포넌트
+- libs : 기능 메소드들 (axios 포함)
 - pages : 외부 노출 페이지
 - public : static 에셋
 - states : recoil 전역 상태
 - styles : 스타일
-- utils : 기능 메소드들 (axios 포함)
-- components : 컴포넌트들
+- theme : 테마 스타일
 
 # Commit message 컨벤션
 
