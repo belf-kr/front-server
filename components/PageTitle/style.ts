@@ -7,7 +7,7 @@ const Title = styled.a`
 `;
 
 const style = {
-  Title: Title,
+  Title,
 };
 
 export default style;

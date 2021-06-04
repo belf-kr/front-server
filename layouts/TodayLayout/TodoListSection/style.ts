@@ -9,7 +9,7 @@ const TodoListSection = styled.div`
 `;
 
 const style = {
-  TodoListSection: TodoListSection,
+  TodoListSection,
 };
 
 export default style;

@@ -74,15 +74,15 @@ const TodoTitleSection = styled.div`
 `;
 
 const TodayTodoItem = {
-  TodoTitleSection: TodoTitleSection,
-  CourseColor: CourseColor,
-  TodoItemCard: TodoItemCard,
-  TodoTitle: TodoTitle,
-  CourseTitle: CourseTitle,
-  TodoItemSection: TodoItemSection,
-  ButtonSection: ButtonSection,
-  EventButton: EventButton,
-  Icon: Icon,
+  TodoTitleSection,
+  CourseColor,
+  TodoItemCard,
+  TodoTitle,
+  CourseTitle,
+  TodoItemSection,
+  ButtonSection,
+  EventButton,
+  Icon,
 };
 
 export default TodayTodoItem;
