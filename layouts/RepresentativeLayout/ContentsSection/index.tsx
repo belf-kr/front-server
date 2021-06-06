@@ -4,10 +4,11 @@ import { default as S } from "./style";
 
 type Props = {
   children?: ReactNode;
+  isNavNone?: boolean;
 };
 
-function ContentsSection({ children }: Props): JSX.Element {
-  return <S.ContentsSection>{children}</S.ContentsSection>;
+function ContentsSection({ children, isNavNone = false }: Props): JSX.Element {
+  return <S.ContentsSection isNavNone={isNavNone}>{children}</S.ContentsSection>;
 }
 
 export default ContentsSection;

@@ -1,7 +1,11 @@
 import styled from "styled-components";
 
-const ContentsSection = styled.div`
-  margin-bottom: 100px;
+type ContentsSectionType = {
+  isNavNone: boolean;
+};
+
+const ContentsSection = styled.div<ContentsSectionType>`
+  margin-bottom: ${(props) => (props.isNavNone ? "0px" : "100px")};
   overflow: visible;
 `;
 

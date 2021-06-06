@@ -13,6 +13,10 @@ const coursePage = css`
   top: -70px;
 `;
 
+const addCourseAndReminder = css`
+  height: 200%;
+`;
+
 const HeaderBackground = styled.div<HeaderBackgroundType>`
   background-color: #ffab74;
   width: 150%;
@@ -28,6 +32,8 @@ const HeaderBackground = styled.div<HeaderBackgroundType>`
         return todayPage;
       case "Course":
         return coursePage;
+      case "Add":
+        return addCourseAndReminder;
     }
   }};
 `;
