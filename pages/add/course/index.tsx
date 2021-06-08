@@ -11,6 +11,8 @@ import ContentsSection from "../../../layouts/RepresentativeLayout/ContentsSecti
 import HeaderSection from "../../../layouts/RepresentativeLayout/HeaderSection";
 import InputSection from "../../../layouts/AddLayout/InputSection";
 import TagInput from "../../../components/TagInput";
+import ButtonSection from "../../../layouts/AddLayout/ButtonSection";
+import AddButton from "../../../components/AddButton";
 
 function AddCoursePage(): JSX.Element {
   const pageTitle = "New Course";
@@ -34,6 +36,10 @@ function AddCoursePage(): JSX.Element {
           <InputSection>
             <TagInput placeholder={"Tag"} />
           </InputSection>
+          <ButtonSection>
+            <AddButton text={"Create"} bgColor={"#19CC19"} />
+            <AddButton text={"Cancel"} bgColor={"#FF4A4A"} />
+          </ButtonSection>
         </AddLayout>
       </ContentsSection>
     </RepresentativeLayout>
