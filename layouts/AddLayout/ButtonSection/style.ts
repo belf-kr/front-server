@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const ButtonSection = styled.div`
+  margin-top: 20px;
   width: 100%;
   position: relative;
 `;
