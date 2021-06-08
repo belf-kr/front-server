@@ -21,7 +21,7 @@ function RepresentativeLayout({ children, title = "page", pageType = "" }: Props
       </Head>
       <S.HeaderBackground pageType={pageType} />
       {children}
-      <NavigationBar pageType={pageType} />
+      {pageType != "Add" ? <NavigationBar pageType={pageType} /> : null}
     </>
   );
 }

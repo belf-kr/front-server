@@ -15,6 +15,7 @@ const coursePage = css`
 
 const addCourseAndReminder = css`
   height: 200%;
+  z-index: -1;
 `;
 
 const HeaderBackground = styled.div<HeaderBackgroundType>`
