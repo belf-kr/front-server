@@ -79,11 +79,13 @@ function NavigationBar({ pageType }: props): JSX.Element {
           </S.MenuIconSection>
         </S.MenuSection>
         <S.ButtonSection>
-          <S.AddButton>
-            <S.Icon {...addCross}>
-              <path d={addCross.d} />
-            </S.Icon>
-          </S.AddButton>
+          <Link href="/add/reminder">
+            <S.AddButton>
+              <S.Icon {...addCross}>
+                <path d={addCross.d} />
+              </S.Icon>
+            </S.AddButton>
+          </Link>
         </S.ButtonSection>
       </S.Card>
     </S.Frame>
