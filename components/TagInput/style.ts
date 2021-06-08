@@ -17,7 +17,7 @@ const Input = styled.input`
 
 const TagsSection = styled.div`
   width: 100%;
-  margin: 10px 0px;
+  margin: 10px 0px 30px 0px;
   padding: 5px;
 `;
 
