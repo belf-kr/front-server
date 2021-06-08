@@ -38,7 +38,7 @@ function AddCoursePage(): JSX.Element {
           </InputSection>
           <ButtonSection>
             <AddButton text={"Create"} bgColor={"#19CC19"} />
-            <AddButton text={"Cancel"} bgColor={"#FF4A4A"} />
+            <AddButton text={"Cancel"} bgColor={"#FF4A4A"} onClick={() => window.history.back()} />
           </ButtonSection>
         </AddLayout>
       </ContentsSection>
