@@ -3,6 +3,7 @@ import React from "react";
 import Input from "../../../components/Input";
 import PageTitle from "../../../components/PageTitle";
 import AddButton from "../../../components/AddButton";
+import CourseSelection from "../../../components/CourseSelection";
 
 import AddLayout from "../../../layouts/AddLayout";
 import RepresentativeLayout from "../../../layouts/RepresentativeLayout";
@@ -10,6 +11,7 @@ import ContentsSection from "../../../layouts/RepresentativeLayout/ContentsSecti
 import HeaderSection from "../../../layouts/RepresentativeLayout/HeaderSection";
 import InputSection from "../../../layouts/AddLayout/InputSection";
 import ButtonSection from "../../../layouts/AddLayout/ButtonSection";
+import DetailSelection from "../../../components/DetailSelection";
 
 function AddReminderPage(): JSX.Element {
   const pageTitle = "New Reminder";
@@ -26,6 +28,12 @@ function AddReminderPage(): JSX.Element {
           </InputSection>
           <InputSection>
             <Input placeholder={"Memo"} isMultiLine={true} />
+          </InputSection>
+          <InputSection>
+            <CourseSelection />
+          </InputSection>
+          <InputSection>
+            <DetailSelection />
           </InputSection>
           <ButtonSection>
             <AddButton text={"Create"} bgColor={"#19CC19"} />
