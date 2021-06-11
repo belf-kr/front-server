@@ -1,9 +1,13 @@
 import styled from "styled-components";
 
 const ButtonSection = styled.div`
+  height: 45px;
+  margin-bottom: 20px;
   margin-top: 20px;
+  position: sticky;
+  left: 0;
+  bottom: 0;
   width: 100%;
-  position: relative;
 `;
 const ButtonGrid = styled.div`
   display: grid;
