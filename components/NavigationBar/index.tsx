@@ -52,7 +52,8 @@ function NavigationBar({ pageType }: props): JSX.Element {
     {
       icon: user,
       isActive: false,
-      pageType: "User",
+      pageType: "MyPage",
+      uri: "/JP3Pe",
     },
   ]);
 
