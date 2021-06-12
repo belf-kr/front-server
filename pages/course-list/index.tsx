@@ -25,6 +25,7 @@ function CourseListPage(): JSX.Element {
           <InfoSection>
             <AllLikeCount />
             <AllBelfCount />
+            <div />
             <AddCourseButton />
           </InfoSection>
           <CourseListSection>

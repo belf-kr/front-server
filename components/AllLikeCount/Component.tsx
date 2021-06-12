@@ -9,8 +9,8 @@ type props = {
 
 function Component({ count }: props): JSX.Element {
   return (
-    <>
-      <S.Box>
+    <S.Box>
+      <S.Frame>
         <S.IconArea>
           <S.Icon {...like}>
             <path d={like.d} />
@@ -22,8 +22,8 @@ function Component({ count }: props): JSX.Element {
           </S.Icon>
         </S.BarArea>
         <S.TextArea>{count}</S.TextArea>
-      </S.Box>
-    </>
+      </S.Frame>
+    </S.Box>
   );
 }
 export default Component;

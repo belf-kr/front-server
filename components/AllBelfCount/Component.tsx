@@ -11,17 +11,19 @@ function Component({ count }: props): JSX.Element {
   return (
     <>
       <S.Box>
-        <S.IconArea>
-          <S.Icon {...belf}>
-            <path d={belf.d} />
-          </S.Icon>
-        </S.IconArea>
-        <S.BarArea>
-          <S.Icon {...bar}>
-            <path d={bar.d} />
-          </S.Icon>
-        </S.BarArea>
-        <S.TextArea>{count}</S.TextArea>
+        <S.Frame>
+          <S.IconArea>
+            <S.Icon {...belf}>
+              <path d={belf.d} />
+            </S.Icon>
+          </S.IconArea>
+          <S.BarArea>
+            <S.Icon {...bar}>
+              <path d={bar.d} />
+            </S.Icon>
+          </S.BarArea>
+          <S.TextArea>{count}</S.TextArea>
+        </S.Frame>
       </S.Box>
     </>
   );
