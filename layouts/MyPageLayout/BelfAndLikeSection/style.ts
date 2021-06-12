@@ -1,22 +1,25 @@
 import styled from "styled-components";
 
-const InfoSection = styled.div`
-  max-width: 350px;
+const BelfAndLikeSection = styled.div`
+  /* max-width: 350px; */
+  width: 200px;
   height: 40px;
   margin: auto;
-  margin-top: 10px;
   overflow: visible;
   position: sticky;
-  top: 75px;
   z-index: 2;
 
   display: grid;
-  grid-template-columns: 1fr 1fr 30px 140px;
-  column-gap: 5px;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 10px;
+
+  * {
+    margin: 0;
+  }
 `;
 
 const style = {
-  InfoSection,
+  BelfAndLikeSection,
 };
 
 export default style;

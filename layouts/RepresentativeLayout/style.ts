@@ -13,6 +13,12 @@ const coursePage = css`
   top: -70px;
 `;
 
+const myPage = css`
+  border-radius: 30px;
+  top: -35px;
+  width: 100%;
+`;
+
 const addCourseAndReminder = css`
   height: 200%;
   z-index: -1;
@@ -33,6 +39,8 @@ const HeaderBackground = styled.div<HeaderBackgroundType>`
         return todayPage;
       case "Course":
         return coursePage;
+      case "MyPage":
+        return myPage;
       case "Add":
         return addCourseAndReminder;
     }
