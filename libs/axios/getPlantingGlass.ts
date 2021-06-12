@@ -1,14 +1,14 @@
-// import axios from "axios";
+import axios from "axios";
 
-import plantingGlass from "../../data/plantingGlass.json";
+// import plantingGlass from "../../data/plantingGlass.json";
 
 import { DateTime, Glass } from "../type/PlantingGlass";
 
 async function getPlantingGlass(): Promise<Glass[]> {
   try {
-    // const res = await axios.get("http://localhost:3001/1/glass");
-    // const json: DateTime[] = await res.data;
-    const json: DateTime[] = plantingGlass;
+    const res = await axios.get("https://api-gateway.qa.belf.xyz/todo/glass");
+    const json: DateTime[] = await res.data.glass_list;
+    // const json: DateTime[] = plantingGlass;
 
     const glass: Glass[] = json.map(
       (e: DateTime): Glass => {
