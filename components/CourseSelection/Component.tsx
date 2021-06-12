@@ -3,6 +3,7 @@ import { useState } from "react";
 import { default as S } from "./style";
 
 import { CourseItem as CourseItemType } from "../../libs/type/CourseItem";
+
 import nomalRightArrow from "../../assets/icons/nomalRightArrow";
 
 type props = {

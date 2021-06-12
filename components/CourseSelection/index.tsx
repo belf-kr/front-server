@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import getCourseList from "../../libs/axios/getCourseList";
 
 import Component from "./Component";

@@ -1,8 +1,10 @@
 import React from "react";
+
 import ColorGrid from "../../../components/ColorGrid";
 import Input from "../../../components/Input";
-
 import PageTitle from "../../../components/PageTitle";
+import TagInput from "../../../components/TagInput";
+import AddButton from "../../../components/AddButton";
 
 import AddLayout from "../../../layouts/AddLayout";
 import ColorsSection from "../../../layouts/AddLayout/ColorsSection";
@@ -10,9 +12,7 @@ import RepresentativeLayout from "../../../layouts/RepresentativeLayout";
 import ContentsSection from "../../../layouts/RepresentativeLayout/ContentsSection";
 import HeaderSection from "../../../layouts/RepresentativeLayout/HeaderSection";
 import InputSection from "../../../layouts/AddLayout/InputSection";
-import TagInput from "../../../components/TagInput";
 import ButtonSection from "../../../layouts/AddLayout/ButtonSection";
-import AddButton from "../../../components/AddButton";
 
 function AddCoursePage(): JSX.Element {
   const pageTitle = "New Course";

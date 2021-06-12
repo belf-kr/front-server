@@ -1,5 +1,6 @@
-import UserProfile from "../../libs/type/UserProfile";
 import { default as S } from "./style";
+
+import UserProfile from "../../libs/type/UserProfile";
 
 type props = {
   userProfile: UserProfile;
