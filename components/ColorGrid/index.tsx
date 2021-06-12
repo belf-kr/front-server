@@ -4,7 +4,7 @@ import getColors from "../../libs/axios/getColors";
 
 import Component from "./Component";
 
-function AllLikeCount(): JSX.Element {
+function ColorGrid(): JSX.Element {
   const [component, setComponent] = useState<JSX.Element>(<>Loading...</>);
 
   useEffect(() => {
@@ -20,4 +20,4 @@ function AllLikeCount(): JSX.Element {
   return component;
 }
 
-export default AllLikeCount;
+export default ColorGrid;
