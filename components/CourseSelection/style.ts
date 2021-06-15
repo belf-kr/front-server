@@ -66,6 +66,8 @@ const CourseTitle = styled.div`
   margin-left: 8px;
   font-size: 14px;
   color: #757575;
+  overflow-x: hidden;
+  max-width: 200px;
 `;
 
 const CourseItem = styled.button`

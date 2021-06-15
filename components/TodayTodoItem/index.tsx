@@ -1,11 +1,11 @@
 import { useState } from "react";
 
+import { default as S } from "./style";
+
 import useClick from "../../hooks/useClick";
 
 import bigCheck from "../../assets/icons/bigCheck";
 import bigDelete from "../../assets/icons/bigDelete";
-
-import { default as S } from "./style";
 
 import { TodoItem } from "../../libs/type/TodoTodayItem";
 

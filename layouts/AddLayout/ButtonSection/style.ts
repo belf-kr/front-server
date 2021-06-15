@@ -8,6 +8,7 @@ const ButtonSection = styled.div`
   left: 0;
   bottom: 0;
   width: 100%;
+  z-index: 10;
 `;
 const ButtonGrid = styled.div`
   display: grid;

@@ -1,6 +1,6 @@
-import bell from "../../assets/icons/bell";
-
 import { default as S } from "./style";
+
+import bell from "../../assets/icons/bell";
 
 function NotificationButton(): JSX.Element {
   return (
