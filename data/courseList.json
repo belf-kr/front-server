@@ -1,28 +1,26 @@
 {
   "course_list": [
     {
-      "id": "3F2504E0-4F89-11D3-9A0C0305E82C3301",
-      "title": "영어공부하기",
-      "explaination": "토익 ...",
-      "tag_list": ["영어", "토익"],
-      "color": "#FF8484",
-      "priority": 1
+      "originalCourseId": null,
+      "color": "#8D84FB",
+      "creatorId": null,
+      "startDate": null,
+      "endDate": null,
+      "explanation": "asdvasdv",
+      "title": "ab",
+      "likeCount": 0,
+      "tags": []
     },
     {
-      "id": "3F2504E0-4F89-11D3-9A0C0305E82C3301",
-      "title": "영어공부하기",
-      "explaination": "토익 ...",
-      "tag_list": ["영어", "토익"],
-      "color": "#8D84FF",
-      "priority": 2
-    },
-    {
-      "id": "3F2504E0-4F89-11D3-9A0C0305E82C3301",
-      "title": "영어공부하기",
-      "explaination": "토익 ...",
-      "tag_list": ["영어", "토익"],
-      "color": "#84D0FD",
-      "priority": 3
+      "originalCourseId": null,
+      "color": "#D9FF84",
+      "creatorId": null,
+      "startDate": null,
+      "endDate": null,
+      "explanation": "김재광 바부",
+      "title": "김재광 바부",
+      "likeCount": 0,
+      "tags": []
     }
   ]
 }

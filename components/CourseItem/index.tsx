@@ -8,7 +8,7 @@ import dragBar from "../../assets/icons/dragBar";
 
 import { default as S } from "./style";
 
-import { CourseItem as CourseItemType } from "../../libs/type/CourseItem";
+import { CourseItem as CourseItemType, Tag } from "../../libs/type/CourseItem";
 
 type props = {
   courseItem: CourseItemType;
@@ -33,9 +33,9 @@ function CourseItem({ courseItem }: props): JSX.Element {
           <S.CourseTitle>{courseItem.title}</S.CourseTitle>
         </S.CourseTitleSection>
         <S.ContentSection>
-          <S.Explaination>{courseItem.explaination}</S.Explaination>
+          <S.Explaination>{courseItem.explanation}</S.Explaination>
           <S.Tags>
-            {courseItem.tag_list.map((tag: string, index: number) => (
+            {courseItem.tags.map((tag: Tag, index: number) => (
               <a key={"i_" + index}>#tag &nbsp;</a>
             ))}
           </S.Tags>

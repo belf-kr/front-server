@@ -1,8 +1,17 @@
+export type Tag = {
+  id?: string;
+  value: string;
+};
+
 export type CourseItem = {
-  id: string;
-  title: string;
-  explaination: string;
-  tag_list: string[];
-  color: string;
-  priority: number;
+  id?: number;
+  title?: string;
+  explanation?: string;
+  tags?: Tag[];
+  color?: string;
+  creatorId?: string;
+  startDate?: string;
+  endDate?: string;
+  likeCount?: number;
+  originalCourseId?: number;
 };
