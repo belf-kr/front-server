@@ -1,19 +1,21 @@
-// import axios from "axios";
+import axios from "axios";
 
 import { CourseItem } from "../type/CourseItem";
 
-import courseList from "../../data/courseList.json";
-
 async function getCourseList(): Promise<CourseItem[]> {
-  try {
-    // const res = await axios.get("url");
-    // const json: CourseItem[] = await res.data;
-    const json: CourseItem[] = courseList.course_list;
-
-    return json;
-  } catch (e) {
-    return [];
-  }
+  return await axios
+    .get("https://api-gateway.qa.belf.xyz/todo/get-all-courses")
+    .then((res) => {
+      return res.data.course_list;
+    })
+    .catch((error) => {
+      console.log(error.response.status);
+      console.log(error.response);
+      return [];
+    })
+    .finally(() => {
+      return [];
+    });
 }
 
 export default getCourseList;
