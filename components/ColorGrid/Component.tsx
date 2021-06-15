@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { default as S } from "./style";
 
 type props = {
   colors: string[];
+  colorOnChange: (value: string) => void;
 };
 
-function Component({ colors }: props): JSX.Element {
+function Component({ colors, colorOnChange }: props): JSX.Element {
   const [colorsObject, setColorsObject] = useState(
     colors.map((element, index) => {
       return { id: index, color: element, isChecked: index === 0 ? true : false };
@@ -25,6 +26,10 @@ function Component({ colors }: props): JSX.Element {
       })
     );
   }
+
+  useEffect(() => {
+    colorOnChange(colorsObject.filter((i) => i.isChecked)[0].color);
+  }, [colorsObject]);
 
   return (
     <S.Grid>

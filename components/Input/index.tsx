@@ -4,13 +4,14 @@ type props = {
   placeholder?: string;
   isMultiLine?: boolean;
   type?: string;
+  onChange?: React.ChangeEventHandler<any>;
 };
 
-function Input({ placeholder, isMultiLine, type }: props): JSX.Element {
+function Input({ placeholder, isMultiLine, type, onChange }: props): JSX.Element {
   if (isMultiLine) {
-    return <S.Textarea placeholder={placeholder} />;
+    return <S.Textarea placeholder={placeholder} onChange={onChange} />;
   } else {
-    return <S.Input type={type} placeholder={placeholder} />;
+    return <S.Input type={type} placeholder={placeholder} onChange={onChange} />;
   }
 }
 
