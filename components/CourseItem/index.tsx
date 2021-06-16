@@ -9,6 +9,7 @@ import dragBar from "../../assets/icons/dragBar";
 import { default as S } from "./style";
 
 import { CourseItem as CourseItemType, Tag } from "../../libs/type/CourseItem";
+import deleteCourse from "../../libs/axios/deleteCourse";
 
 type props = {
   courseItem: CourseItemType;
@@ -52,7 +53,12 @@ function CourseItem({ courseItem }: props): JSX.Element {
             <path d={bigCheck.d} />
           </S.Icon>
         </S.EventButton>
-        <S.EventButton>
+        <S.EventButton
+          onClick={() => {
+            deleteCourse(courseItem.id);
+            location.reload();
+          }}
+        >
           <S.Icon {...bigDelete}>
             <path d={bigDelete.d} />
           </S.Icon>
