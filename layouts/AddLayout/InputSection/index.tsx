@@ -4,10 +4,11 @@ import { default as S } from "./style";
 
 type props = {
   children?: ReactNode;
+  marginTop?: string;
 };
 
-function InputSection({ children }: props): JSX.Element {
-  return <S.InputSection>{children}</S.InputSection>;
+function InputSection({ children, marginTop }: props): JSX.Element {
+  return <S.InputSection marginTop={marginTop}>{children}</S.InputSection>;
 }
 
 export default InputSection;
