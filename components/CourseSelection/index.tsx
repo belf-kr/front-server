@@ -4,13 +4,17 @@ import getCourseList from "../../libs/axios/getCourseList";
 
 import Component from "./Component";
 
-function CourseSelection(): JSX.Element {
+type props = {
+  courseOnChange: (value: number) => void;
+};
+
+function CourseSelection({ courseOnChange }: props): JSX.Element {
   const [component, setComponent] = useState<JSX.Element>(<>Loading...</>);
 
   useEffect(() => {
     getCourseList()
       .then((res) => {
-        setComponent(<Component courseList={res} />);
+        setComponent(<Component courseOnChange={courseOnChange} courseList={res} />);
       })
       .catch(() => {
         setComponent(<>Error...</>);

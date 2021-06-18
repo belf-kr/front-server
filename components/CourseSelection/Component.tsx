@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { default as S } from "./style";
 
@@ -8,12 +8,17 @@ import nomalRightArrow from "../../assets/icons/nomalRightArrow";
 
 type props = {
   courseList: CourseItemType[];
+  courseOnChange: (value: number) => void;
 };
 
-function Component({ courseList = [] }: props): JSX.Element {
+function Component({ courseList = [], courseOnChange }: props): JSX.Element {
   const [selectedCourse, setSelectedCourse] = useState<CourseItemType>(courseList.length == 0 ? {} : courseList[0]);
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    courseOnChange(selectedCourse.id);
+  }, [selectedCourse]);
 
   return (
     <S.Frame>
