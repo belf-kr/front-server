@@ -10,11 +10,13 @@ import ContentsSection from "../../../layouts/SubLayout/ContentsSection";
 import PostTitle from "../../../components/PostTitle";
 import PostContents from "../../../components/PostContents";
 
-// type props = {
-//   id: string;
-// };
+type props = {
+  id: string;
+  courseTitle: string;
+  todoTitle: string;
+};
 
-function PostPage(): JSX.Element {
+function PostPage({ courseTitle, todoTitle }: props): JSX.Element {
   const pageTitle = "MyPage";
   return (
     <SubLayout title={pageTitle}>
@@ -22,13 +24,13 @@ function PostPage(): JSX.Element {
         <div>
           <BackButton />
         </div>
-        <SubPageTitle titleText={"영어공부 하기"} />
+        <SubPageTitle titleText={courseTitle} />
         <div>
           <PostButton />
         </div>
       </HeaderSection>
       <ContentsSection>
-        <PostTitle titleText={"문법 공부"} />
+        <PostTitle titleText={todoTitle} />
         <PostContents />
       </ContentsSection>
     </SubLayout>
