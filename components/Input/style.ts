@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
-const InputAndTextarea = css`
-  border-radius: 10px;
+const InputAndTextarea = css<{ borderRadius: string }>`
+  border-radius: ${(props) => props.borderRadius};
   border: none;
   box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
   padding: 10px 15px;

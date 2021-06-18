@@ -1,17 +1,17 @@
 import React from "react";
 
-import AllBelfCount from "../../components/AllBelfCount";
-import AllLikeCount from "../../components/AllLikeCount";
-import NotificationButton from "../../components/NotificationButton";
-import PageTitle from "../../components/PageTitle";
-import Profile from "../../components/Profile";
+import AllBelfCount from "../../../components/AllBelfCount";
+import AllLikeCount from "../../../components/AllLikeCount";
+import NotificationButton from "../../../components/NotificationButton";
+import PageTitle from "../../../components/PageTitle";
+import Profile from "../../../components/Profile";
 
-import MyPageLayout from "../../layouts/MyPageLayout";
-import BelfAndLikeSection from "../../layouts/MyPageLayout/BelfAndLikeSection";
-import InfoSection from "../../layouts/MyPageLayout/InfoSection";
-import RepresentativeLayout from "../../layouts/RepresentativeLayout";
-import ContentsSection from "../../layouts/RepresentativeLayout/ContentsSection";
-import HeaderSection from "../../layouts/RepresentativeLayout/HeaderSection";
+import MyPageLayout from "../../../layouts/MyPageLayout";
+import BelfAndLikeSection from "../../../layouts/MyPageLayout/BelfAndLikeSection";
+import InfoSection from "../../../layouts/MyPageLayout/InfoSection";
+import RepresentativeLayout from "../../../layouts/RepresentativeLayout";
+import ContentsSection from "../../../layouts/RepresentativeLayout/ContentsSection";
+import HeaderSection from "../../../layouts/RepresentativeLayout/HeaderSection";
 
 type props = {
   id: string;

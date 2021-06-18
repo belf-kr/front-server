@@ -47,7 +47,8 @@ function NavigationBar({ pageType }: props): JSX.Element {
     {
       icon: board,
       isActive: false,
-      pageType: "Board",
+      pageType: "Other",
+      uri: "/other",
     },
     {
       icon: user,

@@ -24,6 +24,15 @@ const addCourseAndReminder = css`
   z-index: -1;
 `;
 
+const otherPage = css`
+  top: 0px;
+  height: 125px;
+  left: 50%;
+  width: 100%;
+  border-radius: 0px 0px 30px 30px;
+  transform: translateX(-50%);
+`;
+
 const HeaderBackground = styled.div<HeaderBackgroundType>`
   background-color: #ffab74;
   width: 150%;
@@ -43,6 +52,8 @@ const HeaderBackground = styled.div<HeaderBackgroundType>`
         return myPage;
       case "Add":
         return addCourseAndReminder;
+      case "Other":
+        return otherPage;
     }
   }};
 `;

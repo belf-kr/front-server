@@ -5,13 +5,14 @@ type props = {
   isMultiLine?: boolean;
   type?: string;
   onChange?: React.ChangeEventHandler<any>;
+  borderRadius?: string;
 };
 
-function Input({ placeholder, isMultiLine, type, onChange }: props): JSX.Element {
+function Input({ placeholder, isMultiLine, type, onChange, borderRadius = "10px" }: props): JSX.Element {
   if (isMultiLine) {
-    return <S.Textarea placeholder={placeholder} onChange={onChange} />;
+    return <S.Textarea placeholder={placeholder} onChange={onChange} borderRadius={borderRadius} />;
   } else {
-    return <S.Input type={type} placeholder={placeholder} onChange={onChange} />;
+    return <S.Input type={type} placeholder={placeholder} onChange={onChange} borderRadius={borderRadius} />;
   }
 }
 
