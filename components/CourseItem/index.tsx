@@ -37,7 +37,7 @@ function CourseItem({ courseItem }: props): JSX.Element {
           <S.Explaination>{courseItem.explanation}</S.Explaination>
           <S.Tags>
             {courseItem.tags.map((tag: Tag, index: number) => (
-              <a key={"i_" + index}>#tag &nbsp;</a>
+              <a key={"i_" + index}>#{tag.value}&nbsp;</a>
             ))}
           </S.Tags>
         </S.ContentSection>
@@ -54,8 +54,8 @@ function CourseItem({ courseItem }: props): JSX.Element {
           </S.Icon>
         </S.EventButton>
         <S.EventButton
-          onClick={() => {
-            deleteCourse(courseItem.id);
+          onClick={async () => {
+            await deleteCourse(courseItem.id);
             location.reload();
           }}
         >
