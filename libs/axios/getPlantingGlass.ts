@@ -21,6 +21,7 @@ async function getPlantingGlass(): Promise<Glass[]> {
         return { date: `${y}-${m}-${d} (${dayOfWeek[dw]})`, count: e.count };
       }
     );
+
     return glass;
   } catch (e) {
     return [];

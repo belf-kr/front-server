@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 import getTodayTodoList from "../../libs/axios/getTodayTodoList";
 
 import Component from "./Component";
+import Loading from "./Loading";
 
 function TodayTodoList(): JSX.Element {
-  const [component, setComponent] = useState<JSX.Element>(<>Loading...</>);
+  const [component, setComponent] = useState<JSX.Element>(<Loading />);
 
   useEffect(() => {
     getTodayTodoList()

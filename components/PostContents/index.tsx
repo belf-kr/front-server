@@ -4,6 +4,7 @@ import { default as S } from "./style";
 
 import PostContent from "../../libs/type/PostContent";
 import InputSection from "../../layouts/AddLayout/InputSection";
+import PostToolBar from "../PostToolBar";
 
 function createTextInput(color: string, fontSize: number) {
   const content: PostContent = {
@@ -35,11 +36,15 @@ function PostContents(): JSX.Element {
           return <></>;
         }
       })}
-      <button
-        onClick={() => {
-          setContentList([...contentList, createTextInput("black", 16)]);
-        }}
-      />
+      <PostToolBar>
+        <button
+          onClick={() => {
+            setContentList([...contentList, createTextInput("black", 16)]);
+          }}
+        >
+          test
+        </button>
+      </PostToolBar>
     </>
   );
 }

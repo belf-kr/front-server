@@ -9,7 +9,7 @@ type props = {
 };
 
 function CourseSelection({ courseOnChange }: props): JSX.Element {
-  const [component, setComponent] = useState<JSX.Element>(<>Loading...</>);
+  const [component, setComponent] = useState<JSX.Element>(<></>);
 
   useEffect(() => {
     getCourseList()
