@@ -65,8 +65,8 @@ function AddCoursePage(): JSX.Element {
             <AddButton
               text={"Create"}
               bgColor={"#19CC19"}
-              onClick={() => {
-                setNewCourse(courseData);
+              onClick={async () => {
+                await setNewCourse(courseData);
                 location.href = "/course-list";
               }}
             />
