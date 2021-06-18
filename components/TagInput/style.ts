@@ -9,6 +9,7 @@ const Input = styled.input`
   padding: 10px 15px;
   width: 100%;
   box-sizing: border-box;
+  -webkit-appearance: none;
 
   :focus {
     outline: none;
