@@ -28,10 +28,10 @@ function TodayTodoItem({ todoItem }: props): JSX.Element {
     <S.TodoItemSection>
       <S.TodoItemCard ref={refClickComponent} left={itemLeft}>
         <S.TodoTitleSection>
-          <S.CourseColor bgColor={todoItem.color} />
-          <S.TodoTitle>{todoItem.reminder_title}</S.TodoTitle>
+          <S.CourseColor bgColor={todoItem.courseId.color.id} />
+          <S.TodoTitle>{todoItem.title}</S.TodoTitle>
         </S.TodoTitleSection>
-        <S.CourseTitle>{todoItem.course_title}</S.CourseTitle>
+        <S.CourseTitle>{todoItem.courseId.title}</S.CourseTitle>
       </S.TodoItemCard>
       <S.ButtonSection>
         <S.EventButton>

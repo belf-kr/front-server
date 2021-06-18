@@ -6,7 +6,7 @@ type props = {
   todoList: TodoItem[];
 };
 
-function Component({ todoList }: props): JSX.Element {
+function Component({ todoList = [] }: props): JSX.Element {
   return (
     <>
       {todoList.map((todoItem: TodoItem, index: number) => (
