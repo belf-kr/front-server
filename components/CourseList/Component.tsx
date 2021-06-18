@@ -6,7 +6,7 @@ type props = {
   courseList: CourseItemType[];
 };
 
-function Component({ courseList }: props): JSX.Element {
+function Component({ courseList = [] }: props): JSX.Element {
   return (
     <>
       {courseList.map((courseItem: CourseItemType, index: number) => (

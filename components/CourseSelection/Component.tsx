@@ -10,8 +10,8 @@ type props = {
   courseList: CourseItemType[];
 };
 
-function Component({ courseList }: props): JSX.Element {
-  const [selectedCourse, setSelectedCourse] = useState<CourseItemType>(courseList[0]);
+function Component({ courseList = [] }: props): JSX.Element {
+  const [selectedCourse, setSelectedCourse] = useState<CourseItemType>(courseList.length == 0 ? {} : courseList[0]);
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
