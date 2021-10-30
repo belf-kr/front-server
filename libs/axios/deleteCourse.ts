@@ -1,13 +1,8 @@
 import axios from "axios";
 
 async function deleteCourse(courseId: number): Promise<void> {
-  const config = {
-    data: {
-      id: courseId,
-    },
-  };
   await axios
-    .delete("https://api-gateway.qa.belf.xyz/todo/delete-courses", config)
+    .delete("https://api-gateway.qa.belf.xyz/API/todo/courses/" + courseId)
     .then((res) => {
       console.log(res.status);
     })

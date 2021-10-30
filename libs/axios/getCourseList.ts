@@ -4,7 +4,7 @@ import { CourseItem } from "../type/CourseItem";
 
 async function getCourseList(): Promise<CourseItem[]> {
   return await axios
-    .get("https://api-gateway.qa.belf.xyz/todo/get-all-courses")
+    .get("https://api-gateway.qa.belf.xyz/API/todo/courses")
     .then((res) => {
       return res.data.course_list;
     })
