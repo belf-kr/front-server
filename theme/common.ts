@@ -1,23 +1,29 @@
-const calcRem = (size) => `${size / 16}rem`;
-
 const fontSize = {
-  standard: "16px",
-  xs: calcRem(10),
-  s: calcRem(14),
-  m: calcRem(16),
-  l: calcRem(18),
-  xl: calcRem(20),
-  xxl: calcRem(26),
-  xxxl: calcRem(30),
+  s100: 10,
+  s200: 12,
+  s300: 14,
+  s400: 16,
+  s500: 18,
+  s600: 20,
+  s700: 24,
+  s800: 28,
+  s900: 32,
+  s1000: 36,
 };
 
-const boxShadow = {
-  base: "0px 0px 3px rgba(0,0,0,0.3)",
+const fontWeight = {
+  medium: "Medium",
+  bold: "Bold",
+};
+
+const borderRadius = {
+  default: 10,
 };
 
 const common = {
   fontSize,
-  boxShadow,
+  fontWeight,
+  borderRadius,
 };
 
 export default common;

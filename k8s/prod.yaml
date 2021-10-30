@@ -15,10 +15,17 @@ spec:
     spec:
       containers:
         - name: front-server
-          image: ghcr.io/belf-kr/front-server/nextjs
+          image: ghcr.io/belf-kr/front-server/nextjs-prod
           imagePullPolicy: "Always"
           ports:
             - containerPort: 3000
+          resources:
+            requests:
+              cpu: 100m
+              memory: 50Mi
+            limits:
+              cpu: 100m
+              memory: 100Mi
 ---
 apiVersion: v1
 kind: Service

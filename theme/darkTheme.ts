@@ -1,22 +1,36 @@
+import { DefaultTheme } from "styled-components";
+
 import common from "./common";
 
-const colors = {
-  mainTitle: "#FFFFFF",
-  signature: "#FFAB74",
-  signatureRed: "#FF7E7E",
-  signatureSkyBlue: "#84D0FD",
-
-  background: "#222222",
-  boxBackground: "#333333",
-  NodeTitle: "#FFFFFF",
-  NodeSubTitle: "#AFAFAF",
-  tag: "#D6D6D6",
-  navigationbarEnable: "#D6D6D6",
+const fontColor = {
+  main: "#FBFDFE",
+  sub: "#96959A",
+  sub2: "#58595B",
 };
 
-const darkTheme = {
-  ...common,
-  colors,
+const brandColor = {
+  main: "#FF924A",
 };
 
+const activateColor = {
+  error: "#FF5446",
+};
+
+const backgroundColor = {
+  bg: "#131313",
+  card: "#1B1C1E",
+};
+
+const lineColor = {
+  main: "#2A2C2D",
+};
+
+export const darkTheme: DefaultTheme = {
+  fontColor,
+  brandColor,
+  activateColor,
+  backgroundColor,
+  lineColor,
+  common,
+};
 export default darkTheme;
