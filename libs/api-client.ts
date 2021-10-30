@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 
-const host = `https://api-gateway.qa.belf.xyz`;
+const host = process.env.NEXT_PUBLIC_API_GATEWAY_URL;
 
 export const client: AxiosInstance = axios.create({
   baseURL: `${host}/todo`,

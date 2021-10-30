@@ -4,6 +4,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:qa": "env-cmd -f .env.qa next build",
+    "build:prod": "env-cmd -f .env.prod next build",
     "start": "next start",
     "type-check": "tsc --pretty --noEmit",
     "format": "prettier --write .",
@@ -23,6 +25,7 @@
   },
   "dependencies": {
     "axios": "^0.21.4",
+    "env-cmd": "^10.1.0",
     "next": "latest",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

@@ -11,6 +11,7 @@ RUN npm i
 # 앱 소스 추가
 COPY . .
 
-RUN npm run build
+# qa 환경으로 빌드
+RUN npm run build:qa
 
 CMD [ "npm", "run", "start" ]
