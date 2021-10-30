@@ -3,7 +3,7 @@ import Reminder from "../type/Reminder";
 
 async function setNewCourse(reminder: Reminder): Promise<void> {
   await axios
-    .post("https://api-gateway.qa.belf.xyz/API/todo/work-todos", reminder)
+    .post("https://api-gateway.qa.belf.xyz/todo/work-todos", reminder)
     .then((res) => {
       console.log(res.status);
     })

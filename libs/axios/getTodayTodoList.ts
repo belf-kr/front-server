@@ -4,7 +4,7 @@ import { TodoItem } from "../type/TodoTodayItem";
 
 async function getTodayTodoList(): Promise<TodoItem[]> {
   return await axios
-    .get("https://api-gateway.qa.belf.xyz/API/todo/work-todos")
+    .get("https://api-gateway.qa.belf.xyz/todo/work-todos")
     .then((res) => {
       return res.data.todo_list;
     })

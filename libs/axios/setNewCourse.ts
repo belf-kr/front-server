@@ -5,7 +5,7 @@ import { CourseItem } from "../type/CourseItem";
 
 async function setNewCourse(course: CourseItem): Promise<void> {
   await axios
-    .post("https://api-gateway.qa.belf.xyz/API/todo/courses", course)
+    .post("https://api-gateway.qa.belf.xyz/todo/courses", course)
     .then((res) => {
       console.log(res.status);
     })
