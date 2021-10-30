@@ -6,7 +6,7 @@ async function getCourseList(): Promise<CourseItem[]> {
   return await axios
     .get("https://api-gateway.qa.belf.xyz/todo/courses")
     .then((res) => {
-      return res.data.course_list;
+      return res.data;
     })
     .catch((error) => {
       console.log(error.response.status);
