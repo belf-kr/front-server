@@ -1,24 +1,23 @@
-import { AppProps } from "next/app";
-import { RecoilRoot } from "recoil";
+import React from "react";
 
-import GlobalStyle from "../styles/GlobalStyle";
-import { ThemeProvider } from "styled-components";
-import lightTheme from "../theme/lightTheme";
+import type { AppProps } from "next/app";
 
 import { version } from "../package.json";
 
-function App({ Component, pageProps }: AppProps): JSX.Element {
+import { RecoilRoot } from "recoil";
+
+import ThemeRoot from "../theme/ThemeRoot";
+import RootLayout from "../layouts/RootLayout";
+
+export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   console.log(`version: ${version}`);
   return (
-    <>
-      <RecoilRoot>
-        <ThemeProvider theme={lightTheme}>
-          <GlobalStyle />
+    <RecoilRoot>
+      <ThemeRoot>
+        <RootLayout>
           <Component {...pageProps} />
-        </ThemeProvider>
-      </RecoilRoot>
-    </>
+        </RootLayout>
+      </ThemeRoot>
+    </RecoilRoot>
   );
 }
-
-export default App;
