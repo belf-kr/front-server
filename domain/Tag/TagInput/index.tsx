@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import * as S from "./style";
 
@@ -6,7 +6,11 @@ import { Tag } from "../../../types/components-type/course";
 
 import CloseIcon from "../../../icons/CloseIcon";
 
-export default function TagInput(): JSX.Element {
+type props = {
+  tagsOnChange: (value: Tag[]) => void;
+};
+
+export default function TagInput({ tagsOnChange }: props): JSX.Element {
   const [tagList, setTagList] = useState<Tag[]>([]);
   const tagInputRef = useRef<HTMLInputElement>(null);
 
@@ -31,6 +35,10 @@ export default function TagInput(): JSX.Element {
     tempArray.splice(index, 1);
     setTagList(tempArray);
   };
+
+  useEffect(() => {
+    tagsOnChange(tagList);
+  }, [tagList]);
 
   return (
     <>
