@@ -12,7 +12,7 @@ import PlantingGlass from "../../domain/Status/PlantingGlass";
 import TodayTodoList from "../../domain/Todo/TodayTodoList";
 import CourseList from "../../domain/Course/CourseList";
 
-import { useGetString } from "../../hooks/useGetString";
+import useGetString from "../../hooks/useGetString";
 
 const getTabComponent = (key: string) => {
   switch (key) {
