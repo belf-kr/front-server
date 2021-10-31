@@ -10,7 +10,11 @@ type DayOfWeek = {
   isChecked?: boolean;
 };
 
-export default function SelectDayOfWeek(): JSX.Element {
+type props = {
+  dayOfWeekOnChange?: (value: boolean[]) => void;
+};
+
+export default function SelectDayOfWeek({ dayOfWeekOnChange }: props): JSX.Element {
   const [isOpenPopup, setIsOpenPopup] = useState<boolean>(false);
   const [dayOfWeekItems] = useState<DayOfWeek[]>([
     { showText: "월", number: 0 },
@@ -40,6 +44,10 @@ export default function SelectDayOfWeek(): JSX.Element {
       window.removeEventListener("click", handleClickOutside);
     };
   }, []);
+
+  useEffect(() => {
+    dayOfWeekOnChange(currentDayOfWeekItems);
+  }, [currentDayOfWeekItems]);
 
   return (
     <S.SelectDayOfWeekBox ref={modalEl}>
