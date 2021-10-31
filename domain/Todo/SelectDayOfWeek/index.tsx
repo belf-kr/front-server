@@ -46,7 +46,7 @@ export default function SelectDayOfWeek({ dayOfWeekOnChange }: props): JSX.Eleme
   }, []);
 
   useEffect(() => {
-    dayOfWeekOnChange(currentDayOfWeekItems);
+    if (dayOfWeekOnChange) dayOfWeekOnChange(currentDayOfWeekItems);
   }, [currentDayOfWeekItems]);
 
   return (
