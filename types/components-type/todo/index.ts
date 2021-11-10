@@ -8,4 +8,5 @@ export type TodoItem = {
   courseId?: number;
   courseTitle?: string;
   color?: string;
+  repeatedDaysOfTheWeek?: number[];
 };

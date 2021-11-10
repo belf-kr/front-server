@@ -26,7 +26,7 @@ export default function CreateTodo(): JSX.Element {
       title: title,
       explanation: explanation,
       recurringCycleDate: 1,
-      passedDay: 1,
+      repeatedDaysOfTheWeek: [],
     });
     router.back();
   };
