@@ -2,7 +2,7 @@ import { useRecoilState } from "recoil";
 
 import styled from "styled-components";
 
-import { themeState } from "../../states/themeState";
+import { themeState } from "../../states/app";
 
 const ButtonStyle = styled.button`
   background-color: ${({ theme }) => theme.brandColor.main};
