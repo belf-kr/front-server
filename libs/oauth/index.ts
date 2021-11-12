@@ -70,6 +70,10 @@ export async function PostUser(user: UserDTO): Promise<void> {
   try {
     await oauthClient.post(`/users/signup`, user);
   } catch (error) {
+    if (axios.isAxiosError(error)) {
+      // 서버 측 에러이면 상태코드를 기준으로 에러처리를 할 수 있도록 그대로 던짐
+      throw error;
+    }
     throw new Error("PostUser() 에러");
   }
 }
@@ -83,6 +87,10 @@ export async function UserLogin(email: string, password: string): Promise<void> 
     setLocalStorageAccessToken(data.accessToken);
     setLocalStorageRefreshToken(data.refreshToken);
   } catch (error) {
+    if (axios.isAxiosError(error)) {
+      // 서버 측 에러이면 상태코드를 기준으로 에러처리를 할 수 있도록 그대로 던짐
+      throw error;
+    }
     throw new Error("UserLogin() 에러");
   }
 }
