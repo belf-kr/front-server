@@ -3,7 +3,7 @@ import React, { ReactNode } from "react";
 import { useRecoilState } from "recoil";
 import { ThemeProvider } from "styled-components";
 
-import { themeState } from "../states/themeState";
+import { themeState } from "../states/app";
 
 import darkTheme from "./darkTheme";
 import lightTheme from "./lightTheme";
