@@ -37,23 +37,23 @@ type Kakao = {
 const accessTokenKey = `${name}-accessToken`;
 const refreshTokenKey = `${name}-refreshToken`;
 
-function getLocalStorageAccessToken() {
+export function getLocalStorageAccessToken(): string {
   return localStorage.getItem(accessTokenKey);
 }
-function setLocalStorageAccessToken(token: string) {
+export function setLocalStorageAccessToken(token: string): void {
   localStorage.setItem(accessTokenKey, token);
 }
-function delLocalStorageAccessToken() {
+export function delLocalStorageAccessToken(): void {
   localStorage.removeItem(accessTokenKey);
 }
 
 function getLocalStorageRefreshToken() {
   return localStorage.getItem(refreshTokenKey);
 }
-function setLocalStorageRefreshToken(token: string) {
+export function setLocalStorageRefreshToken(token: string): void {
   localStorage.setItem(refreshTokenKey, token);
 }
-function delLocalStorageRefreshToken() {
+export function delLocalStorageRefreshToken(): void {
   localStorage.removeItem(refreshTokenKey);
 }
 
@@ -127,7 +127,16 @@ export async function TokenRefresh(): Promise<void> {
     setLocalStorageAccessToken(data.accessToken);
     setLocalStorageRefreshToken(data.refreshToken);
   } catch (error) {
-    throw new Error("TokenRefresh() 에러");
+    if (error instanceof Error) {
+      if (axios.isAxiosError(error)) {
+        switch (error.response?.status) {
+          case 401:
+            // 리프레시 토큰이 만료된 경우 해당 에러는 무시합니다
+            return;
+        }
+      }
+    }
+    throw new Error(`TokenRefresh() 에러: ${error}`);
   }
 }
 
@@ -151,6 +160,6 @@ export async function UserLogout(): Promise<void> {
         }
       }
     }
-    throw new Error("UserLogout() 에러");
+    throw new Error(`UserLogout() 에러: ${error}`);
   }
 }

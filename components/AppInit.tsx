@@ -2,6 +2,7 @@ import { ReactNode, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { configState } from "../states/app";
 import { GetConfig } from "../libs/oauth";
+import axios from "axios";
 
 type Props = {
   children: ReactNode;
@@ -17,6 +18,9 @@ export default function AppInit({ children }: Props): JSX.Element {
       setConfig(res);
     } catch (error) {
       if (error instanceof Error) {
+        if (axios.isAxiosError(error)) {
+          setError(error.response.data ?? error.message);
+        }
         setError(error.message);
       }
       setError(error);
