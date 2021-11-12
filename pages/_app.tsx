@@ -8,6 +8,7 @@ import { RecoilRoot } from "recoil";
 
 import ThemeRoot from "../theme/ThemeRoot";
 import RootLayout from "../layouts/RootLayout";
+import AppInit from "../components/AppInit";
 
 export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   console.log(`version: ${version}`);
@@ -15,7 +16,9 @@ export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     <RecoilRoot>
       <ThemeRoot>
         <RootLayout>
-          <Component {...pageProps} />
+          <AppInit>
+            <Component {...pageProps} />
+          </AppInit>
         </RootLayout>
       </ThemeRoot>
     </RecoilRoot>
