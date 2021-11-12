@@ -14,7 +14,7 @@ export default function CoursePinList(): JSX.Element {
   useEffect(() => {
     (async () => {
       const res = await getCourses();
-      setCourseItems(res.slice(0, 4));
+      setCourseItems(res.reverse().slice(0, 4));
     })();
     return () => setCourseItems([]);
   }, []);

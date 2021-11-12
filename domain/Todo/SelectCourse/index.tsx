@@ -8,7 +8,11 @@ import { CourseItem } from "../../../types/components-type/course";
 
 import ArrowIcon from "../../../icons/ArrowIcon";
 
-export default function SelectCourse(): JSX.Element {
+type props = {
+  courseOnChange: (value: CourseItem) => void;
+};
+
+export default function SelectCourse({ courseOnChange }: props): JSX.Element {
   const [isOpenPopup, setIsOpenPopup] = useState<boolean>(false);
   const [courseItems, setCourseItems] = useState<CourseItem[]>([]);
   const [currentCourseItem, setCurrentCourseItem] = useState<CourseItem>();
@@ -36,6 +40,10 @@ export default function SelectCourse(): JSX.Element {
       return () => setCourseItems([]);
     })();
   }, []);
+
+  useEffect(() => {
+    courseOnChange(currentCourseItem);
+  }, [currentCourseItem]);
 
   return (
     <S.SelectCourseBox ref={modalEl}>
