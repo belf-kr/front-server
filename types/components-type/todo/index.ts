@@ -1,6 +1,6 @@
 export type TodoItem = {
   id?: number;
-  recurrintCycleDate?: string;
+  recurringCycleDate?: number;
   title?: string;
   explanation?: string;
   passedDay?: number;
@@ -8,4 +8,5 @@ export type TodoItem = {
   courseId?: number;
   courseTitle?: string;
   color?: string;
+  repeatedDaysOfTheWeek?: number[];
 };

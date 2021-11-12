@@ -14,19 +14,6 @@ const RadioColorsBox = styled.div`
   }
 `;
 
-const ColorInput = styled.input.attrs({ type: "radio" })<{ color: string }>`
-  background-color: ${(props) => props.color};
-  appearance: none;
-  border: none;
-  width: 32px;
-  height: 32px;
-  border-radius: 100%;
-  cursor: pointer;
-  :checked {
-    border: 4px solid ${({ theme }) => theme.fontColor.sub2};
-  }
-`;
-
 const DefaultInput = styled.input.attrs({ type: "text" })`
   border-radius: ${({ theme }) => theme.common.borderRadius.default}px;
   background-color: ${({ theme }) => theme.backgroundColor.card};
@@ -88,4 +75,4 @@ const SubmitButtonBox = styled.div`
   margin: 20px 0px;
 `;
 
-export { Title, TitleBox, Contents, SubTitle, SubTitleBox, ColorInput, DefaultInput, DefaultTextArea, RadioColorsBox, SubmitButtonBox };
+export { Title, TitleBox, Contents, SubTitle, SubTitleBox, DefaultInput, DefaultTextArea, RadioColorsBox, SubmitButtonBox };
