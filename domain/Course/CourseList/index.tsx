@@ -20,6 +20,8 @@ export default function CourseList(): JSX.Element {
       const res = await getCourses();
       setCourseItems(res);
     })();
+
+    return () => setCourseItems([]);
   }, []);
 
   return (
