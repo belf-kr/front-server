@@ -13,7 +13,7 @@ import TodayTodoList from "../../domain/Todo/TodayTodoList";
 import CourseList from "../../domain/Course/CourseList";
 
 import useGetString from "../../hooks/useGetString";
-import { GetUserInfo } from "../../libs/oauth";
+import { GetUserInfoEmailQuey } from "../../libs/oauth";
 import { useRouter } from "next/router";
 import axios from "axios";
 
@@ -53,7 +53,7 @@ const UserPage: NextPage = () => {
     }
     (async () => {
       try {
-        const res = await GetUserInfo(userEmail as string);
+        const res = await GetUserInfoEmailQuey(userEmail as string);
         setUserInfo(res);
       } catch (error) {
         if (error instanceof Error) {

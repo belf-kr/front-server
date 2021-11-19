@@ -113,7 +113,34 @@ export async function UserLogin(email: string, password: string): Promise<void> 
   }
 }
 
-export async function GetUserInfo(userEmail: string): Promise<UserInfo> {
+export async function GetUserInfoTokenQuey(): Promise<UserInfo> {
+  async function work() {
+    const accessToken = getLocalStorageAccessToken();
+    const { data } = await oauthClient.get<UserInfo>(`/users`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return data;
+  }
+  try {
+    return await work();
+  } catch (error) {
+    if (error instanceof Error) {
+      if (axios.isAxiosError(error)) {
+        switch (error.response?.status) {
+          case 401:
+            // 재시도: 리프레쉬 토큰으로 엑세스 토큰을 다시 발급
+            await TokenRefresh();
+            return await work();
+        }
+      }
+    }
+    throw new Error("GetUserInfo() 에러");
+  }
+}
+
+export async function GetUserInfoEmailQuey(userEmail: string): Promise<UserInfo> {
   const { data } = await oauthClient.get<UserInfo>(`/users/${userEmail}`);
   return data;
 }
