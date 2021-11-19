@@ -45,15 +45,15 @@ const UserPage: NextPage = () => {
   const [tabKey, setTabKey] = useGetString();
 
   const router = useRouter();
-  const { userId } = router.query;
+  const { userEmail } = router.query;
 
   useEffect(() => {
-    if (userId === undefined) {
+    if (userEmail === undefined) {
       return;
     }
     (async () => {
       try {
-        const res = await GetUserInfo(userId as string);
+        const res = await GetUserInfo(userEmail as string);
         setUserInfo(res);
       } catch (error) {
         if (error instanceof Error) {

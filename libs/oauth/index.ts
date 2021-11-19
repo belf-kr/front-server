@@ -113,8 +113,8 @@ export async function UserLogin(email: string, password: string): Promise<void> 
   }
 }
 
-export async function GetUserInfo(userId: string): Promise<UserInfo> {
-  const { data } = await oauthClient.get<UserInfo>(`/users/${userId}`);
+export async function GetUserInfo(userEmail: string): Promise<UserInfo> {
+  const { data } = await oauthClient.get<UserInfo>(`/users/${userEmail}`);
   return data;
 }
 
