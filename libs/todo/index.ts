@@ -4,8 +4,8 @@ import { TodoItem } from "../../types/components-type/todo";
 import { getLocalStorageAccessToken, TokenRefresh } from "../oauth";
 import axios from "axios";
 
-export async function getTodayTodos(): Promise<TodoItem[]> {
-  const { data } = await apiClient.get<TodoItem[]>(`/work-todos`);
+export async function getTodayTodos(userId: number): Promise<TodoItem[]> {
+  const { data } = await apiClient.get<TodoItem[]>(`/work-todos?userId=${userId}`);
   return data;
 }
 

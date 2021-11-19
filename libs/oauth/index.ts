@@ -18,7 +18,7 @@ type UserDTO = {
   name: string;
 };
 
-type UserInfo = {
+export type UserInfo = {
   id: number;
   email: string;
   name: string;

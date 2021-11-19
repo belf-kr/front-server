@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-
+import { useRecoilState } from "recoil";
 import type { NextPage } from "next";
-
+import { userInfoState } from "../../states/app";
 import UserLayout from "../../layouts/UserLayout";
 import UserContentsLayout from "../../layouts/UserContentsLayout";
 
@@ -40,16 +40,21 @@ const UserPage: NextPage = () => {
   const [error, setError] = useState<string>();
   const [isNotFoundUser, setIsNotFoundUser] = useState<boolean>();
 
+  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+
   const [tabKey, setTabKey] = useGetString();
 
   const router = useRouter();
-
   const { userId } = router.query;
 
   useEffect(() => {
+    if (userId === undefined) {
+      return;
+    }
     (async () => {
       try {
-        await GetUserInfo(userId as string);
+        const res = await GetUserInfo(userId as string);
+        setUserInfo(res);
       } catch (error) {
         if (error instanceof Error) {
           if (axios.isAxiosError(error)) {
@@ -65,7 +70,7 @@ const UserPage: NextPage = () => {
         setError(error);
       }
     })();
-  }, []);
+  }, [router]);
 
   if (isNotFoundUser) {
     return (
@@ -90,14 +95,22 @@ const UserPage: NextPage = () => {
     );
   }
 
+  if (userInfo) {
+    return (
+      <UserLayout>
+        <UserProfile />
+        <UserContentsLayout>
+          <UserPageNavigate setTabKey={setTabKey} />
+          {getTabComponent(tabKey)}
+        </UserContentsLayout>
+      </UserLayout>
+    );
+  }
+
   return (
-    <UserLayout>
-      <UserProfile />
-      <UserContentsLayout>
-        <UserPageNavigate setTabKey={setTabKey} />
-        {getTabComponent(tabKey)}
-      </UserContentsLayout>
-    </UserLayout>
+    <>
+      <h3>로딩 중...</h3>
+    </>
   );
 };
 
