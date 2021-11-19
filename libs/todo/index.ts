@@ -31,6 +31,6 @@ export async function postNewTodo(todo: TodoItem): Promise<void> {
         }
       }
     }
-    throw new Error("postNewCourse() 에러");
+    throw new Error("postNewTodo() 에러");
   }
 }
