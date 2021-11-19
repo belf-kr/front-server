@@ -3,9 +3,9 @@ import {
   setLocalStorageAccessToken,
   setLocalStorageRefreshToken,
   getLocalStorageAccessToken,
-  GetUserInfo,
   delLocalStorageAccessToken,
   delLocalStorageRefreshToken,
+  GetUserInfoTokenQuey,
 } from "../libs/oauth";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -35,7 +35,7 @@ export default function AuthEnd(): JSX.Element {
       const accessToken = getLocalStorageAccessToken();
       if (accessToken) {
         try {
-          const res = await GetUserInfo();
+          const res = await GetUserInfoTokenQuey();
           router.replace(`/${res.email}`);
         } catch (error) {
           if (error instanceof Error) {

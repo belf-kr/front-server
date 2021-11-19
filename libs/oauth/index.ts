@@ -18,7 +18,7 @@ type UserDTO = {
   name: string;
 };
 
-type UserInfo = {
+export type UserInfo = {
   id: number;
   email: string;
   name: string;
@@ -55,6 +55,24 @@ export function setLocalStorageRefreshToken(token: string): void {
 }
 export function delLocalStorageRefreshToken(): void {
   localStorage.removeItem(refreshTokenKey);
+}
+
+export function expiredTokenFallback(error: unknown): void {
+  if (error instanceof Error) {
+    if (axios.isAxiosError(error)) {
+      switch (error.response?.status) {
+        case 401:
+          // refresh token도 만료된 상태입니다: 사용자가 다시 로그인해야되는 시점
+          delLocalStorageAccessToken();
+          delLocalStorageRefreshToken();
+          // 일단 홈화면으로 이동
+          window.location.href = window.location.origin;
+          break;
+      }
+    }
+    throw error;
+  }
+  throw error;
 }
 
 export async function GetConfig(): Promise<Config> {
@@ -95,7 +113,7 @@ export async function UserLogin(email: string, password: string): Promise<void> 
   }
 }
 
-export async function GetUserInfo(): Promise<UserInfo> {
+export async function GetUserInfoTokenQuey(): Promise<UserInfo> {
   async function work() {
     const accessToken = getLocalStorageAccessToken();
     const { data } = await oauthClient.get<UserInfo>(`/users`, {
@@ -120,6 +138,11 @@ export async function GetUserInfo(): Promise<UserInfo> {
     }
     throw new Error("GetUserInfo() 에러");
   }
+}
+
+export async function GetUserInfoEmailQuey(userEmail: string): Promise<UserInfo> {
+  const { data } = await oauthClient.get<UserInfo>(`/users/${userEmail}`);
+  return data;
 }
 
 export async function TokenRefresh(): Promise<void> {
