@@ -37,8 +37,8 @@ export default function SelectCourse({ courseOnChange }: props): JSX.Element {
     (async () => {
       const res = await getCourses();
       setCourseItems(res);
-      return () => setCourseItems([]);
     })();
+    return () => setCourseItems([]);
   }, []);
 
   useEffect(() => {
