@@ -12,6 +12,7 @@ import Button from "../../../components/Button";
 import SelectCourseColor from "../SelectCourseColor";
 import TagInput from "../../Tag/TagInput";
 import { postNewCourse } from "../../../libs/course";
+import { expiredTokenFallback } from "../../../libs/oauth";
 
 export default function CreateCourse(): JSX.Element {
   const router = useRouter();
@@ -22,13 +23,17 @@ export default function CreateCourse(): JSX.Element {
   const [tags, setTags] = useTagOnChange();
 
   const addCourse = async () => {
-    await postNewCourse({
-      title: title,
-      explanation: explanation,
-      color: color,
-      tags: tags,
-    });
-    router.back();
+    try {
+      await postNewCourse({
+        title: title,
+        explanation: explanation,
+        color: color,
+        tags: tags,
+      });
+      router.back();
+    } catch (error) {
+      expiredTokenFallback(error);
+    }
   };
 
   return (

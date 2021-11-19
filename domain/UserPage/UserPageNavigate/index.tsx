@@ -48,11 +48,11 @@ export default function UserPageNavigate({ setTabKey }: props): JSX.Element {
 
   useEffect(() => {
     const currentTabKey = String(router.query?.tab ?? "");
-    const currentUserId = String(router.query?.userId ?? "");
+    const currentUserEmail = String(router.query?.userEmail ?? "");
 
     const tempList = [...tabList];
-    tempList[0].showText = currentUserId;
-    tempList[0].key = currentUserId;
+    tempList[0].showText = currentUserEmail;
+    tempList[0].key = currentUserEmail;
     setTabList(tempList);
 
     clickedTab(currentTabKey);

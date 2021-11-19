@@ -12,6 +12,7 @@ import SelectDayOfWeek from "../SelectDayOfWeek";
 
 import useOnChange from "../../../hooks/useOnChange";
 import useCourseOnChange from "../../../hooks/useCourseOnChange";
+import { expiredTokenFallback } from "../../../libs/oauth";
 
 export default function CreateTodo(): JSX.Element {
   const router = useRouter();
@@ -21,14 +22,18 @@ export default function CreateTodo(): JSX.Element {
   const [course, setCourse] = useCourseOnChange();
 
   const addTodo = async () => {
-    await postNewTodo({
-      courseId: course.id,
-      title: title,
-      explanation: explanation,
-      recurringCycleDate: 1,
-      repeatedDaysOfTheWeek: [],
-    });
-    router.back();
+    try {
+      await postNewTodo({
+        courseId: course.id,
+        title: title,
+        explanation: explanation,
+        recurringCycleDate: 1,
+        repeatedDaysOfTheWeek: [],
+      });
+      router.back();
+    } catch (error) {
+      expiredTokenFallback(error);
+    }
   };
 
   return (
