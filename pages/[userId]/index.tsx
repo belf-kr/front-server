@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import type { NextPage } from "next";
 
@@ -13,6 +13,9 @@ import TodayTodoList from "../../domain/Todo/TodayTodoList";
 import CourseList from "../../domain/Course/CourseList";
 
 import useGetString from "../../hooks/useGetString";
+import { GetUserInfo } from "../../libs/oauth";
+import { useRouter } from "next/router";
+import axios from "axios";
 
 const getTabComponent = (key: string) => {
   switch (key) {
@@ -34,7 +37,58 @@ const getTabComponent = (key: string) => {
 };
 
 const UserPage: NextPage = () => {
+  const [error, setError] = useState<string>();
+  const [isNotFoundUser, setIsNotFoundUser] = useState<boolean>();
+
   const [tabKey, setTabKey] = useGetString();
+
+  const router = useRouter();
+
+  const { userId } = router.query;
+
+  useEffect(() => {
+    (async () => {
+      try {
+        await GetUserInfo(userId as string);
+      } catch (error) {
+        if (error instanceof Error) {
+          if (axios.isAxiosError(error)) {
+            switch (error.response?.status) {
+              case 404:
+                setIsNotFoundUser(true);
+                break;
+            }
+          }
+          setError(error.message);
+          return;
+        }
+        setError(error);
+      }
+    })();
+  }, []);
+
+  if (isNotFoundUser) {
+    return (
+      <>
+        <div
+          style={{
+            display: "grid",
+            placeItems: "center",
+          }}
+        >
+          <h3>앗! 존재하지 않는 사용자 입니다.</h3>
+        </div>
+      </>
+    );
+  }
+
+  if (error) {
+    return (
+      <>
+        <h3>{error}</h3>
+      </>
+    );
+  }
 
   return (
     <UserLayout>

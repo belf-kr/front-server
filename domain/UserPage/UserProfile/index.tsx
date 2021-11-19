@@ -4,8 +4,8 @@ import * as S from "./style";
 import UserPageAvatar from "../UserPageAvatar";
 import FollowButton from "../../FollowButton";
 import Button from "../../../components/Button";
-import { delLocalStorageAccessToken, delLocalStorageRefreshToken, getLocalStorageAccessToken, GetUserInfo } from "../../../libs/oauth";
-import axios from "axios";
+import { GetUserInfo } from "../../../libs/oauth";
+import { useRouter } from "next/router";
 
 export default function UserProfile(): JSX.Element {
   const [name, setName] = useState<string>();
@@ -15,38 +15,25 @@ export default function UserProfile(): JSX.Element {
   );
   const [error, setError] = useState<string>();
 
-  const accessToken = getLocalStorageAccessToken();
+  const router = useRouter();
+
+  const { userId } = router.query;
 
   useEffect(() => {
     (async () => {
-      if (accessToken) {
-        try {
-          const res = await GetUserInfo();
-          setName(res.name);
-          setEmail(res.email);
-          if (res.avatarImage) {
-            setAvatar(res.avatarImage);
-          }
-        } catch (error) {
-          if (error instanceof Error) {
-            if (axios.isAxiosError(error)) {
-              switch (error.response?.status) {
-                case 401:
-                  // refresh token도 만료된 상태입니다: 사용자가 다시 로그인해야되는 시점
-                  delLocalStorageAccessToken();
-                  delLocalStorageRefreshToken();
-                  // 일단 홈화면으로 이동
-                  window.location.href = window.location.origin;
-                  break;
-                default:
-                  setError(error.response.data ?? error.message);
-                  break;
-              }
-            }
-            setError(error.message);
-          }
-          setError(error);
+      try {
+        const res = await GetUserInfo(userId as string);
+        setName(res.name);
+        setEmail(res.email);
+        if (res.avatarImage) {
+          setAvatar(res.avatarImage);
         }
+      } catch (error) {
+        if (error instanceof Error) {
+          setError(error.message);
+          return;
+        }
+        setError(error);
       }
     })();
   }, []);

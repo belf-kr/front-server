@@ -57,6 +57,24 @@ export function delLocalStorageRefreshToken(): void {
   localStorage.removeItem(refreshTokenKey);
 }
 
+export function expiredTokenFallback(error: unknown): void {
+  if (error instanceof Error) {
+    if (axios.isAxiosError(error)) {
+      switch (error.response?.status) {
+        case 401:
+          // refresh token도 만료된 상태입니다: 사용자가 다시 로그인해야되는 시점
+          delLocalStorageAccessToken();
+          delLocalStorageRefreshToken();
+          // 일단 홈화면으로 이동
+          window.location.href = window.location.origin;
+          break;
+      }
+    }
+    throw error;
+  }
+  throw error;
+}
+
 export async function GetConfig(): Promise<Config> {
   try {
     const { data } = await oauthClient.get<Config>(`/configs`);
@@ -95,31 +113,9 @@ export async function UserLogin(email: string, password: string): Promise<void> 
   }
 }
 
-export async function GetUserInfo(): Promise<UserInfo> {
-  async function work() {
-    const accessToken = getLocalStorageAccessToken();
-    const { data } = await oauthClient.get<UserInfo>(`/users`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-    return data;
-  }
-  try {
-    return await work();
-  } catch (error) {
-    if (error instanceof Error) {
-      if (axios.isAxiosError(error)) {
-        switch (error.response?.status) {
-          case 401:
-            // 재시도: 리프레쉬 토큰으로 엑세스 토큰을 다시 발급
-            await TokenRefresh();
-            return await work();
-        }
-      }
-    }
-    throw new Error("GetUserInfo() 에러");
-  }
+export async function GetUserInfo(userId: string): Promise<UserInfo> {
+  const { data } = await oauthClient.get<UserInfo>(`/users/${userId}`);
+  return data;
 }
 
 export async function TokenRefresh(): Promise<void> {
