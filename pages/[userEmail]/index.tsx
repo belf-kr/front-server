@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import type { NextPage } from "next";
-import { userInfoState } from "../../states/app";
+import { userInfoState, isPermissionState } from "../../states/app";
 import UserLayout from "../../layouts/UserLayout";
 import UserContentsLayout from "../../layouts/UserContentsLayout";
 
@@ -13,7 +13,7 @@ import TodayTodoList from "../../domain/Todo/TodayTodoList";
 import CourseList from "../../domain/Course/CourseList";
 
 import useGetString from "../../hooks/useGetString";
-import { GetUserInfoEmailQuey } from "../../libs/oauth";
+import { GetUserInfoEmailQuey, GetUserInfoTokenQuey } from "../../libs/oauth";
 import { useRouter } from "next/router";
 import axios from "axios";
 
@@ -41,6 +41,7 @@ const UserPage: NextPage = () => {
   const [isNotFoundUser, setIsNotFoundUser] = useState<boolean>();
 
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  const setIsPermissionState = useSetRecoilState(isPermissionState);
 
   const [tabKey, setTabKey] = useGetString();
 
@@ -53,8 +54,16 @@ const UserPage: NextPage = () => {
     }
     (async () => {
       try {
-        const res = await GetUserInfoEmailQuey(userEmail as string);
-        setUserInfo(res);
+        const userInfo = await GetUserInfoEmailQuey(userEmail as string);
+        setUserInfo(userInfo);
+        try {
+          const verifiedUser = await GetUserInfoTokenQuey();
+          if (userInfo.email === verifiedUser.email) {
+            setIsPermissionState(true);
+          }
+        } catch (error) {
+          // 어떤 오류던 간에 token 기반 사용자 인증에 실패하면 권한이 없는 것으로 간주합니다.
+        }
       } catch (error) {
         if (error instanceof Error) {
           if (axios.isAxiosError(error)) {
