@@ -29,8 +29,9 @@ export async function postNewCourse(course: CourseItem): Promise<void> {
   }
 }
 
-export async function getCourses(): Promise<CourseItem[]> {
-  const { data } = await apiClient.get<CourseItem[]>(`/courses`);
+export async function getCourses(userId?: number): Promise<CourseItem[]> {
+  const queryString = [userId && `userId=${userId}`];
+  const { data } = await apiClient.get<CourseItem[]>(`/courses?` + queryString.join("&"));
   return data;
 }
 
