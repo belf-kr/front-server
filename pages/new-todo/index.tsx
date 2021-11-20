@@ -4,12 +4,15 @@ import { NextPage } from "next";
 
 import CreateLayout from "../../layouts/CreateLayout";
 import CreateTodo from "../../domain/Todo/CreateTodo";
+import UserCheck from "../../components/UserCheck";
 
 const NewTodoPage: NextPage = () => {
   return (
-    <CreateLayout>
-      <CreateTodo />
-    </CreateLayout>
+    <UserCheck>
+      <CreateLayout>
+        <CreateTodo />
+      </CreateLayout>
+    </UserCheck>
   );
 };
 

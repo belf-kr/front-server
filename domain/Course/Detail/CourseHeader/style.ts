@@ -1,0 +1,73 @@
+import styled from "styled-components";
+
+const Box = styled.div`
+  width: 100%;
+`;
+
+const Card = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding: 6px 10px;
+  column-gap: 10px;
+
+  background-color: ${({ theme }) => theme.backgroundColor.card};
+  border-radius: ${({ theme }) => theme.common.borderRadius.default}px;
+  @media only screen and (max-width: 850px) {
+    flex-direction: column;
+    row-gap: 6px;
+  }
+`;
+
+const UserInfoBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  column-gap: 6px;
+  margin: 6px 0px;
+`;
+
+const UserImageBox = styled.div`
+  width: 24px;
+  aspect-ratio: 24 / 24;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+`;
+
+const UserNameText = styled.a`
+  font-size: ${({ theme }) => theme.common.fontSize.s300}px;
+  line-height: 24px;
+`;
+
+const Line = styled.div`
+  width: 1px;
+  margin: 6px 0px;
+  background-color: ${({ theme }) => theme.fontColor.sub2};
+  border-radius: ${({ theme }) => theme.common.borderRadius.default}px;
+`;
+
+const CourseTitleText = styled.a`
+  font-size: ${({ theme }) => theme.common.fontSize.s300}px;
+  line-height: 36px;
+`;
+
+const FollowButtonBox = styled.div`
+  margin-left: auto;
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+  @media only screen and (max-width: 850px) {
+    margin: auto 0;
+  }
+`;
+
+const Section = styled.div`
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+`;
+
+export { Box, Card, CourseTitleText, FollowButtonBox, Line, Section, UserImageBox, UserInfoBox, UserNameText };
