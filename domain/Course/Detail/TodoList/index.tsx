@@ -11,7 +11,6 @@ import TodoItem from "../TodoItem";
 import { useRouter } from "next/router";
 
 const toStringByFormatting = (date) => {
-  console.log(date);
   return date.toISOString().split("T")[0];
 };
 
