@@ -7,13 +7,17 @@ import CoursePinItem from "../CoursePinItem";
 import { CourseItem } from "../../../types/components-type/course";
 
 import { getCourses } from "../../../libs/course";
+import { useRecoilValue } from "recoil";
+import { userInfoState } from "../../../states/app";
 
 export default function CoursePinList(): JSX.Element {
   const [courseItems, setCourseItems] = useState<CourseItem[]>([]);
 
+  const userInfo = useRecoilValue(userInfoState);
+
   useEffect(() => {
     (async () => {
-      const res = await getCourses();
+      const res = await getCourses(userInfo.id);
       setCourseItems(res.reverse().slice(0, 4));
     })();
     return () => setCourseItems([]);

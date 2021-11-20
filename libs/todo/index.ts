@@ -4,8 +4,14 @@ import { TodoItem } from "../../types/components-type/todo";
 import { getLocalStorageAccessToken, TokenRefresh } from "../oauth";
 import axios from "axios";
 
-export async function getTodayTodos(userId: number): Promise<TodoItem[]> {
-  const { data } = await apiClient.get<TodoItem[]>(`/work-todos?userId=${userId}`);
+export async function getTodayTodos(userId?: number, courseId?: number, activeDate?: string, maximumActiveDate?: string): Promise<TodoItem[]> {
+  const queryString = [
+    userId && `userId=${userId}`,
+    courseId && `courseId=${courseId}`,
+    activeDate && `activeDate=${activeDate}`,
+    maximumActiveDate && `maximumActiveDate=${maximumActiveDate}`,
+  ];
+  const { data } = await apiClient.get<TodoItem[]>(`/work-todos?` + queryString.join("&"));
   return data;
 }
 
