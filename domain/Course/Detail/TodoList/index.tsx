@@ -8,23 +8,41 @@ import { userInfoState } from "../../../../states/app";
 import { getTodayTodos } from "../../../../libs/todo";
 import { TodoItem as TodoItemType } from "../../../../types/components-type/todo";
 import TodoItem from "../TodoItem";
+import { useRouter } from "next/router";
+
+const toStringByFormatting = (date) => {
+  console.log(date);
+  return date.toISOString().split("T")[0];
+};
 
 type Props = {
   isDoneTodo: boolean;
+  currentDate: Date;
 };
 
-export default function TodoList({ isDoneTodo }: Props): JSX.Element {
+export default function TodoList({ isDoneTodo, currentDate }: Props): JSX.Element {
   const [todoItems, setTodoItems] = useState<TodoItemType[]>([]);
 
   const userInfo = useRecoilValue(userInfoState);
 
+  const router = useRouter();
+
+  //추후 삭제 예정
+  const maximumActiveDate = new Date(currentDate);
+  maximumActiveDate.setDate(maximumActiveDate.getDate() + 1);
+
   useEffect(() => {
     (async () => {
-      const res = await getTodayTodos(userInfo.id);
+      const res = await getTodayTodos(
+        userInfo.id,
+        parseInt(router.query?.courseId as string, 10),
+        toStringByFormatting(currentDate),
+        toStringByFormatting(maximumActiveDate)
+      );
       setTodoItems(res);
     })();
     return () => setTodoItems([]);
-  }, []);
+  }, [currentDate]);
   return (
     <>
       <S.TitleBox>

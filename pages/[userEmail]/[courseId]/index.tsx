@@ -8,33 +8,17 @@ import DetailLayout from "../../../layouts/DetailLayout";
 import CourseHeader from "../../../domain/Course/Detail/CourseHeader";
 import ExplanationTextArea from "../../../domain/Course/Detail/ExplanationTextArea";
 import CourseDetailNavigate from "../../../domain/Course/Detail/CourseDetailNavigate";
-import ChoiceDate from "../../../domain/Course/Detail/ChoiceDate";
-import TodoList from "../../../domain/Course/Detail/TodoList";
 import UserCheck from "../../../components/UserCheck";
+import TodoTab from "../../../domain/Course/Detail/TodoTab";
 
 const getTabComponent = (key: string) => {
   switch (key) {
     case "todo":
-      return (
-        <>
-          <ChoiceDate />
-          <TodoList isDoneTodo={false} />
-          {/* <TodoList isDoneTodo={true} /> */}
-        </>
-      );
+      return <TodoTab />;
     case "doneTodoList":
-      return (
-        <>
-          <TodoList isDoneTodo={true} />
-        </>
-      );
+      return <></>;
     case "repeatList":
-      return (
-        <>
-          <TodoList isDoneTodo={false} />
-          <TodoList isDoneTodo={true} />
-        </>
-      );
+      return <></>;
   }
 };
 

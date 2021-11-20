@@ -16,7 +16,11 @@ const getDayofWeek = (date) => {
   return new Intl.DateTimeFormat("ko-KR", { weekday: "long" }).format(date).replace("요일", "");
 };
 
-export default function ChoiceDate(): JSX.Element {
+type props = {
+  setChoiceDate: (key: Date) => void;
+};
+
+export default function ChoiceDate({ setChoiceDate }: props): JSX.Element {
   const [currentDate, setCurrentDate] = useState<Date>(new Date(Date.now()));
   const [dateList, setDateList] = useState<Date[]>(getDateList(currentDate));
 
@@ -34,6 +38,7 @@ export default function ChoiceDate(): JSX.Element {
           onClick={() => {
             setCurrentDate(date);
             setDateList(getDateList(date));
+            setChoiceDate(date);
           }}
         >
           <S.DayFlexBox>
