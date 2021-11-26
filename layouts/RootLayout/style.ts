@@ -12,6 +12,10 @@ const HeaderBox = styled.div`
 const MainBox = styled.div`
   z-index: 1;
   padding-top: 63px;
+  width: 100%;
+  height: 100%;
+  background: ${({ theme }) => theme.backgroundColor.bg};
+  transition: all 0.25s linear;
 `;
 
 export { HeaderBox, MainBox };

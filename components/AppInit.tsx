@@ -1,8 +1,9 @@
-import { ReactNode, useEffect, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { configState } from "../states/app";
 import { GetConfig } from "../libs/oauth";
 import axios from "axios";
+import MainIntro from "../domain/HomeIntro/MainIntro";
 
 type Props = {
   children: ReactNode;
@@ -42,7 +43,7 @@ export default function AppInit({ children }: Props): JSX.Element {
   if (!config) {
     return (
       <>
-        <h3>앱 시작 중...</h3>
+        <MainIntro />
       </>
     );
   }
