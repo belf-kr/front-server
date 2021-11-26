@@ -8,6 +8,11 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
   }
+  html {
+    background: ${({ theme }) => theme.backgroundColor.bg};
+    width:100%;
+    height: 100%;
+  }
   body {
     background: ${({ theme }) => theme.backgroundColor.bg};
     color: ${({ theme }) => theme.fontColor.main};
@@ -15,6 +20,13 @@ export const GlobalStyle = createGlobalStyle`
     transition: all 0.25s linear;
     margin: 0;
     padding: 0;
+    width:100%;
+    height: 100%;
+  }
+  #__next {
+    width:100%;
+    height: 100%;
+    background: ${({ theme }) => theme.backgroundColor.bg};
   }
   button { 
     cursor: pointer;
