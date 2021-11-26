@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "next/link";
 
-import { useRecoilState } from "recoil";
-import { themeState } from "../../../states/app";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { themeState, userInfoState } from "../../../states/app";
 
 import * as S from "./style";
 
@@ -54,6 +54,8 @@ export default function MainIntro(): JSX.Element {
 
   const [theme] = useRecoilState(themeState);
 
+  const userInfo = useRecoilValue(userInfoState);
+
   for (let i = 0; i < posList.length; i++) {
     ShootingStarList.push(
       <S.ShootingStar key={i} color={getStarColor(theme === "dark" ? "normal" : "lightNormal")} minSize={4} maxSize={14} x={posList[i].x} y={posList[i].y} />
@@ -78,18 +80,20 @@ export default function MainIntro(): JSX.Element {
         <S.BelfShootingStarBox>
           <div>{BelfShootingStarList.map((item) => item)}</div>
         </S.BelfShootingStarBox>
-        <S.ButtonsBox>
-          <Link href="/register" passHref={true}>
-            <S.ButtonBox>
-              <Button text={"회원가입"} />
-            </S.ButtonBox>
-          </Link>
-          <Link href="/login" passHref={true}>
-            <S.ButtonBox>
-              <Button text={"로그인"} />
-            </S.ButtonBox>
-          </Link>
-        </S.ButtonsBox>
+        {userInfo === undefined ? (
+          <S.ButtonsBox>
+            <Link href="/register" passHref={true}>
+              <S.ButtonBox>
+                <Button text={"회원가입"} />
+              </S.ButtonBox>
+            </Link>
+            <Link href="/login" passHref={true}>
+              <S.ButtonBox>
+                <Button text={"로그인"} />
+              </S.ButtonBox>
+            </Link>
+          </S.ButtonsBox>
+        ) : null}
       </S.CommentBox>
       {ShootingStarList.map((item) => item)}
       <S.ImageBox isDark={theme === "dark" ? true : false}>
