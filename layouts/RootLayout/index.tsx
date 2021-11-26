@@ -20,9 +20,7 @@ export default function RootLayout({ children }: props): JSX.Element {
       <S.HeaderBox>
         <Header />
       </S.HeaderBox>
-      <S.MainBox>
-        <main>{children}</main>
-      </S.MainBox>
+      <S.MainBox>{children}</S.MainBox>
     </>
   );
 }

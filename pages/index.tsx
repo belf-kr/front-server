@@ -1,13 +1,14 @@
 import React from "react";
 
 import type { NextPage } from "next";
-import UserLayout from "../layouts/UserLayout";
+
+import MainIntro from "../domain/HomeIntro/MainIntro";
 
 const Home: NextPage = () => {
   return (
-    <UserLayout>
-      <h1>홈 화면</h1>
-    </UserLayout>
+    <>
+      <MainIntro />
+    </>
   );
 };
 
