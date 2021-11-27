@@ -7,7 +7,11 @@ import WriteNodeItem from "../WriteNodeItem";
 import { EditNode } from "../../../types/components-type/editer";
 import ImageIcon from "../../../icons/ImageIcon";
 
-export default function WriteNodeList(): JSX.Element {
+type props = {
+  setEditNodeLIst: (key: EditNode[]) => void;
+};
+
+export default function WriteNodeList({ setEditNodeLIst }: props): JSX.Element {
   const [nodeList, setNodeList] = useState<EditNode[]>([]);
   const [isOpenPopup, setIsOpenPopup] = useState<boolean>(false);
 
@@ -28,6 +32,10 @@ export default function WriteNodeList(): JSX.Element {
     };
   }, []);
 
+  useEffect(() => {
+    setEditNodeLIst([...nodeList]);
+  }, [nodeList]);
+
   const handleClickAddText = () => {
     setNodeList((prev: EditNode[]) =>
       prev.length === 0
@@ -37,7 +45,7 @@ export default function WriteNodeList(): JSX.Element {
     setIsOpenPopup(false);
   };
 
-  const handleClickImageText = () => {
+  const handleClickAddImage = () => {
     setNodeList((prev: EditNode[]) =>
       prev.length === 0
         ? [{ id: 0, type: "image", contents: { name: "", url: "" } }]
@@ -61,7 +69,7 @@ export default function WriteNodeList(): JSX.Element {
             <S.EditButton onClick={handleClickAddText}>
               <TextIcon />
             </S.EditButton>
-            <S.EditButton onClick={handleClickImageText}>
+            <S.EditButton onClick={handleClickAddImage}>
               <ImageIcon />
             </S.EditButton>
           </S.EditBox>

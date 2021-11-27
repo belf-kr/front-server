@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+const Box = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const TitleBox = styled.div`
   height: 40px;
   margin-top: 20px;
@@ -18,4 +23,4 @@ const AddCourseButtonBox = styled.div`
   }
 `;
 
-export { Title, TitleBox, AddCourseButtonBox };
+export { Box, Title, TitleBox, AddCourseButtonBox };
