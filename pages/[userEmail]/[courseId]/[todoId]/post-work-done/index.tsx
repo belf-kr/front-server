@@ -8,11 +8,15 @@ import CourseHeader from "../../../../../domain/Course/Detail/CourseHeader";
 import EditerMaster from "../../../../../domain/Editer/EditerMaster";
 import PostWorkDoneLayout from "../../../../../layouts/PostWorkDoneLayout";
 import { getCourses } from "../../../../../libs/course";
+import { getTodo } from "../../../../../libs/todo";
 import { userInfoState } from "../../../../../states/app";
 import { CourseItem } from "../../../../../types/components-type/course";
+import { TodoItem } from "../../../../../types/components-type/todo";
 
 const PostWorkDonePage: NextPage = () => {
   const [currentCourse, setCurrentCourse] = useState<CourseItem>({});
+  const [currentWorkTodo, setCurrentWorkTodo] = useState<TodoItem>({});
+
   const router = useRouter();
   const userInfo = useRecoilValue(userInfoState);
 
@@ -21,8 +25,11 @@ const PostWorkDonePage: NextPage = () => {
       return;
     }
     (async () => {
-      const res = await getCourses(userInfo.id, parseInt(router.query?.courseId as string, 10));
-      setCurrentCourse(res[0]);
+      const resCourse = await getCourses(userInfo.id, parseInt(router.query?.courseId as string, 10));
+      setCurrentCourse(resCourse[0]);
+
+      const resTodo = await getTodo(parseInt(router.query?.todoId as string, 10));
+      setCurrentWorkTodo(resTodo[0]);
     })();
 
     return () => setCurrentCourse({});
@@ -32,7 +39,7 @@ const PostWorkDonePage: NextPage = () => {
     <UserCheck>
       <PostWorkDoneLayout>
         <CourseHeader courseItem={currentCourse} />
-        <EditerMaster />
+        <EditerMaster todoItem={currentWorkTodo} />
       </PostWorkDoneLayout>
     </UserCheck>
   );

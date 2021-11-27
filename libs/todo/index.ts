@@ -15,6 +15,11 @@ export async function getTodayTodos(userId?: number, courseId?: number, activeDa
   return data;
 }
 
+export async function getTodo(todoId: number): Promise<TodoItem> {
+  const { data } = await apiClient.get<TodoItem>(`/work-todos/${todoId}`);
+  return data;
+}
+
 export async function postNewTodo(todo: TodoItem): Promise<void> {
   async function work() {
     const accessToken = getLocalStorageAccessToken();
