@@ -17,3 +17,12 @@ export const oauthClient: AxiosInstance = axios.create({
     "Content-Type": "application/json;charset=UTF-8",
   },
 });
+
+const storageUrl = process.env.NEXT_PUBLIC_STORAGE_SERVER_URL;
+
+export const storageClient: AxiosInstance = axios.create({
+  baseURL: `${storageUrl}/api/v1`,
+  headers: {
+    "Content-Type": "application/json;charset=UTF-8",
+  },
+});
