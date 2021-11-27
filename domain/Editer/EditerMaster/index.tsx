@@ -2,25 +2,46 @@ import React from "react";
 
 import * as S from "./style";
 
-import styled from "styled-components";
 import Button from "../../../components/Button";
 import WriteNodeList from "../WriteNodeList";
+import { TodoItem } from "../../../types/components-type/todo";
+import useGetEditNodeList from "../../../hooks/useGetEditNodeList";
+import { postWorkDone } from "../../../libs/work-done";
+import { useRecoilValue } from "recoil";
+import { userInfoState } from "../../../states/app";
+import router from "next/router";
+import { expiredTokenFallback } from "../../../libs/oauth";
 
-const Box = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
+type props = {
+  todoItem: TodoItem;
+};
 
-export default function EditerMaster(): JSX.Element {
+export default function EditerMaster({ todoItem }: props): JSX.Element {
+  const [editNodeList, setEditNodeLIst] = useGetEditNodeList();
+  const userInfo = useRecoilValue(userInfoState);
+  const addWorkDone = async () => {
+    try {
+      await postWorkDone({
+        workTodoId: todoItem.id,
+        title: todoItem.title,
+        content: JSON.stringify(editNodeList),
+        userId: userInfo.id,
+      });
+      router.back();
+    } catch (error) {
+      expiredTokenFallback(error);
+    }
+  };
+
   return (
-    <Box>
+    <S.Box>
       <S.TitleBox>
-        <S.Title>할일 타이틀</S.Title>
-        <S.AddCourseButtonBox>
+        <S.Title>{todoItem.title}</S.Title>
+        <S.AddCourseButtonBox onClick={addWorkDone}>
           <Button text={"게시"} />
         </S.AddCourseButtonBox>
       </S.TitleBox>
-      <WriteNodeList />
-    </Box>
+      <WriteNodeList setEditNodeLIst={setEditNodeLIst} />
+    </S.Box>
   );
 }

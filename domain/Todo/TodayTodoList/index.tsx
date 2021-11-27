@@ -16,6 +16,7 @@ export default function TodayTodoList(): JSX.Element {
     (async () => {
       const res = await getTodayTodos(userInfo.id);
       setTodoItems(res);
+      console.log(res);
     })();
     return () => setTodoItems([]);
   }, []);

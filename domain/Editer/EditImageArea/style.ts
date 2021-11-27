@@ -1,17 +1,25 @@
 import styled from "styled-components";
 
-const Box = styled.div<{ parentHeight: string }>`
-  min-height: ${(props) => props.parentHeight};
+const Image = styled.img`
+  width: 100px;
+  float: left;
+  border-radius: 10px;
 `;
 
-const TextArea = styled.textarea`
-  color: ${({ theme }) => theme.fontColor.main};
-  background-color: transparent;
-  border: none;
-  outline: none;
-  resize: none;
-  width: 100%;
-  padding: 10px;
+const ImagePreviewBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
 `;
 
-export { Box, TextArea };
+const ImageInput = styled.input`
+  display: none;
+`;
+
+const ImageNameText = styled.a`
+  color: ${({ theme }) => theme.fontColor.sub};
+  font-size: ${({ theme }) => theme.common.fontSize.s200}px;
+  margin: auto 0px;
+`;
+
+export { Image, ImageInput, ImageNameText, ImagePreviewBox };
