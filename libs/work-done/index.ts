@@ -40,3 +40,9 @@ export async function getDone(doneId: number): Promise<DoneItem> {
   const { data } = await apiClient.get<DoneItem>(`/work-dones/${doneId}`);
   return data;
 }
+
+export async function getDones(courseId?: number): Promise<DoneItem[]> {
+  const queryString = [courseId && `courseId=${courseId}`];
+  const { data } = await apiClient.get<DoneItem[]>(`/work-dones?${queryString.join("&")}`);
+  return data;
+}
