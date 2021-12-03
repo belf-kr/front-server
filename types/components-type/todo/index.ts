@@ -19,4 +19,5 @@ export type DoneItem = {
   content?: EditNode[];
   workTodoId?: number;
   userId?: number;
+  actionDate?: string;
 };
