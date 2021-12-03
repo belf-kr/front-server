@@ -25,7 +25,7 @@ export async function postNewTodo(todo: TodoItem): Promise<void> {
     const accessToken = getLocalStorageAccessToken();
     await apiClient.post<TodoItem>(`/work-todos`, todo, {
       headers: {
-        Authorization: `${accessToken}`,
+        Authorization: `Bearer ${accessToken}`,
       },
     });
   }

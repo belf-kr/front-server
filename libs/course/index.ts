@@ -8,7 +8,7 @@ export async function postNewCourse(course: CourseItem): Promise<void> {
     const accessToken = getLocalStorageAccessToken();
     await apiClient.post(`/courses`, course, {
       headers: {
-        Authorization: `${accessToken}`,
+        Authorization: `Bearer ${accessToken}`,
       },
     });
   }
