@@ -1,3 +1,5 @@
+import { EditNode } from "../editer";
+
 export type TodoItem = {
   id?: number;
   recurringCycleDate?: number;
@@ -9,4 +11,12 @@ export type TodoItem = {
   courseTitle?: string;
   color?: string;
   repeatedDaysOfTheWeek?: number[];
+};
+
+export type DoneItem = {
+  id?: number;
+  title?: string;
+  content?: EditNode[];
+  workTodoId?: number;
+  userId?: number;
 };

@@ -35,6 +35,11 @@ export async function getCourses(userId?: number, courseId?: number): Promise<Co
   return data;
 }
 
+export async function getCourse(courseId: number): Promise<CourseItem[]> {
+  const { data } = await apiClient.get<CourseItem[]>(`/courses/${courseId}`);
+  return data;
+}
+
 export async function deleteCourse(id: number): Promise<void> {
   await apiClient.delete(`/courses`, { data: { id } });
 }

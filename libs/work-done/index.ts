@@ -2,6 +2,7 @@ import { apiClient } from "../api-client";
 
 import { getLocalStorageAccessToken, TokenRefresh } from "../oauth";
 import axios from "axios";
+import { DoneItem } from "../../types/components-type/todo";
 
 type WorkDone = {
   workTodoId: number;
@@ -15,7 +16,7 @@ export async function postWorkDone(workDone: WorkDone): Promise<void> {
     const accessToken = getLocalStorageAccessToken();
     await apiClient.post<WorkDone>(`/work-dones`, workDone, {
       headers: {
-        Authorization: `${accessToken}`,
+        Authorization: `Bearer ${accessToken}`,
       },
     });
   }
@@ -33,4 +34,9 @@ export async function postWorkDone(workDone: WorkDone): Promise<void> {
     }
     throw new Error("postWorkDone() 에러");
   }
+}
+
+export async function getDone(doneId: number): Promise<DoneItem> {
+  const { data } = await apiClient.get<DoneItem>(`/work-dones/${doneId}`);
+  return data;
 }
