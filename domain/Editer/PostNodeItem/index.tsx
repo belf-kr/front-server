@@ -11,5 +11,5 @@ type props = {
 export default function PostNodeItem({ node }: props): JSX.Element {
   const [item] = useState<EditNode>(node);
 
-  return <S.Box>{item.type == "text" ? <a>{(item.contents as TextNode).text}</a> : <img src={(item.contents as ImageNode).url} />}</S.Box>;
+  return <S.Box>{item.type == "text" ? <a>{(item.contents as TextNode).text}</a> : <S.Image src={(item.contents as ImageNode).url} />}</S.Box>;
 }

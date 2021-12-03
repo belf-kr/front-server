@@ -6,4 +6,9 @@ const Box = styled.div`
   row-gap: 10px;
 `;
 
-export { Box };
+const Image = styled.img`
+  max-width: 100%;
+  height: auto;
+`;
+
+export { Box, Image };
