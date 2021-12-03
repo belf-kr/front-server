@@ -2,18 +2,18 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
-import UserCheck from "../../../../../components/UserCheck";
+import UserCheck from "../../../../../../components/UserCheck";
 
-import CourseHeader from "../../../../../domain/Course/Detail/CourseHeader";
-import EditerMaster from "../../../../../domain/Editer/EditerMaster";
-import PostWorkDoneLayout from "../../../../../layouts/PostWorkDoneLayout";
-import { getCourses } from "../../../../../libs/course";
-import { getTodo } from "../../../../../libs/todo";
-import { userInfoState } from "../../../../../states/app";
-import { CourseItem } from "../../../../../types/components-type/course";
-import { TodoItem } from "../../../../../types/components-type/todo";
+import CourseHeader from "../../../../../../domain/Course/Detail/CourseHeader";
+import EditerMaster from "../../../../../../domain/Editer/EditerMaster";
+import PostWorkDoneLayout from "../../../../../../layouts/PostWorkDoneLayout";
+import { getCourses } from "../../../../../../libs/course";
+import { getTodo } from "../../../../../../libs/todo";
+import { userInfoState } from "../../../../../../states/app";
+import { CourseItem } from "../../../../../../types/components-type/course";
+import { TodoItem } from "../../../../../../types/components-type/todo";
 
-const PostWorkDonePage: NextPage = () => {
+const WriteWorkDonePage: NextPage = () => {
   const [currentCourse, setCurrentCourse] = useState<CourseItem>({});
   const [currentWorkTodo, setCurrentWorkTodo] = useState<TodoItem>({});
 
@@ -45,4 +45,4 @@ const PostWorkDonePage: NextPage = () => {
   );
 };
 
-export default PostWorkDonePage;
+export default WriteWorkDonePage;

@@ -16,7 +16,7 @@ type props = {
 export default function TodayTodoItem({ todoItem, isLastItem }: props): JSX.Element {
   const userInfo = useRecoilValue(userInfoState);
   return (
-    <Link href={`/${userInfo.email}/${todoItem.courseId}/${todoItem.id}/post-work-done`} passHref={true}>
+    <Link href={`/${userInfo.email}/${todoItem.courseId}/todo/${todoItem.id}/write`} passHref={true}>
       <S.TodoItemBox>
         <S.Color backgroundColor={todoItem.color} />
         <S.InfoBox>
