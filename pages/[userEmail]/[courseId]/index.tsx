@@ -12,16 +12,17 @@ import UserCheck from "../../../components/UserCheck";
 import TodoTab from "../../../domain/Course/Detail/TodoTab";
 import { userInfoState } from "../../../states/app";
 import { useRecoilValue } from "recoil";
-import { getCourses } from "../../../libs/course";
+import { getCourse } from "../../../libs/course";
 import { useRouter } from "next/router";
 import { CourseItem } from "../../../types/components-type/course";
+import DoneTab from "../../../domain/Course/Detail/DoneTab";
 
 const getTabComponent = (key: string) => {
   switch (key) {
     case "todo":
       return <TodoTab />;
     case "doneTodoList":
-      return <></>;
+      return <DoneTab />;
     case "repeatList":
       return <></>;
   }
@@ -40,7 +41,7 @@ const CourseDetailPage: NextPage = () => {
       return;
     }
     (async () => {
-      const res = await getCourses(userInfo.id, parseInt(router.query?.courseId as string, 10));
+      const res = await getCourse(parseInt(router.query?.courseId as string, 10));
       setCurrentCourse(res[0]);
     })();
 
