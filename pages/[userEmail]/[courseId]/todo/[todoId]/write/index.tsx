@@ -7,7 +7,7 @@ import UserCheck from "../../../../../../components/UserCheck";
 import CourseHeader from "../../../../../../domain/Course/Detail/CourseHeader";
 import EditerMaster from "../../../../../../domain/Editer/EditerMaster";
 import PostWorkDoneLayout from "../../../../../../layouts/PostWorkDoneLayout";
-import { getCourses } from "../../../../../../libs/course";
+import { getCourse } from "../../../../../../libs/course";
 import { getTodo } from "../../../../../../libs/todo";
 import { userInfoState } from "../../../../../../states/app";
 import { CourseItem } from "../../../../../../types/components-type/course";
@@ -25,7 +25,7 @@ const WriteWorkDonePage: NextPage = () => {
       return;
     }
     (async () => {
-      const resCourse = await getCourses(userInfo.id, parseInt(router.query?.courseId as string, 10));
+      const resCourse = await getCourse(parseInt(router.query?.courseId as string, 10));
       setCurrentCourse(resCourse[0]);
 
       const resTodo = await getTodo(parseInt(router.query?.todoId as string, 10));
