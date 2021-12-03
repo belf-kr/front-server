@@ -8,7 +8,7 @@ export async function postNewCourse(course: CourseItem): Promise<void> {
     const accessToken = getLocalStorageAccessToken();
     await apiClient.post(`/courses`, course, {
       headers: {
-        Authorization: `${accessToken}`,
+        Authorization: `Bearer ${accessToken}`,
       },
     });
   }
@@ -32,6 +32,11 @@ export async function postNewCourse(course: CourseItem): Promise<void> {
 export async function getCourses(userId?: number, courseId?: number): Promise<CourseItem[]> {
   const queryString = [userId && `userId=${userId}`, courseId && `courseId=${courseId}`];
   const { data } = await apiClient.get<CourseItem[]>(`/courses?` + queryString.join("&"));
+  return data;
+}
+
+export async function getCourse(courseId: number): Promise<CourseItem[]> {
+  const { data } = await apiClient.get<CourseItem[]>(`/courses/${courseId}`);
   return data;
 }
 

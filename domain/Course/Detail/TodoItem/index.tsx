@@ -19,7 +19,7 @@ type props = {
 
 export default function TodoItem({ todoItem, isLastItem, isDoneTodo }: props): JSX.Element {
   const userInfo = useRecoilValue(userInfoState);
-  const uri = isDoneTodo ? `/` : `/${userInfo.email}/${todoItem.courseId}/${todoItem.id}/post-work-done`;
+  const uri = isDoneTodo ? `/` : `/${userInfo.email}/${todoItem.courseId}/todo/${todoItem.id}/write`;
   return (
     <Link href={uri} passHref={true}>
       <S.TodoItemBox>
