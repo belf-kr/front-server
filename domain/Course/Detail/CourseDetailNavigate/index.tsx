@@ -32,12 +32,12 @@ export default function CourseDetailNavigate({ setTabKey }: props): JSX.Element 
       showText: "한일",
       uri: "?tab=doneTodoList",
     },
-    {
-      key: "repeatList",
-      isSelect: false,
-      showText: "반복 할일",
-      uri: "?tab=repeatList",
-    },
+    // {
+    //   key: "repeatList",
+    //   isSelect: false,
+    //   showText: "반복 할일",
+    //   uri: "?tab=repeatList",
+    // },
   ]);
 
   useEffect(() => {
@@ -58,7 +58,7 @@ export default function CourseDetailNavigate({ setTabKey }: props): JSX.Element 
       <S.ScrollBox>
         <S.TabItemsBox>
           {tabList.map((tab: TabInfoType, index: number) => (
-            <Link scroll={false} href={"/courses/" + (router.query?.courseId ?? "0") + tab.uri} key={"tab" + index} passHref={true}>
+            <Link scroll={false} href={`/${router.query?.userEmail}/${router.query?.courseId ?? "0"}${tab.uri}`} key={"tab" + index} passHref={true}>
               <S.TabItemBox isSelect={tab.isSelect} onClick={() => clickedTab(tab.key)}>
                 <S.Text>{tab.showText}</S.Text>
               </S.TabItemBox>

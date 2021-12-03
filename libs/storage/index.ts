@@ -9,12 +9,11 @@ export async function postFile(file: File, onUploadProgress: (progressEvent: any
       onUploadProgress: onUploadProgress,
       headers: {
         Authorization: `Bearer ${accessToken}`,
+        "Content-Type": file.type,
       },
     };
-    const data = new FormData();
-    data.append("file", file);
 
-    const res = await storageClient.post(`/upload`, data, config);
+    const res = await storageClient.post("/upload", file, config);
     return res;
   }
   try {
