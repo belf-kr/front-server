@@ -34,10 +34,6 @@ export default function CourseHeader({ courseItem }: props): JSX.Element {
 
     await timeout(5000);
 
-    setTimeout(function () {
-      console.log("test");
-    }, 5000);
-
     try {
       // await postBelfCourse(courseItem.id);
       // router.back();
