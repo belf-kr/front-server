@@ -2,10 +2,13 @@ import React from "react";
 
 import * as S from "./style";
 
-import ArrowIcon from "../../../../../icons/ArrowIcon";
 import CheckIcon from "../../../../../icons/CheckIcon";
 import { DoneItem as DoneItemType } from "../../../../../types/components-type/todo";
 import Link from "next/link";
+import Kebab from "../../../../../components/Kebab";
+import router from "next/router";
+import { MenuItemType } from "../../../../../types/components-type/kebab";
+import { deleteDone } from "../../../../../libs/work-done";
 
 type props = {
   doneItem: DoneItemType;
@@ -13,6 +16,21 @@ type props = {
 };
 
 export default function DoneItem({ doneItem, uri }: props): JSX.Element {
+  function handleClickMenuItem(item: DoneItemType) {
+    (async () => {
+      await deleteDone(item.id);
+      router.reload();
+    })();
+  }
+
+  const menuItems: MenuItemType[] = [
+    {
+      showText: "삭제",
+      onClick: () => {
+        handleClickMenuItem(doneItem);
+      },
+    },
+  ];
   return (
     <Link href={uri}>
       <S.TodoItemBox>
@@ -26,9 +44,9 @@ export default function DoneItem({ doneItem, uri }: props): JSX.Element {
           <S.TextBox>
             <S.ExpranationText>{doneItem.actionDate ?? ""}</S.ExpranationText>
           </S.TextBox>
-          <S.ArrowBox>
-            <ArrowIcon />
-          </S.ArrowBox>
+          <S.KebabBox>
+            <Kebab menuItems={menuItems} />
+          </S.KebabBox>
         </S.InfoBox>
       </S.TodoItemBox>
     </Link>

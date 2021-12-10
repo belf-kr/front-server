@@ -4,12 +4,15 @@ import { useRecoilValue } from "recoil";
 
 import * as S from "./style";
 
-import ArrowIcon from "../../../../icons/ArrowIcon";
 import CheckIcon from "../../../../icons/CheckIcon";
 
 import { TodoItem as TodoItemType } from "../../../../types/components-type/todo";
 import Link from "next/link";
 import { userInfoState } from "../../../../states/app";
+import { deleteTodo } from "../../../../libs/todo";
+import router from "next/router";
+import { MenuItemType } from "../../../../types/components-type/kebab";
+import Kebab from "../../../../components/Kebab";
 
 type props = {
   todoItem: TodoItemType;
@@ -20,6 +23,23 @@ type props = {
 export default function TodoItem({ todoItem, isLastItem, isDoneTodo }: props): JSX.Element {
   const userInfo = useRecoilValue(userInfoState);
   const uri = isDoneTodo ? `/` : `/${userInfo.email}/${todoItem.courseId}/todo/${todoItem.id}/write`;
+
+  function handleClickMenuItem(item: TodoItemType) {
+    (async () => {
+      await deleteTodo(item.id);
+      router.reload();
+    })();
+  }
+
+  const menuItems: MenuItemType[] = [
+    {
+      showText: "삭제",
+      onClick: () => {
+        handleClickMenuItem(todoItem);
+      },
+    },
+  ];
+
   return (
     <Link href={uri} passHref={true}>
       <S.TodoItemBox>
@@ -33,9 +53,9 @@ export default function TodoItem({ todoItem, isLastItem, isDoneTodo }: props): J
           <S.TextBox>
             <S.ExpranationText>{todoItem.explanation}</S.ExpranationText>
           </S.TextBox>
-          <S.ArrowBox>
-            <ArrowIcon />
-          </S.ArrowBox>
+          <S.KebabBox>
+            <Kebab menuItems={menuItems} />
+          </S.KebabBox>
           <S.BorderBox isBorder={!isLastItem} />
         </S.InfoBox>
       </S.TodoItemBox>
