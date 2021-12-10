@@ -21,9 +21,9 @@ type props = {
 export default function CoursePinItem({ courseItem }: props): JSX.Element {
   const userInfo = useRecoilValue(userInfoState);
 
-  function handleClickMenuItem(courseItem: CourseItem) {
+  function handleClickMenuItem(item: CourseItem) {
     (async () => {
-      await deleteCourse(courseItem.id);
+      await deleteCourse(item.id);
       router.reload();
     })();
   }
