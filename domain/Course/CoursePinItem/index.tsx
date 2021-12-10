@@ -1,23 +1,42 @@
 import React from "react";
 
+import Link from "next/link";
+import router from "next/router";
+
 import * as S from "./style";
 
-import { CourseItem as CourseItemType } from "../../../types/components-type/course";
+import { CourseItem, CourseItem as CourseItemType } from "../../../types/components-type/course";
 
 import TagList from "../../Tag/TagList";
 import { useRecoilValue } from "recoil";
 import { userInfoState } from "../../../states/app";
-import Link from "next/link";
 import Kebab from "../../../components/Kebab";
 import { MenuItemType } from "../../../types/components-type/kebab";
+import { deleteCourse } from "../../../libs/course";
 
 type props = {
   courseItem: CourseItemType;
-  menuItems?: MenuItemType[];
 };
 
-export default function CoursePinItem({ courseItem, menuItems }: props): JSX.Element {
+export default function CoursePinItem({ courseItem }: props): JSX.Element {
   const userInfo = useRecoilValue(userInfoState);
+
+  function handleClickMenuItem(courseItem: CourseItem) {
+    (async () => {
+      await deleteCourse(courseItem.id);
+      router.reload();
+    })();
+  }
+
+  const menuItems: MenuItemType[] = [
+    {
+      showText: "삭제",
+      onClick: () => {
+        handleClickMenuItem(courseItem);
+      },
+    },
+  ];
+
   return (
     <Link href={`/${userInfo.email}/${courseItem.id}`} passHref={true}>
       <S.Card>
