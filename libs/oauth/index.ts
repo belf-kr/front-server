@@ -86,7 +86,7 @@ export async function GetConfig(): Promise<Config> {
 
 export async function PostUser(user: UserDTO): Promise<void> {
   try {
-    await oauthClient.post(`/users/signup`, user);
+    await oauthClient.post(`/users`, user);
   } catch (error) {
     if (axios.isAxiosError(error)) {
       // 서버 측 에러이면 상태코드를 기준으로 에러처리를 할 수 있도록 그대로 던짐

@@ -40,10 +40,10 @@ export async function getCourse(courseId: number): Promise<CourseItem[]> {
   return data;
 }
 
-export async function deleteCourse(id: number): Promise<void> {
+export async function deleteCourse(courseId: number): Promise<void> {
   async function work() {
     const accessToken = getLocalStorageAccessToken();
-    await apiClient.delete(`/courses/${id}`, {
+    await apiClient.delete(`/courses/${courseId}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -63,5 +63,35 @@ export async function deleteCourse(id: number): Promise<void> {
       }
     }
     throw new Error("deleteCourse() 에러");
+  }
+}
+
+export async function postBelfCourse(courseId: number): Promise<void> {
+  async function work() {
+    const accessToken = getLocalStorageAccessToken();
+    await apiClient.post(
+      `/courses`,
+      { originalCourseId: courseId },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+  }
+  try {
+    return await work();
+  } catch (error) {
+    if (error instanceof Error) {
+      if (axios.isAxiosError(error)) {
+        switch (error.response?.status) {
+          case 401:
+            // 재시도: 리프레쉬 토큰으로 엑세스 토큰을 다시 발급
+            await TokenRefresh();
+            return await work();
+        }
+      }
+    }
+    throw new Error("postBelfCourse() 에러");
   }
 }

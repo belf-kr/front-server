@@ -54,20 +54,21 @@ const CourseTitleText = styled.a`
   line-height: 36px;
 `;
 
-const FollowButtonBox = styled.div`
-  margin-left: auto;
-  display: flex;
-  flex-direction: row;
-  column-gap: 10px;
-  @media only screen and (max-width: 850px) {
-    margin: auto 0;
-  }
-`;
-
 const Section = styled.div`
   display: flex;
   flex-direction: row;
   column-gap: 10px;
 `;
 
-export { Box, Card, CourseTitleText, FollowButtonBox, Line, Section, UserImageBox, UserInfoBox, UserNameText };
+const BelfButtonBox = styled.div`
+  margin: 2px 0px;
+  margin-left: auto;
+  > div > button {
+    padding: 6px 16px 4px 12px;
+  }
+  @media only screen and (max-width: 850px) {
+    margin: auto 0;
+  }
+`;
+
+export { Box, Card, CourseTitleText, BelfButtonBox, Line, Section, UserImageBox, UserInfoBox, UserNameText };
