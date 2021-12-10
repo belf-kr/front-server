@@ -41,5 +41,27 @@ export async function getCourse(courseId: number): Promise<CourseItem[]> {
 }
 
 export async function deleteCourse(id: number): Promise<void> {
-  await apiClient.delete(`/courses`, { data: { id } });
+  async function work() {
+    const accessToken = getLocalStorageAccessToken();
+    await apiClient.delete(`/courses/${id}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+  }
+  try {
+    return await work();
+  } catch (error) {
+    if (error instanceof Error) {
+      if (axios.isAxiosError(error)) {
+        switch (error.response?.status) {
+          case 401:
+            // 재시도: 리프레쉬 토큰으로 엑세스 토큰을 다시 발급
+            await TokenRefresh();
+            return await work();
+        }
+      }
+    }
+    throw new Error("deleteCourse() 에러");
+  }
 }
