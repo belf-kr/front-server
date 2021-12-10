@@ -1,6 +1,6 @@
 import React from "react";
 
-import Icon from "../svg/Add.svg";
+import Icon from "../svg/Kebab.svg";
 
 import SvgIcon from "../SvgIcon";
 
