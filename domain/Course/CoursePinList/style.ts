@@ -3,7 +3,6 @@ import styled from "styled-components";
 const CourseListBox = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
   grid-row-gap: 20px;
   grid-column-gap: 20px;
 
