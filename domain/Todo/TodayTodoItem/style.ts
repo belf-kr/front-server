@@ -60,11 +60,12 @@ const BorderBox = styled.div<{ isBorder?: boolean }>`
       : null}
 `;
 
-const ArrowBox = styled.div`
+const KebabBox = styled.div`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   right: 0;
+  z-index: 10;
 `;
 
-export { BorderBox, Color, CourseText, InfoBox, TextBox, TodoItemBox, TodoText, ArrowBox };
+export { BorderBox, Color, CourseText, InfoBox, TextBox, TodoItemBox, TodoText, KebabBox };

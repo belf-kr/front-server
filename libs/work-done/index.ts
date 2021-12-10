@@ -46,3 +46,29 @@ export async function getDones(courseId?: number): Promise<DoneItem[]> {
   const { data } = await apiClient.get<DoneItem[]>(`/work-dones?${queryString.join("&")}`);
   return data;
 }
+
+export async function deleteDone(id: number): Promise<void> {
+  async function work() {
+    const accessToken = getLocalStorageAccessToken();
+    await apiClient.delete(`/work-Dones/${id}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+  }
+  try {
+    return await work();
+  } catch (error) {
+    if (error instanceof Error) {
+      if (axios.isAxiosError(error)) {
+        switch (error.response?.status) {
+          case 401:
+            // 재시도: 리프레쉬 토큰으로 엑세스 토큰을 다시 발급
+            await TokenRefresh();
+            return await work();
+        }
+      }
+    }
+    throw new Error("deleteDone() 에러");
+  }
+}

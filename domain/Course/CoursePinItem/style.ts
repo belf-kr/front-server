@@ -42,11 +42,11 @@ const RowBox = styled.div`
   }
 `;
 
-const ArrowBox = styled.div`
+const KebabBox = styled.div`
   position: absolute;
-  top: 50%;
+  top: 10px;
   transform: translateY(-50%);
   right: 0;
 `;
 
-export { Card, Color, Explanation, RowBox, Title, ArrowBox, InfoBox };
+export { Card, Color, Explanation, RowBox, Title, KebabBox, InfoBox };
