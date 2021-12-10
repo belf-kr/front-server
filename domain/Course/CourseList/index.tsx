@@ -8,11 +8,12 @@ import CoursePinItem from "../CoursePinItem";
 
 import { CourseItem } from "../../../types/components-type/course";
 
-import { getCourses } from "../../../libs/course";
+import { deleteCourse, getCourses } from "../../../libs/course";
 import Button from "../../../components/Button";
 import BelfIcon from "../../../icons/BelfIcon";
 import { useRecoilValue } from "recoil";
 import { isPermissionState, userInfoState } from "../../../states/app";
+import router from "next/router";
 
 export default function CourseList(): JSX.Element {
   const [courseItems, setCourseItems] = useState<CourseItem[]>([]);
@@ -28,6 +29,13 @@ export default function CourseList(): JSX.Element {
 
     return () => setCourseItems([]);
   }, []);
+
+  function handleClickMenuItem(courseItem: CourseItem) {
+    (async () => {
+      await deleteCourse(courseItem.id);
+      router.reload();
+    })();
+  }
 
   return (
     <>
@@ -46,7 +54,18 @@ export default function CourseList(): JSX.Element {
       ) : (
         <S.CourseListBox>
           {courseItems.map((courseItem, i) => (
-            <CoursePinItem key={i} courseItem={courseItem} />
+            <CoursePinItem
+              key={i}
+              courseItem={courseItem}
+              menuItems={[
+                {
+                  showText: "삭제",
+                  onClick: () => {
+                    handleClickMenuItem(courseItem);
+                  },
+                },
+              ]}
+            />
           ))}
         </S.CourseListBox>
       )}
