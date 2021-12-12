@@ -42,6 +42,7 @@ export default function TodoList({ isDoneTodo, currentDate }: Props): JSX.Elemen
     })();
     return () => setTodoItems([]);
   }, [currentDate]);
+
   return (
     <>
       <S.TitleBox>
