@@ -7,6 +7,7 @@ import { getLocalStorageAccessToken, GetUserInfoTokenQuey, UserInfo } from "../.
 import { useRouter } from "next/router";
 import { UserLogout } from "../../../libs/oauth";
 import { imageDefault } from "../../UserPage/UserProfile";
+import Loading from "../../../components/Loading";
 
 export default function UserProfile(): JSX.Element {
   const [userInfo, setUserInfo] = useState<UserInfo>();
@@ -88,7 +89,7 @@ export default function UserProfile(): JSX.Element {
     return (
       <>
         <S.Box>
-          <h3>프로필 사진 로딩 중...</h3>
+          <Loading width="30px" height="30px" />
         </S.Box>
       </>
     );
