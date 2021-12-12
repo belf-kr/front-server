@@ -25,17 +25,17 @@ export default function TodayTodoList(): JSX.Element {
       <S.TitleBox>
         <S.Title>오늘 할 일</S.Title>
       </S.TitleBox>
-      <S.TodoBox>
+      <>
         {todoItems.length === 0 ? (
-          <a>코스를 생성해주세요</a>
+          <a>할 일을 생성해주세요.</a>
         ) : (
-          <>
+          <S.TodoBox>
             {todoItems.map((todoItem, i) => (
               <TodayTodoItem key={"todo" + i} todoItem={todoItem} isLastItem={todoItems.length - 1 == i} />
             ))}
-          </>
+          </S.TodoBox>
         )}
-      </S.TodoBox>
+      </>
     </>
   );
 }
