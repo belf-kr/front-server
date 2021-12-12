@@ -23,7 +23,7 @@ export default function TodayTodoList(): JSX.Element {
   return (
     <>
       <S.TitleBox>
-        <S.Title>오늘 할일</S.Title>
+        <S.Title>오늘 할 일</S.Title>
       </S.TitleBox>
       <S.TodoBox>
         {todoItems.length === 0 ? (

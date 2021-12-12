@@ -45,11 +45,11 @@ export default function TodoList({ isDoneTodo, currentDate }: Props): JSX.Elemen
   return (
     <>
       <S.TitleBox>
-        <S.Title>{isDoneTodo ? "한일" : "할일"}</S.Title>
+        <S.Title>{isDoneTodo ? "한 일" : "할 일"}</S.Title>
       </S.TitleBox>
       <S.TodoBox>
         {todoItems.length === 0 ? (
-          <a>{isDoneTodo ? "한일" : "할일"}을 생성해주세요</a>
+          <a>{isDoneTodo ? "한 일" : "할 일"}을 생성해주세요</a>
         ) : (
           <>
             {todoItems.map((todoItem, i) => (

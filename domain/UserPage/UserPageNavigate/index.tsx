@@ -29,7 +29,7 @@ export default function UserPageNavigate({ setTabKey }: props): JSX.Element {
     {
       key: "todayTodo",
       isSelect: false,
-      showText: "오늘 할일",
+      showText: "오늘 할 일",
       uri: "?tab=todayTodo",
     },
     {

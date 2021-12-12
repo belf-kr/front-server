@@ -30,7 +30,7 @@ export default function UserProfile(): JSX.Element {
       {isPermission && (
         <Link href="/new-todo" passHref={true}>
           <S.ButtonBox>
-            <Button text={"새로운 할일 추가"} />
+            <Button text={"새로운 할 일 추가"} />
           </S.ButtonBox>
         </Link>
       )}
