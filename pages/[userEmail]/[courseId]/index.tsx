@@ -10,7 +10,7 @@ import ExplanationTextArea from "../../../domain/Course/Detail/ExplanationTextAr
 import CourseDetailNavigate from "../../../domain/Course/Detail/CourseDetailNavigate";
 import UserCheck from "../../../components/QueryStringUser";
 import TodoTab from "../../../domain/Course/Detail/TodoTab";
-import { userInfoState } from "../../../states/app";
+import { QueryStringUserState } from "../../../states/app";
 import { useRecoilValue } from "recoil";
 import { getCourse } from "../../../libs/course";
 import { useRouter } from "next/router";
@@ -34,10 +34,10 @@ const CourseDetailPage: NextPage = () => {
 
   const router = useRouter();
 
-  const userInfo = useRecoilValue(userInfoState);
+  const queryStringUser = useRecoilValue(QueryStringUserState);
 
   useEffect(() => {
-    if (userInfo === undefined) {
+    if (queryStringUser === undefined) {
       return;
     }
     (async () => {
@@ -46,7 +46,7 @@ const CourseDetailPage: NextPage = () => {
     })();
 
     return () => setCurrentCourse({});
-  }, [userInfo]);
+  }, [queryStringUser]);
 
   return (
     <UserCheck>

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import * as S from "./style";
 
 import { useRecoilValue } from "recoil";
-import { userInfoState } from "../../../../states/app";
+import { QueryStringUserState } from "../../../../states/app";
 
 import { getTodayTodos } from "../../../../libs/todo";
 import { TodoItem as TodoItemType } from "../../../../types/components-type/todo";
@@ -22,7 +22,7 @@ type Props = {
 export default function TodoList({ isDoneTodo, currentDate }: Props): JSX.Element {
   const [todoItems, setTodoItems] = useState<TodoItemType[]>([]);
 
-  const userInfo = useRecoilValue(userInfoState);
+  const queryStringUser = useRecoilValue(QueryStringUserState);
 
   const router = useRouter();
 
@@ -33,7 +33,7 @@ export default function TodoList({ isDoneTodo, currentDate }: Props): JSX.Elemen
   useEffect(() => {
     (async () => {
       const res = await getTodayTodos(
-        userInfo.id,
+        queryStringUser.id,
         parseInt(router.query?.courseId as string, 10),
         toStringByFormatting(currentDate),
         toStringByFormatting(maximumActiveDate)

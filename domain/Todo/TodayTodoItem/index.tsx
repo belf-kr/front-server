@@ -4,7 +4,7 @@ import * as S from "./style";
 
 import { TodoItem } from "../../../types/components-type/todo";
 import { useRecoilValue } from "recoil";
-import { userInfoState } from "../../../states/app";
+import { QueryStringUserState } from "../../../states/app";
 import Kebab from "../../../components/Kebab";
 import { MenuItemType } from "../../../types/components-type/kebab";
 import router from "next/router";
@@ -16,7 +16,7 @@ type props = {
 };
 
 export default function TodayTodoItem({ todoItem, isLastItem }: props): JSX.Element {
-  const userInfo = useRecoilValue(userInfoState);
+  const queryStringUser = useRecoilValue(QueryStringUserState);
 
   function handleClickMenuItem(item: TodoItem) {
     (async () => {
@@ -35,7 +35,7 @@ export default function TodayTodoItem({ todoItem, isLastItem }: props): JSX.Elem
   ];
 
   return (
-    <Link href={`/${userInfo.email}/${todoItem.courseId}/todo/${todoItem.id}/write`} passHref={true}>
+    <Link href={`/${queryStringUser.email}/${todoItem.courseId}/todo/${todoItem.id}/write`} passHref={true}>
       <S.TodoItemBox>
         <S.Color backgroundColor={todoItem.color} />
         <S.InfoBox>

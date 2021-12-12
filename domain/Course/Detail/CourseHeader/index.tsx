@@ -5,7 +5,7 @@ import * as S from "./style";
 import { CourseItem } from "../../../../types/components-type/course";
 
 import { useRecoilValue } from "recoil";
-import { userInfoState } from "../../../../states/app";
+import { QueryStringUserState } from "../../../../states/app";
 import Button from "../../../../components/Button";
 import BelfIcon from "../../../../icons/BelfIcon";
 // import { postBelfCourse } from "../../../../libs/course";
@@ -23,7 +23,7 @@ function timeout(delay: number) {
 }
 
 export default function CourseHeader({ courseItem }: props): JSX.Element {
-  const userInfo = useRecoilValue(userInfoState);
+  const queryStringUser = useRecoilValue(QueryStringUserState);
 
   const [isBelfFade, setBelfFade] = useState(false);
 
@@ -48,9 +48,9 @@ export default function CourseHeader({ courseItem }: props): JSX.Element {
         <S.Section>
           <S.UserInfoBox>
             <S.UserImageBox>
-              <img src={userInfo.avatarImage ? userInfo.avatarImage : imageDefault} />
+              <img src={queryStringUser.avatarImage ? queryStringUser.avatarImage : imageDefault} />
             </S.UserImageBox>
-            <S.UserNameText>{userInfo.email}</S.UserNameText>
+            <S.UserNameText>{queryStringUser.email}</S.UserNameText>
           </S.UserInfoBox>
           <S.Line />
           <S.CourseTitleText>{courseItem.title}</S.CourseTitleText>

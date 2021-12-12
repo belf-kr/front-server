@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { ReactNode, useEffect, useState } from "react";
 import { useSetRecoilState, useRecoilState } from "recoil";
 import { GetUserInfoEmailQuey, GetUserInfoTokenQuey } from "../libs/oauth";
-import { isPermissionState, userInfoState } from "../states/app";
+import { isPermissionState, QueryStringUserState } from "../states/app";
 
 type Props = {
   children: ReactNode;
@@ -13,7 +13,7 @@ export default function QueryStringUser({ children }: Props): JSX.Element {
   const [error, setError] = useState<string>();
   const [isNotFoundUser, setIsNotFoundUser] = useState<boolean>();
 
-  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  const [queryStringUser, setQueryStringUser] = useRecoilState(QueryStringUserState);
   const setIsPermissionState = useSetRecoilState(isPermissionState);
 
   const router = useRouter();
@@ -26,7 +26,7 @@ export default function QueryStringUser({ children }: Props): JSX.Element {
     (async () => {
       try {
         const userInfo = await GetUserInfoEmailQuey(userEmail as string);
-        setUserInfo(userInfo);
+        setQueryStringUser(userInfo);
         try {
           const verifiedUser = await GetUserInfoTokenQuey();
           if (userInfo.email === verifiedUser.email) {
@@ -75,7 +75,7 @@ export default function QueryStringUser({ children }: Props): JSX.Element {
     );
   }
 
-  if (userInfo) {
+  if (queryStringUser) {
     return <>{children}</>;
   }
 

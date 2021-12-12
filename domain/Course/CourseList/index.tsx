@@ -12,17 +12,17 @@ import { getCourses } from "../../../libs/course";
 import Button from "../../../components/Button";
 import BelfIcon from "../../../icons/BelfIcon";
 import { useRecoilValue } from "recoil";
-import { isPermissionState, userInfoState } from "../../../states/app";
+import { isPermissionState, QueryStringUserState } from "../../../states/app";
 
 export default function CourseList(): JSX.Element {
   const [courseItems, setCourseItems] = useState<CourseItem[]>([]);
 
-  const userInfo = useRecoilValue(userInfoState);
+  const queryStringUser = useRecoilValue(QueryStringUserState);
   const isPermission = useRecoilValue(isPermissionState);
 
   useEffect(() => {
     (async () => {
-      const res = await getCourses(userInfo.id);
+      const res = await getCourses(queryStringUser.id);
       setCourseItems(res);
     })();
 

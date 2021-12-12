@@ -14,7 +14,7 @@ export const configState = atom<undefined | Config>({
 /**
  * 페이지에 쿼리된 사용자 정보 입니다. (로그인한 사용자 정보가 아닙니다!)
  */
-export const userInfoState = atom<undefined | UserInfo>({
+export const QueryStringUserState = atom<undefined | UserInfo>({
   key: "userInfoState",
   default: undefined,
 });

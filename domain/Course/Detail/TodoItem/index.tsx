@@ -8,7 +8,7 @@ import CheckIcon from "../../../../icons/CheckIcon";
 
 import { TodoItem as TodoItemType } from "../../../../types/components-type/todo";
 import Link from "next/link";
-import { userInfoState } from "../../../../states/app";
+import { QueryStringUserState } from "../../../../states/app";
 import { deleteTodo } from "../../../../libs/todo";
 import router from "next/router";
 import { MenuItemType } from "../../../../types/components-type/kebab";
@@ -21,8 +21,8 @@ type props = {
 };
 
 export default function TodoItem({ todoItem, isLastItem, isDoneTodo }: props): JSX.Element {
-  const userInfo = useRecoilValue(userInfoState);
-  const uri = isDoneTodo ? `/` : `/${userInfo.email}/${todoItem.courseId}/todo/${todoItem.id}/write`;
+  const queryStringUser = useRecoilValue(QueryStringUserState);
+  const uri = isDoneTodo ? `/` : `/${queryStringUser.email}/${todoItem.courseId}/todo/${todoItem.id}/write`;
 
   function handleClickMenuItem(item: TodoItemType) {
     (async () => {

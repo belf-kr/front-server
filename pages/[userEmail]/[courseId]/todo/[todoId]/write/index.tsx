@@ -9,7 +9,7 @@ import EditerMaster from "../../../../../../domain/Editer/EditerMaster";
 import PostWorkDoneLayout from "../../../../../../layouts/PostWorkDoneLayout";
 import { getCourse } from "../../../../../../libs/course";
 import { getTodo } from "../../../../../../libs/todo";
-import { userInfoState } from "../../../../../../states/app";
+import { QueryStringUserState } from "../../../../../../states/app";
 import { CourseItem } from "../../../../../../types/components-type/course";
 import { TodoItem } from "../../../../../../types/components-type/todo";
 
@@ -18,10 +18,10 @@ const WriteWorkDonePage: NextPage = () => {
   const [currentWorkTodo, setCurrentWorkTodo] = useState<TodoItem>({});
 
   const router = useRouter();
-  const userInfo = useRecoilValue(userInfoState);
+  const queryStringUser = useRecoilValue(QueryStringUserState);
 
   useEffect(() => {
-    if (userInfo === undefined) {
+    if (queryStringUser === undefined) {
       return;
     }
     (async () => {
@@ -33,7 +33,7 @@ const WriteWorkDonePage: NextPage = () => {
     })();
 
     return () => setCurrentCourse({});
-  }, [userInfo]);
+  }, [queryStringUser]);
 
   return (
     <UserCheck>

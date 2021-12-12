@@ -9,7 +9,7 @@ import { CourseItem, CourseItem as CourseItemType } from "../../../types/compone
 
 import TagList from "../../Tag/TagList";
 import { useRecoilValue } from "recoil";
-import { userInfoState } from "../../../states/app";
+import { QueryStringUserState } from "../../../states/app";
 import Kebab from "../../../components/Kebab";
 import { MenuItemType } from "../../../types/components-type/kebab";
 import { deleteCourse } from "../../../libs/course";
@@ -19,7 +19,7 @@ type props = {
 };
 
 export default function CoursePinItem({ courseItem }: props): JSX.Element {
-  const userInfo = useRecoilValue(userInfoState);
+  const queryStringUser = useRecoilValue(QueryStringUserState);
 
   function handleClickMenuItem(item: CourseItem) {
     (async () => {
@@ -38,7 +38,7 @@ export default function CoursePinItem({ courseItem }: props): JSX.Element {
   ];
 
   return (
-    <Link href={`/${userInfo.email}/${courseItem.id}`} passHref={true}>
+    <Link href={`/${queryStringUser.email}/${courseItem.id}`} passHref={true}>
       <S.Card>
         <S.Color backgroundColor={courseItem.color} />
         <S.InfoBox>
