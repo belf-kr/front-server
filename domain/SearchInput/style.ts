@@ -35,7 +35,7 @@ const Input = styled.input`
   width: 100%;
 
   @media only screen and (max-width: 850px) {
-    visibility: collapse;
+    padding: 5px 10px;
   }
 
   :focus {
@@ -44,4 +44,23 @@ const Input = styled.input`
   }
 `;
 
-export { Box, IconArea, Input, Card };
+const InputSubmit = styled.input`
+  visibility: hidden;
+`;
+
+const PopupBox = styled.div<{ isOpen: boolean }>`
+  @media only screen and (max-width: 850px) {
+    background-color: blue;
+    visibility: ${(props) => (props.isOpen ? "visible" : "hidden")};
+    position: absolute;
+    width: 200px;
+    border-radius: 4px;
+    background-color: ${({ theme }) => theme.backgroundColor.bg};
+    border: 1px solid ${({ theme }) => theme.lineColor.main};
+    right: 0px;
+    top: 35px;
+    padding: 4px 0px;
+  }
+`;
+
+export { Box, IconArea, Input, Card, InputSubmit, PopupBox };
