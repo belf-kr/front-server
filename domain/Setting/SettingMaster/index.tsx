@@ -1,16 +1,20 @@
 import React from "react";
+import { useRecoilValue } from "recoil";
 import Button from "../../../components/Button";
+import { loginUserState } from "../../../states/app";
 import { imageDefault } from "../../UserPage/UserProfile";
 import EditButton from "../EditButton";
 
 import * as S from "./style";
 
 export default function SettingMaster(): JSX.Element {
+  const loginUser = useRecoilValue(loginUserState);
+
   return (
     <S.Box>
       <S.UserInfoBox>
         <S.UserImageBox>
-          <img src={imageDefault} />
+          <img src={loginUser.avatarImage === "" ? imageDefault : loginUser.avatarImage} />
           <S.ImageEditButtonBox>
             <EditButton
               menuItems={[
@@ -31,8 +35,8 @@ export default function SettingMaster(): JSX.Element {
           </S.ImageEditButtonBox>
         </S.UserImageBox>
         <S.UserProfileBox>
-          <S.UserName>{"유저 이름"}</S.UserName>
-          <S.Introduction>{"유저 이메일"}</S.Introduction>
+          <S.UserName>{loginUser.name}</S.UserName>
+          <S.Introduction>{loginUser.email}</S.Introduction>
         </S.UserProfileBox>
       </S.UserInfoBox>
       <S.Line />

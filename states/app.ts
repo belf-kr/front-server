@@ -14,8 +14,8 @@ export const configState = atom<undefined | Config>({
 /**
  * 로그인한 사용자 정보입니다.
  */
-export const userInfoState = atom<undefined | UserInfo>({
-  key: "userInfoState",
+export const loginUserState = atom<undefined | null | UserInfo>({
+  key: "loginUserState",
   default: undefined,
 });
 
