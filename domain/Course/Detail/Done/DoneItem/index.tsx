@@ -9,6 +9,8 @@ import Kebab from "../../../../../components/Kebab";
 import router from "next/router";
 import { MenuItemType } from "../../../../../types/components-type/kebab";
 import { deleteDone } from "../../../../../libs/work-done";
+import { useRecoilValue } from "recoil";
+import { isPermissionState } from "../../../../../states/app";
 
 type props = {
   doneItem: DoneItemType;
@@ -16,6 +18,8 @@ type props = {
 };
 
 export default function DoneItem({ doneItem, uri }: props): JSX.Element {
+  const isPermission = useRecoilValue(isPermissionState);
+
   function handleClickMenuItem(item: DoneItemType) {
     (async () => {
       await deleteDone(item.id);
@@ -45,7 +49,11 @@ export default function DoneItem({ doneItem, uri }: props): JSX.Element {
             <S.ExpranationText>{doneItem.actionDate ?? ""}</S.ExpranationText>
           </S.TextBox>
           <S.KebabBox>
-            <Kebab menuItems={menuItems} />
+            {isPermission && (
+              <S.KebabBox>
+                <Kebab menuItems={menuItems} />
+              </S.KebabBox>
+            )}
           </S.KebabBox>
         </S.InfoBox>
       </S.TodoItemBox>

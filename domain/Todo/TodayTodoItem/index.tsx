@@ -4,7 +4,7 @@ import * as S from "./style";
 
 import { TodoItem } from "../../../types/components-type/todo";
 import { useRecoilValue } from "recoil";
-import { queryStringUserState } from "../../../states/app";
+import { isPermissionState, queryStringUserState } from "../../../states/app";
 import Kebab from "../../../components/Kebab";
 import { MenuItemType } from "../../../types/components-type/kebab";
 import router from "next/router";
@@ -17,6 +17,7 @@ type props = {
 
 export default function TodayTodoItem({ todoItem, isLastItem }: props): JSX.Element {
   const queryStringUser = useRecoilValue(queryStringUserState);
+  const isPermission = useRecoilValue(isPermissionState);
 
   function handleClickMenuItem(item: TodoItem) {
     (async () => {
@@ -46,7 +47,11 @@ export default function TodayTodoItem({ todoItem, isLastItem }: props): JSX.Elem
             <S.CourseText>{todoItem.courseTitle}</S.CourseText>
           </S.TextBox>
           <S.KebabBox>
-            <Kebab menuItems={menuItems} />
+            {isPermission && (
+              <S.KebabBox>
+                <Kebab menuItems={menuItems} />
+              </S.KebabBox>
+            )}
           </S.KebabBox>
           <S.BorderBox isBorder={!isLastItem} />
         </S.InfoBox>

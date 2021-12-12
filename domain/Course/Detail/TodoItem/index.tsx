@@ -8,7 +8,7 @@ import CheckIcon from "../../../../icons/CheckIcon";
 
 import { TodoItem as TodoItemType } from "../../../../types/components-type/todo";
 import Link from "next/link";
-import { queryStringUserState } from "../../../../states/app";
+import { isPermissionState, queryStringUserState } from "../../../../states/app";
 import { deleteTodo } from "../../../../libs/todo";
 import router from "next/router";
 import { MenuItemType } from "../../../../types/components-type/kebab";
@@ -22,6 +22,8 @@ type props = {
 
 export default function TodoItem({ todoItem, isLastItem, isDoneTodo }: props): JSX.Element {
   const queryStringUser = useRecoilValue(queryStringUserState);
+  const isPermission = useRecoilValue(isPermissionState);
+
   const uri = isDoneTodo ? `/` : `/${queryStringUser.email}/${todoItem.courseId}/todo/${todoItem.id}/write`;
 
   function handleClickMenuItem(item: TodoItemType) {
@@ -54,7 +56,11 @@ export default function TodoItem({ todoItem, isLastItem, isDoneTodo }: props): J
             <S.ExpranationText>{todoItem.explanation}</S.ExpranationText>
           </S.TextBox>
           <S.KebabBox>
-            <Kebab menuItems={menuItems} />
+            {isPermission && (
+              <S.KebabBox>
+                <Kebab menuItems={menuItems} />
+              </S.KebabBox>
+            )}
           </S.KebabBox>
           <S.BorderBox isBorder={!isLastItem} />
         </S.InfoBox>
