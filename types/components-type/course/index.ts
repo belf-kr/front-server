@@ -14,4 +14,5 @@ export type CourseItem = {
   endDate?: string;
   likeCount?: number;
   originalCourseId?: number;
+  userEmail?: string;
 };
