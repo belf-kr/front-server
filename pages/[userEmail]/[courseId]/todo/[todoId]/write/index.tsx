@@ -9,7 +9,7 @@ import EditerMaster from "../../../../../../domain/Editer/EditerMaster";
 import PostWorkDoneLayout from "../../../../../../layouts/PostWorkDoneLayout";
 import { getCourse } from "../../../../../../libs/course";
 import { getTodo } from "../../../../../../libs/todo";
-import { QueryStringUserState } from "../../../../../../states/app";
+import { queryStringUserState } from "../../../../../../states/app";
 import { CourseItem } from "../../../../../../types/components-type/course";
 import { TodoItem } from "../../../../../../types/components-type/todo";
 
@@ -18,7 +18,7 @@ const WriteWorkDonePage: NextPage = () => {
   const [currentWorkTodo, setCurrentWorkTodo] = useState<TodoItem>({});
 
   const router = useRouter();
-  const queryStringUser = useRecoilValue(QueryStringUserState);
+  const queryStringUser = useRecoilValue(queryStringUserState);
 
   useEffect(() => {
     if (queryStringUser === undefined) {

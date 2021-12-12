@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 import { useRecoilState, useRecoilValue } from "recoil";
-import { themeState, QueryStringUserState } from "../../../states/app";
+import { themeState, queryStringUserState } from "../../../states/app";
 
 import * as S from "./style";
 
@@ -54,7 +54,7 @@ export default function MainIntro(): JSX.Element {
 
   const [theme] = useRecoilState(themeState);
 
-  const queryStringUser = useRecoilValue(QueryStringUserState);
+  const queryStringUser = useRecoilValue(queryStringUserState);
 
   for (let i = 0; i < posList.length; i++) {
     ShootingStarList.push(

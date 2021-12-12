@@ -9,7 +9,7 @@ import { CourseItem, CourseItem as CourseItemType } from "../../../types/compone
 
 import TagList from "../../Tag/TagList";
 import { useRecoilValue } from "recoil";
-import { QueryStringUserState } from "../../../states/app";
+import { queryStringUserState } from "../../../states/app";
 import Kebab from "../../../components/Kebab";
 import { MenuItemType } from "../../../types/components-type/kebab";
 import { deleteCourse } from "../../../libs/course";
@@ -19,7 +19,7 @@ type props = {
 };
 
 export default function CoursePinItem({ courseItem }: props): JSX.Element {
-  const queryStringUser = useRecoilValue(QueryStringUserState);
+  const queryStringUser = useRecoilValue(queryStringUserState);
 
   function handleClickMenuItem(item: CourseItem) {
     (async () => {

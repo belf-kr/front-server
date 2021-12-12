@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { ReactNode, useEffect, useState } from "react";
 import { useSetRecoilState, useRecoilState } from "recoil";
 import { GetUserInfoEmailQuey, GetUserInfoTokenQuey } from "../libs/oauth";
-import { isPermissionState, QueryStringUserState } from "../states/app";
+import { isPermissionState, queryStringUserState } from "../states/app";
 
 type Props = {
   children: ReactNode;
@@ -13,7 +13,7 @@ export default function QueryStringUser({ children }: Props): JSX.Element {
   const [error, setError] = useState<string>();
   const [isNotFoundUser, setIsNotFoundUser] = useState<boolean>();
 
-  const [queryStringUser, setQueryStringUser] = useRecoilState(QueryStringUserState);
+  const [queryStringUser, setQueryStringUser] = useRecoilState(queryStringUserState);
   const setIsPermissionState = useSetRecoilState(isPermissionState);
 
   const router = useRouter();

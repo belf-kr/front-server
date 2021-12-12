@@ -5,7 +5,7 @@ import * as S from "./style";
 import { CourseItem } from "../../../../types/components-type/course";
 
 import { useRecoilValue } from "recoil";
-import { QueryStringUserState } from "../../../../states/app";
+import { queryStringUserState } from "../../../../states/app";
 import Button from "../../../../components/Button";
 import BelfIcon from "../../../../icons/BelfIcon";
 // import { postBelfCourse } from "../../../../libs/course";
@@ -23,7 +23,7 @@ function timeout(delay: number) {
 }
 
 export default function CourseHeader({ courseItem }: props): JSX.Element {
-  const queryStringUser = useRecoilValue(QueryStringUserState);
+  const queryStringUser = useRecoilValue(queryStringUserState);
 
   const [isBelfFade, setBelfFade] = useState(false);
 

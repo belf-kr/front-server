@@ -4,7 +4,7 @@ import * as S from "./style";
 
 import { TodoItem } from "../../../types/components-type/todo";
 import { useRecoilValue } from "recoil";
-import { QueryStringUserState } from "../../../states/app";
+import { queryStringUserState } from "../../../states/app";
 import Kebab from "../../../components/Kebab";
 import { MenuItemType } from "../../../types/components-type/kebab";
 import router from "next/router";
@@ -16,7 +16,7 @@ type props = {
 };
 
 export default function TodayTodoItem({ todoItem, isLastItem }: props): JSX.Element {
-  const queryStringUser = useRecoilValue(QueryStringUserState);
+  const queryStringUser = useRecoilValue(queryStringUserState);
 
   function handleClickMenuItem(item: TodoItem) {
     (async () => {
