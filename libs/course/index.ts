@@ -95,3 +95,8 @@ export async function postBelfCourse(courseId: number): Promise<void> {
     throw new Error("postBelfCourse() 에러");
   }
 }
+
+export async function getSearchCourses(keyword: string): Promise<CourseItem[]> {
+  const { data } = await apiClient.get<CourseItem[]>(`/courses/search?keyword=${encodeURI(keyword)}`);
+  return data;
+}
