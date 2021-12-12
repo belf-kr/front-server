@@ -1,7 +1,7 @@
 import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from "next";
 import React, { useState } from "react";
 
-import UserCheck from "../../../../../../components/UserCheck";
+import UserCheck from "../../../../../../components/QueryStringUser";
 
 import { CourseItem } from "../../../../../../types/components-type/course";
 import { DoneItem } from "../../../../../../types/components-type/todo";

@@ -9,7 +9,7 @@ type Props = {
   children: ReactNode;
 };
 
-export default function UserCheck({ children }: Props): JSX.Element {
+export default function QueryStringUser({ children }: Props): JSX.Element {
   const [error, setError] = useState<string>();
   const [isNotFoundUser, setIsNotFoundUser] = useState<boolean>();
 

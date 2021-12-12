@@ -8,7 +8,7 @@ import DetailLayout from "../../../layouts/DetailLayout";
 import CourseHeader from "../../../domain/Course/Detail/CourseHeader";
 import ExplanationTextArea from "../../../domain/Course/Detail/ExplanationTextArea";
 import CourseDetailNavigate from "../../../domain/Course/Detail/CourseDetailNavigate";
-import UserCheck from "../../../components/UserCheck";
+import UserCheck from "../../../components/QueryStringUser";
 import TodoTab from "../../../domain/Course/Detail/TodoTab";
 import { userInfoState } from "../../../states/app";
 import { useRecoilValue } from "recoil";
