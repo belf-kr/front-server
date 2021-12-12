@@ -8,7 +8,7 @@ import { CourseItem } from "../../../types/components-type/course";
 
 import ArrowIcon from "../../../icons/ArrowIcon";
 import { useRecoilValue } from "recoil";
-import { userInfoState } from "../../../states/app";
+import { queryStringUserState } from "../../../states/app";
 
 type props = {
   courseOnChange: (value: CourseItem) => void;
@@ -20,7 +20,7 @@ export default function SelectCourse({ courseOnChange }: props): JSX.Element {
   const [currentCourseItem, setCurrentCourseItem] = useState<CourseItem>();
   const modalEl = useRef<HTMLDivElement>(null);
 
-  const userInfo = useRecoilValue(userInfoState);
+  const queryStringUser = useRecoilValue(queryStringUserState);
 
   const handleClickOutside = ({ target }: any) => {
     if (modalEl.current) {
@@ -39,7 +39,7 @@ export default function SelectCourse({ courseOnChange }: props): JSX.Element {
 
   useEffect(() => {
     (async () => {
-      const res = await getCourses(userInfo.id);
+      const res = await getCourses(queryStringUser.id);
       setCourseItems(res);
     })();
     return () => setCourseItems([]);

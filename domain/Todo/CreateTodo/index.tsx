@@ -39,11 +39,11 @@ export default function CreateTodo(): JSX.Element {
   return (
     <>
       <S.TitleBox>
-        <S.Title>새로운 할일 추가</S.Title>
+        <S.Title>새로운 할 일 추가</S.Title>
       </S.TitleBox>
       <S.Contents>
         <S.SubTitleBox>
-          <S.SubTitle>할일 제목</S.SubTitle>
+          <S.SubTitle>할 일 제목</S.SubTitle>
         </S.SubTitleBox>
         <S.DefaultInput type="text" placeholder="입력해주세요" name="title" onChange={setTitle} />
         <S.SubTitleBox>
@@ -59,7 +59,7 @@ export default function CreateTodo(): JSX.Element {
         </S.SubTitleBox>
         <SelectDayOfWeek />
         <S.SubmitButtonBox onClick={addTodo}>
-          <Button type={"submit"} text={"할일 생성"} />
+          <Button type={"submit"} text={"할 일 생성"} />
         </S.SubmitButtonBox>
       </S.Contents>
     </>

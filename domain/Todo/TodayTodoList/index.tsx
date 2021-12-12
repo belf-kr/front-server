@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import * as S from "./style";
-import { userInfoState } from "../../../states/app";
+import { queryStringUserState } from "../../../states/app";
 import { getTodayTodos } from "../../../libs/todo";
 
 import { TodoItem } from "../../../types/components-type/todo";
@@ -10,11 +10,11 @@ import TodayTodoItem from "../TodayTodoItem";
 export default function TodayTodoList(): JSX.Element {
   const [todoItems, setTodoItems] = useState<TodoItem[]>([]);
 
-  const userInfo = useRecoilValue(userInfoState);
+  const queryStringUser = useRecoilValue(queryStringUserState);
 
   useEffect(() => {
     (async () => {
-      const res = await getTodayTodos(userInfo.id);
+      const res = await getTodayTodos(queryStringUser.id);
       setTodoItems(res);
     })();
     return () => setTodoItems([]);
@@ -23,7 +23,7 @@ export default function TodayTodoList(): JSX.Element {
   return (
     <>
       <S.TitleBox>
-        <S.Title>오늘 할일</S.Title>
+        <S.Title>오늘 할 일</S.Title>
       </S.TitleBox>
       <S.TodoBox>
         {todoItems.length === 0 ? (

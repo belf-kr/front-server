@@ -4,7 +4,7 @@ import { NextPage } from "next";
 
 import CreateLayout from "../../layouts/CreateLayout";
 import CreateTodo from "../../domain/Todo/CreateTodo";
-import UserCheck from "../../components/UserCheck";
+import UserCheck from "../../components/QueryStringUser";
 
 const NewTodoPage: NextPage = () => {
   return (

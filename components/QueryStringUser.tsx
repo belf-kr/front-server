@@ -3,17 +3,18 @@ import { useRouter } from "next/router";
 import { ReactNode, useEffect, useState } from "react";
 import { useSetRecoilState, useRecoilState } from "recoil";
 import { GetUserInfoEmailQuey, GetUserInfoTokenQuey } from "../libs/oauth";
-import { isPermissionState, userInfoState } from "../states/app";
+import { isPermissionState, queryStringUserState } from "../states/app";
+import LoadingSpinner from "./LoadingSpinner";
 
 type Props = {
   children: ReactNode;
 };
 
-export default function UserCheck({ children }: Props): JSX.Element {
+export default function QueryStringUser({ children }: Props): JSX.Element {
   const [error, setError] = useState<string>();
   const [isNotFoundUser, setIsNotFoundUser] = useState<boolean>();
 
-  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  const [queryStringUser, setQueryStringUser] = useRecoilState(queryStringUserState);
   const setIsPermissionState = useSetRecoilState(isPermissionState);
 
   const router = useRouter();
@@ -26,7 +27,7 @@ export default function UserCheck({ children }: Props): JSX.Element {
     (async () => {
       try {
         const userInfo = await GetUserInfoEmailQuey(userEmail as string);
-        setUserInfo(userInfo);
+        setQueryStringUser(userInfo);
         try {
           const verifiedUser = await GetUserInfoTokenQuey();
           if (userInfo.email === verifiedUser.email) {
@@ -75,13 +76,13 @@ export default function UserCheck({ children }: Props): JSX.Element {
     );
   }
 
-  if (userInfo) {
+  if (queryStringUser) {
     return <>{children}</>;
   }
 
   return (
     <>
-      <h3>사용자 확인 중...</h3>
+      <LoadingSpinner width="100%" height="100%" message="사용자 정보 조회 중..." />
     </>
   );
 }

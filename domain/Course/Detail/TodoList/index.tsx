@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import * as S from "./style";
 
 import { useRecoilValue } from "recoil";
-import { userInfoState } from "../../../../states/app";
+import { queryStringUserState } from "../../../../states/app";
 
 import { getTodayTodos } from "../../../../libs/todo";
 import { TodoItem as TodoItemType } from "../../../../types/components-type/todo";
@@ -22,7 +22,7 @@ type Props = {
 export default function TodoList({ isDoneTodo, currentDate }: Props): JSX.Element {
   const [todoItems, setTodoItems] = useState<TodoItemType[]>([]);
 
-  const userInfo = useRecoilValue(userInfoState);
+  const queryStringUser = useRecoilValue(queryStringUserState);
 
   const router = useRouter();
 
@@ -33,7 +33,7 @@ export default function TodoList({ isDoneTodo, currentDate }: Props): JSX.Elemen
   useEffect(() => {
     (async () => {
       const res = await getTodayTodos(
-        userInfo.id,
+        queryStringUser.id,
         parseInt(router.query?.courseId as string, 10),
         toStringByFormatting(currentDate),
         toStringByFormatting(maximumActiveDate)
@@ -42,14 +42,15 @@ export default function TodoList({ isDoneTodo, currentDate }: Props): JSX.Elemen
     })();
     return () => setTodoItems([]);
   }, [currentDate]);
+
   return (
     <>
       <S.TitleBox>
-        <S.Title>{isDoneTodo ? "한일" : "할일"}</S.Title>
+        <S.Title>{isDoneTodo ? "한 일" : "할 일"}</S.Title>
       </S.TitleBox>
       <S.TodoBox>
         {todoItems.length === 0 ? (
-          <a>{isDoneTodo ? "한일" : "할일"}을 생성해주세요</a>
+          <a>{isDoneTodo ? "한 일" : "할 일"}을 생성해주세요</a>
         ) : (
           <>
             {todoItems.map((todoItem, i) => (
