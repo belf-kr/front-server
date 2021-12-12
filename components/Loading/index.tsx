@@ -1,10 +1,13 @@
-import * as S from "./Loading.style";
+import * as S from "./style";
 
 type Props = {
   width: string;
   height: string;
 };
 
+/**
+ * 로딩을 표시하는 아톰 컴포넌트 입니다. 로딩 화면 표시를 위해서는 해당 컴포넌트가 아닌 <LoadingSpinner />를 사용해주세요.
+ */
 export default function Loading({ width, height }: Props): JSX.Element {
   return (
     <S.Loader title="0" width={width} height={height}>
