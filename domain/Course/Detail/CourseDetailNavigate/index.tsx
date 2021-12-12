@@ -23,19 +23,19 @@ export default function CourseDetailNavigate({ setTabKey }: props): JSX.Element 
     {
       key: "todo",
       isSelect: true,
-      showText: "할일",
+      showText: "할 일",
       uri: "?tab=todo",
     },
     {
       key: "doneTodoList",
       isSelect: false,
-      showText: "한일",
+      showText: "한 일",
       uri: "?tab=doneTodoList",
     },
     // {
     //   key: "repeatList",
     //   isSelect: false,
-    //   showText: "반복 할일",
+    //   showText: "반복 할 일",
     //   uri: "?tab=repeatList",
     // },
   ]);

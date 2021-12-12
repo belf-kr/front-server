@@ -5,6 +5,8 @@ const Box = styled.div`
   height: 100%;
   top: 0px;
   position: relative;
+  /* 이유 없이 홈화면에 스크롤이 생겨서 제거하기 위함 */
+  overflow-y: hidden;
 `;
 
 const shining = (minSize: number, maxSize: number) => keyframes`

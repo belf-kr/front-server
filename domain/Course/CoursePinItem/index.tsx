@@ -9,7 +9,7 @@ import { CourseItem, CourseItem as CourseItemType } from "../../../types/compone
 
 import TagList from "../../Tag/TagList";
 import { useRecoilValue } from "recoil";
-import { userInfoState } from "../../../states/app";
+import { isPermissionState, queryStringUserState } from "../../../states/app";
 import Kebab from "../../../components/Kebab";
 import { MenuItemType } from "../../../types/components-type/kebab";
 import { deleteCourse } from "../../../libs/course";
@@ -19,7 +19,8 @@ type props = {
 };
 
 export default function CoursePinItem({ courseItem }: props): JSX.Element {
-  const userInfo = useRecoilValue(userInfoState);
+  const queryStringUser = useRecoilValue(queryStringUserState);
+  const isPermission = useRecoilValue(isPermissionState);
 
   function handleClickMenuItem(item: CourseItem) {
     (async () => {
@@ -38,7 +39,7 @@ export default function CoursePinItem({ courseItem }: props): JSX.Element {
   ];
 
   return (
-    <Link href={`/${userInfo.email}/${courseItem.id}`} passHref={true}>
+    <Link href={`/${queryStringUser.email}/${courseItem.id}`} passHref={true}>
       <S.Card>
         <S.Color backgroundColor={courseItem.color} />
         <S.InfoBox>
@@ -51,9 +52,11 @@ export default function CoursePinItem({ courseItem }: props): JSX.Element {
           <S.RowBox>
             <TagList tagList={courseItem.tags} />
           </S.RowBox>
-          <S.KebabBox>
-            <Kebab menuItems={menuItems} />
-          </S.KebabBox>
+          {isPermission && (
+            <S.KebabBox>
+              <Kebab menuItems={menuItems} />
+            </S.KebabBox>
+          )}
         </S.InfoBox>
       </S.Card>
     </Link>

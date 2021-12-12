@@ -7,10 +7,9 @@ import * as S from "./style";
 import CheckIcon from "../../../../icons/CheckIcon";
 
 import { TodoItem as TodoItemType } from "../../../../types/components-type/todo";
-import Link from "next/link";
-import { userInfoState } from "../../../../states/app";
+import { isPermissionState, queryStringUserState } from "../../../../states/app";
 import { deleteTodo } from "../../../../libs/todo";
-import router from "next/router";
+import { useRouter } from "next/router";
 import { MenuItemType } from "../../../../types/components-type/kebab";
 import Kebab from "../../../../components/Kebab";
 
@@ -21,8 +20,17 @@ type props = {
 };
 
 export default function TodoItem({ todoItem, isLastItem, isDoneTodo }: props): JSX.Element {
-  const userInfo = useRecoilValue(userInfoState);
-  const uri = isDoneTodo ? `/` : `/${userInfo.email}/${todoItem.courseId}/todo/${todoItem.id}/write`;
+  const queryStringUser = useRecoilValue(queryStringUserState);
+  const isPermission = useRecoilValue(isPermissionState);
+
+  const router = useRouter();
+
+  function handleWriteTodo() {
+    if (isPermission) {
+      const uri = isDoneTodo ? `/` : `/${queryStringUser.email}/${todoItem.courseId}/todo/${todoItem.id}/write`;
+      router.push(uri);
+    }
+  }
 
   function handleClickMenuItem(item: TodoItemType) {
     (async () => {
@@ -41,24 +49,26 @@ export default function TodoItem({ todoItem, isLastItem, isDoneTodo }: props): J
   ];
 
   return (
-    <Link href={uri} passHref={true}>
-      <S.TodoItemBox>
-        <S.CheckIconBox isDoneTodo={isDoneTodo}>
-          <CheckIcon />
-        </S.CheckIconBox>
-        <S.InfoBox>
-          <S.TextBox>
-            <S.TodoText>{todoItem.title}</S.TodoText>
-          </S.TextBox>
-          <S.TextBox>
-            <S.ExpranationText>{todoItem.explanation}</S.ExpranationText>
-          </S.TextBox>
-          <S.KebabBox>
-            <Kebab menuItems={menuItems} />
-          </S.KebabBox>
-          <S.BorderBox isBorder={!isLastItem} />
-        </S.InfoBox>
-      </S.TodoItemBox>
-    </Link>
+    <S.TodoItemBox onClick={handleWriteTodo}>
+      <S.CheckIconBox isDoneTodo={isDoneTodo}>
+        <CheckIcon />
+      </S.CheckIconBox>
+      <S.InfoBox>
+        <S.TextBox>
+          <S.TodoText>{todoItem.title}</S.TodoText>
+        </S.TextBox>
+        <S.TextBox>
+          <S.ExpranationText>{todoItem.explanation}</S.ExpranationText>
+        </S.TextBox>
+        <S.KebabBox>
+          {isPermission && (
+            <S.KebabBox>
+              <Kebab menuItems={menuItems} />
+            </S.KebabBox>
+          )}
+        </S.KebabBox>
+        <S.BorderBox isBorder={!isLastItem} />
+      </S.InfoBox>
+    </S.TodoItemBox>
   );
 }

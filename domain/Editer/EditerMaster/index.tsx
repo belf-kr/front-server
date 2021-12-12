@@ -8,7 +8,7 @@ import { TodoItem } from "../../../types/components-type/todo";
 import useGetEditNodeList from "../../../hooks/useGetEditNodeList";
 import { postWorkDone } from "../../../libs/work-done";
 import { useRecoilValue } from "recoil";
-import { userInfoState } from "../../../states/app";
+import { queryStringUserState } from "../../../states/app";
 import router from "next/router";
 import { expiredTokenFallback } from "../../../libs/oauth";
 
@@ -18,14 +18,14 @@ type props = {
 
 export default function EditerMaster({ todoItem }: props): JSX.Element {
   const [editNodeList, setEditNodeLIst] = useGetEditNodeList();
-  const userInfo = useRecoilValue(userInfoState);
+  const queryStringUser = useRecoilValue(queryStringUserState);
   const addWorkDone = async () => {
     try {
       await postWorkDone({
         workTodoId: todoItem.id,
         title: todoItem.title,
         content: JSON.stringify(editNodeList),
-        userId: userInfo.id,
+        userId: queryStringUser.id,
       });
       router.back();
     } catch (error) {

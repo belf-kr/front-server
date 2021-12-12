@@ -3,7 +3,7 @@ import { useRecoilState } from "recoil";
 import { configState } from "../states/app";
 import { GetConfig } from "../libs/oauth";
 import axios from "axios";
-import MainIntro from "../domain/HomeIntro/MainIntro";
+import LoadingSpinner from "./LoadingSpinner";
 
 type Props = {
   children: ReactNode;
@@ -43,7 +43,7 @@ export default function AppInit({ children }: Props): JSX.Element {
   if (!config) {
     return (
       <>
-        <MainIntro />
+        <LoadingSpinner width="100%" height="100%" message="앱에 필요한 설정 로드 중..." />
       </>
     );
   }

@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 import { useRecoilState, useRecoilValue } from "recoil";
-import { themeState, userInfoState } from "../../../states/app";
+import { themeState, loginUserState } from "../../../states/app";
 
 import * as S from "./style";
 
@@ -54,7 +54,7 @@ export default function MainIntro(): JSX.Element {
 
   const [theme] = useRecoilState(themeState);
 
-  const userInfo = useRecoilValue(userInfoState);
+  const loginUser = useRecoilValue(loginUserState);
 
   for (let i = 0; i < posList.length; i++) {
     ShootingStarList.push(
@@ -80,7 +80,7 @@ export default function MainIntro(): JSX.Element {
         <S.BelfShootingStarBox>
           <div>{BelfShootingStarList.map((item) => item)}</div>
         </S.BelfShootingStarBox>
-        {userInfo === undefined ? (
+        {!loginUser ? (
           <S.ButtonsBox>
             <Link href="/register" passHref={true}>
               <S.ButtonBox>
