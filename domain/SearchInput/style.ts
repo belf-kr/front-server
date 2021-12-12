@@ -12,18 +12,14 @@ const Card = styled.div`
 `;
 
 const Box = styled.div`
-  position: relative;
   width: 100%;
   height: 100%;
+  display: flex;
 `;
 
 const IconArea = styled.div`
-  position: absolute;
-  left: 10px;
-  top: 5px;
-  @media only screen and (max-width: 850px) {
-    left: 5px;
-  }
+  float: left;
+  margin: 5px;
 `;
 
 const Input = styled.input`
@@ -31,7 +27,8 @@ const Input = styled.input`
   background-color: transparent;
   border: none;
   color: ${({ theme }) => theme.fontColor.sub};
-  padding: 5px 10px 5px 36px;
+  padding: 5px 10px 5px 0px;
+  flex: 1;
   width: 100%;
 
   @media only screen and (max-width: 850px) {
@@ -53,13 +50,12 @@ const PopupBox = styled.div<{ isOpen: boolean }>`
     background-color: blue;
     visibility: ${(props) => (props.isOpen ? "visible" : "hidden")};
     position: absolute;
-    width: 200px;
-    border-radius: 4px;
     background-color: ${({ theme }) => theme.backgroundColor.bg};
     border: 1px solid ${({ theme }) => theme.lineColor.main};
-    right: 0px;
-    top: 35px;
+    left: -1px;
+    top: 62px;
     padding: 4px 0px;
+    width: calc(100% + 2px);
   }
 `;
 

@@ -5,7 +5,7 @@ const Layout = styled.div`
   max-width: 780px;
   display: flex;
   flex-flow: column;
-  padding: 20px 20px 40px 20px;
+  padding: 40px 20px 40px 20px;
 `;
 
 export { Layout };
