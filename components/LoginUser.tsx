@@ -13,6 +13,7 @@ export default function LoginUser({ children }: Props): JSX.Element {
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
+  // url이 변경될 때마다 확인할 수 있도록 의존성 배열을 추가하지않음
   useEffect(() => {
     (async () => {
       try {
