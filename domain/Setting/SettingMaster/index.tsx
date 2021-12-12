@@ -19,13 +19,13 @@ export default function SettingMaster(): JSX.Element {
                 {
                   showText: "이미지 업로드",
                   onClick: () => {
-                    console.log("클릭 이벤트");
+                    console.log("이미지 업로드 이벤트");
                   },
                 },
                 {
                   showText: "이미지 삭제",
                   onClick: () => {
-                    console.log("클릭 이벤트");
+                    console.log("이미지 삭제 이벤트");
                   },
                 },
               ]}
@@ -42,7 +42,13 @@ export default function SettingMaster(): JSX.Element {
         <S.SettingOptionBox>
           <S.OptionTitleText>회원탈퇴</S.OptionTitleText>
           <S.OptionButtonBox>
-            <Button text="회원탈퇴" bg="#FF5446" />
+            <Button
+              text="회원탈퇴"
+              bg="#FF5446"
+              onClick={() => {
+                console.log("회원탈퇴 이벤트");
+              }}
+            />
           </S.OptionButtonBox>
         </S.SettingOptionBox>
       </S.SettingOptionListBox>
