@@ -14,7 +14,7 @@ export default function SettingMaster(): JSX.Element {
     <S.Box>
       <S.UserInfoBox>
         <S.UserImageBox>
-          <img src={loginUser.avatarImage === "" ? imageDefault : loginUser.avatarImage} />
+          <img src={loginUser.avatarImage ? loginUser.avatarImage : imageDefault} />
           <S.ImageEditButtonBox>
             <EditButton
               menuItems={[
