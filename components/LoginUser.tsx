@@ -31,7 +31,7 @@ export default function LoginUser({ children }: Props): JSX.Element {
         setIsLoading(false);
       }
     })();
-  }, []);
+  });
 
   if (isLoading) {
     return (
