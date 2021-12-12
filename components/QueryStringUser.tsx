@@ -4,6 +4,7 @@ import { ReactNode, useEffect, useState } from "react";
 import { useSetRecoilState, useRecoilState } from "recoil";
 import { GetUserInfoEmailQuey, GetUserInfoTokenQuey } from "../libs/oauth";
 import { isPermissionState, queryStringUserState } from "../states/app";
+import LoadingSpinner from "./LoadingSpinner";
 
 type Props = {
   children: ReactNode;
@@ -81,7 +82,7 @@ export default function QueryStringUser({ children }: Props): JSX.Element {
 
   return (
     <>
-      <h3>사용자 확인 중...</h3>
+      <LoadingSpinner width="100%" height="100%" message="사용자 정보 조회 중..." />
     </>
   );
 }
