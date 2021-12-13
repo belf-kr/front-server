@@ -11,7 +11,7 @@ const Box = styled.div`
 const PopupBox = styled.div<{ isOpen: boolean }>`
   visibility: ${(props) => (props.isOpen ? "visible" : "hidden")};
   position: absolute;
-  width: 120px;
+  width: 140px;
   border-radius: 4px;
   background-color: ${({ theme }) => theme.backgroundColor.bg};
   border: 1px solid ${({ theme }) => theme.lineColor.main};

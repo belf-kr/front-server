@@ -3,17 +3,17 @@ import React, { useState, useEffect, useRef } from "react";
 import * as S from "./style";
 import axios from "axios";
 import Button from "../../../components/Button";
-import { getLocalStorageAccessToken, GetUserInfoTokenQuey, UserInfo } from "../../../libs/oauth";
 import { useRouter } from "next/router";
 import { UserLogout } from "../../../libs/oauth";
 import { imageDefault } from "../../UserPage/UserProfile";
 import Loading from "../../../components/Loading";
+import { useRecoilValue } from "recoil";
+import { loginUserState } from "../../../states/app";
 
 export default function UserProfile(): JSX.Element {
-  const [userInfo, setUserInfo] = useState<UserInfo>();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const userInfo = useRecoilValue(loginUserState);
+
   const [isOpenPopup, setIsOpenPopup] = useState<boolean>(false);
-  const [accessToken, setAccessToken] = useState<string>();
   const [error, setError] = useState<string>();
 
   const modalEl = useRef<HTMLDivElement>(null);
@@ -44,29 +44,6 @@ export default function UserProfile(): JSX.Element {
     }
   }
 
-  // token이 변한다는 것은 새롭게 로그인되었거나 로그인이 만료됨을 의미하여 하나의 이벤트로 처리하기 위해서 리렌더링하마다 상태로 저장함
-  useEffect(() => {
-    const accessToken = getLocalStorageAccessToken();
-    setAccessToken(accessToken);
-  });
-
-  // token이 변할 때 마다 사용자 조회: 그렇지 않으면 로그인 후 마이 대쉬보드로 이동할 때 이멘트를 캐치할 수 없음
-  useEffect(() => {
-    (async () => {
-      try {
-        // 일단 미리 로딩화면 보여줌
-        setIsLoading(true);
-        // 사용자 조회
-        const res = await GetUserInfoTokenQuey();
-        setUserInfo(res);
-      } catch (error) {
-        // 토큰이 만료되거나 로그인되지 않는 사용자로 판단: 의도적으로 예외를 무시합니다.
-      } finally {
-        setIsLoading(false);
-      }
-    })();
-  }, [accessToken]);
-
   // 이멘트 바인딩
   useEffect(() => {
     window.addEventListener("click", handleClickOutside);
@@ -85,12 +62,27 @@ export default function UserProfile(): JSX.Element {
   }
 
   // 로딩 중
-  if (isLoading) {
+  if (userInfo === undefined) {
     return (
       <>
         <S.Box>
           <Loading width="30px" height="30px" />
         </S.Box>
+      </>
+    );
+  }
+
+  // 로그인 되어있지 않음
+  if (userInfo === null) {
+    return (
+      <>
+        <S.ButtonBox
+          onClick={() => {
+            router.push("/login");
+          }}
+        >
+          <Button text={"로그인"} bg={"transparent"} />
+        </S.ButtonBox>
       </>
     );
   }
@@ -136,17 +128,4 @@ export default function UserProfile(): JSX.Element {
       </S.Box>
     );
   }
-
-  // 로그인 되어있지 않음: 기본 값
-  return (
-    <>
-      <S.ButtonBox
-        onClick={() => {
-          router.push("/login");
-        }}
-      >
-        <Button text={"로그인"} bg={"transparent"} />
-      </S.ButtonBox>
-    </>
-  );
 }

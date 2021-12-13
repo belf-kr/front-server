@@ -19,7 +19,7 @@ export default function LoginUser({ children }: Props): JSX.Element {
       try {
         const accessToken = getLocalStorageAccessToken();
 
-        if (accessToken === "") {
+        if (!accessToken) {
           setLoginUser(null);
           return;
         }
