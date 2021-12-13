@@ -14,16 +14,8 @@ const InfoBox = styled.div`
   position: relative;
 `;
 
-const CheckIconBox = styled.div<{
-  isDoneTodo: boolean;
-}>`
+const CheckIconBox = styled.div`
   svg {
-    ${(props) =>
-      props.isDoneTodo
-        ? css`
-            fill: ${({ theme }) => theme.brandColor.main};
-          `
-        : null}
     max-width: 20px;
     min-width: 20px;
     width: 20px;

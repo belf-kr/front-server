@@ -27,6 +27,9 @@ export default function SearchCourseItem({ courseItem }: props): JSX.Element {
           <S.RowBox>
             <TagList tagList={courseItem.tags} />
           </S.RowBox>
+          <S.RowBox>
+            <S.UserId>{courseItem.userEmail}</S.UserId>
+          </S.RowBox>
         </S.InfoBox>
       </S.Card>
     </Link>

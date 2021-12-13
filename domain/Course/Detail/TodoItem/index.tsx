@@ -16,10 +16,9 @@ import Kebab from "../../../../components/Kebab";
 type props = {
   todoItem: TodoItemType;
   isLastItem: boolean;
-  isDoneTodo: boolean;
 };
 
-export default function TodoItem({ todoItem, isLastItem, isDoneTodo }: props): JSX.Element {
+export default function TodoItem({ todoItem, isLastItem }: props): JSX.Element {
   const queryStringUser = useRecoilValue(queryStringUserState);
   const isPermission = useRecoilValue(isPermissionState);
 
@@ -27,7 +26,7 @@ export default function TodoItem({ todoItem, isLastItem, isDoneTodo }: props): J
 
   function handleWriteTodo() {
     if (isPermission) {
-      const uri = isDoneTodo ? `/` : `/${queryStringUser.email}/${todoItem.courseId}/todo/${todoItem.id}/write`;
+      const uri = `/${queryStringUser.email}/${todoItem.courseId}/todo/${todoItem.id}/write`;
       router.push(uri);
     }
   }
@@ -50,7 +49,7 @@ export default function TodoItem({ todoItem, isLastItem, isDoneTodo }: props): J
 
   return (
     <S.TodoItemBox onClick={handleWriteTodo}>
-      <S.CheckIconBox isDoneTodo={isDoneTodo}>
+      <S.CheckIconBox>
         <CheckIcon />
       </S.CheckIconBox>
       <S.InfoBox>
