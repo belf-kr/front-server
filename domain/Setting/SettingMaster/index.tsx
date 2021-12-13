@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
+import { useState } from "react";
 import { useRecoilState } from "recoil";
 import Button from "../../../components/Button";
+import Loading from "../../../components/Loading";
 import { UserRemove, UsersAvatarRemove, UsersAvatarUpload } from "../../../libs/oauth";
 import { loginUserState } from "../../../states/app";
 import { imageDefault } from "../../UserPage/UserProfile";
@@ -11,10 +13,13 @@ import * as S from "./style";
 export default function SettingMaster(): JSX.Element {
   const [loginUser, setLoginUser] = useRecoilState(loginUserState);
 
+  const [isImgLoading, setIsImgLoading] = useState<boolean>();
+
   const router = useRouter();
 
   async function loadAvatar(event: any) {
     try {
+      setIsImgLoading(true);
       const target = event.target as HTMLInputElement;
       const file = target.files[0];
 
@@ -27,6 +32,7 @@ export default function SettingMaster(): JSX.Element {
       });
 
       await UsersAvatarUpload(file);
+      setIsImgLoading(false);
     } catch (error) {
       alert("사용자 사진 업로드 중 에러: " + error);
     }
@@ -34,6 +40,7 @@ export default function SettingMaster(): JSX.Element {
 
   async function removeAvatar() {
     try {
+      setIsImgLoading(true);
       // 낙관론적 업데이트
       setLoginUser((prev) => {
         return {
@@ -43,6 +50,7 @@ export default function SettingMaster(): JSX.Element {
       });
 
       await UsersAvatarRemove();
+      setIsImgLoading(false);
     } catch (error) {
       alert("사용자 사진 삭제 중 에러: " + error);
     }
@@ -61,7 +69,13 @@ export default function SettingMaster(): JSX.Element {
     <S.Box>
       <S.UserInfoBox>
         <S.UserImageBox>
-          <img src={loginUser.avatarImage ? loginUser.avatarImage : imageDefault} />
+          {isImgLoading ? (
+            <>
+              <Loading width="140px" height="140px" />
+            </>
+          ) : (
+            <img src={loginUser.avatarImage ? loginUser.avatarImage : imageDefault} />
+          )}
           <S.ImageEditButtonBox>
             <EditButton
               menuItems={[
