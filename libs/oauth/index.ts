@@ -224,3 +224,30 @@ export async function UsersAvatarUpload(uploadedImage: File): Promise<void> {
     throw new Error("UsersAvatarUpload() 에러");
   }
 }
+
+export async function UsersAvatarRemove(): Promise<void> {
+  async function work() {
+    const accessToken = getLocalStorageAccessToken();
+    const { data } = await oauthClient.delete<UserInfo>(`/users/avatar`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return data;
+  }
+  try {
+    await work();
+  } catch (error) {
+    if (error instanceof Error) {
+      if (axios.isAxiosError(error)) {
+        switch (error.response?.status) {
+          case 401:
+            // 재시도: 리프레쉬 토큰으로 엑세스 토큰을 다시 발급
+            await TokenRefresh();
+            await work();
+        }
+      }
+    }
+    throw new Error("UsersAvatarRemove() 에러");
+  }
+}
