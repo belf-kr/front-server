@@ -194,3 +194,33 @@ export async function UserLogout(): Promise<void> {
     throw new Error(`UserLogout() 에러: ${error}`);
   }
 }
+
+export async function UsersAvatarUpload(uploadedImage: File): Promise<void> {
+  async function work() {
+    const accessToken = getLocalStorageAccessToken();
+    const formData = new FormData();
+    formData.append("file", uploadedImage);
+    const { data } = await oauthClient.post(`/users/avatar`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return data;
+  }
+  try {
+    await work();
+  } catch (error) {
+    if (error instanceof Error) {
+      if (axios.isAxiosError(error)) {
+        switch (error.response?.status) {
+          case 401:
+            // 재시도: 리프레쉬 토큰으로 엑세스 토큰을 다시 발급
+            await TokenRefresh();
+            await work();
+        }
+      }
+    }
+    throw new Error("UsersAvatarUpload() 에러");
+  }
+}

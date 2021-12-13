@@ -1,6 +1,6 @@
-import React from "react";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import Button from "../../../components/Button";
+import { UsersAvatarUpload } from "../../../libs/oauth";
 import { loginUserState } from "../../../states/app";
 import { imageDefault } from "../../UserPage/UserProfile";
 import EditButton from "../EditButton";
@@ -8,7 +8,26 @@ import EditButton from "../EditButton";
 import * as S from "./style";
 
 export default function SettingMaster(): JSX.Element {
-  const loginUser = useRecoilValue(loginUserState);
+  const [loginUser, setLoginUser] = useRecoilState(loginUserState);
+
+  async function loadFile(event: any) {
+    try {
+      const target = event.target as HTMLInputElement;
+      const file = target.files[0];
+
+      // 낙관론적 업데이트
+      setLoginUser((prev) => {
+        return {
+          ...prev,
+          avatarImage: URL.createObjectURL(file),
+        };
+      });
+
+      await UsersAvatarUpload(file);
+    } catch (error) {
+      alert("사용자 사진 업로드 도중 에러: " + error);
+    }
+  }
 
   return (
     <S.Box>
@@ -21,7 +40,9 @@ export default function SettingMaster(): JSX.Element {
                 {
                   showText: "이미지 업로드",
                   onClick: () => {
-                    console.log("이미지 업로드 이벤트");
+                    const image = document.querySelector("#chooseFile");
+                    const ev = new MouseEvent("click", { bubbles: true });
+                    image.dispatchEvent(ev);
                   },
                 },
                 {
@@ -54,6 +75,7 @@ export default function SettingMaster(): JSX.Element {
           </S.OptionButtonBox>
         </S.SettingOptionBox>
       </S.SettingOptionListBox>
+      <input type="file" id="chooseFile" name="chooseFile" accept="image/*" style={{ display: "none" }} onChange={loadFile} />
     </S.Box>
   );
 }
