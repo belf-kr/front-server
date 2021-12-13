@@ -22,11 +22,11 @@ export default function DoneList(): JSX.Element {
   return (
     <>
       <S.TitleBox>
-        <S.Title>한일</S.Title>
+        <S.Title>한 일</S.Title>
       </S.TitleBox>
       <S.TodoBox>
         {doneItems.length === 0 ? (
-          <a>한일을 작성해주세요</a>
+          <a>한 일을 작성해주세요.</a>
         ) : (
           <>
             {doneItems.map((doneItem, i) => {

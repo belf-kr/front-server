@@ -42,7 +42,7 @@ export default function CourseList(): JSX.Element {
         )}
       </S.TitleBox>
       {courseItems.length === 0 ? (
-        <a>코스를 생성해주세요</a>
+        <a>코스를 생성해주세요.</a>
       ) : (
         <S.CourseListBox>
           {courseItems.map((courseItem, i) => (
