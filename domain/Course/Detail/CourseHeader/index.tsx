@@ -8,8 +8,8 @@ import { useRecoilValue } from "recoil";
 import { queryStringUserState } from "../../../../states/app";
 import Button from "../../../../components/Button";
 import BelfIcon from "../../../../icons/BelfIcon";
-// import { postBelfCourse } from "../../../../libs/course";
-// import router from "next/router";
+import { postBelfCourse } from "../../../../libs/course";
+import router from "next/router";
 import { expiredTokenFallback } from "../../../../libs/oauth";
 import BelfLoading from "./BelfLoading";
 import { imageDefault } from "../../../UserPage/UserProfile";
@@ -17,10 +17,6 @@ import { imageDefault } from "../../../UserPage/UserProfile";
 type props = {
   courseItem: CourseItem;
 };
-
-function timeout(delay: number) {
-  return new Promise((res) => setTimeout(res, delay));
-}
 
 export default function CourseHeader({ courseItem }: props): JSX.Element {
   const queryStringUser = useRecoilValue(queryStringUserState);
@@ -30,11 +26,9 @@ export default function CourseHeader({ courseItem }: props): JSX.Element {
   const belfCourse = async () => {
     setBelfFade(true);
 
-    await timeout(5000);
-
     try {
-      // await postBelfCourse(courseItem.id);
-      // router.back();
+      await postBelfCourse(courseItem.id);
+      router.back();
     } catch (error) {
       expiredTokenFallback(error);
     } finally {
