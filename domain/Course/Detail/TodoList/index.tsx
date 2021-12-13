@@ -15,11 +15,10 @@ const toStringByFormatting = (date) => {
 };
 
 type Props = {
-  isDoneTodo: boolean;
   currentDate: Date;
 };
 
-export default function TodoList({ isDoneTodo, currentDate }: Props): JSX.Element {
+export default function TodoList({ currentDate }: Props): JSX.Element {
   const [todoItems, setTodoItems] = useState<TodoItemType[]>([]);
 
   const queryStringUser = useRecoilValue(queryStringUserState);
@@ -46,15 +45,15 @@ export default function TodoList({ isDoneTodo, currentDate }: Props): JSX.Elemen
   return (
     <>
       <S.TitleBox>
-        <S.Title>{isDoneTodo ? "한 일" : "할 일"}</S.Title>
+        <S.Title>{"할 일"}</S.Title>
       </S.TitleBox>
       {todoItems.length === 0 ? (
-        <a>{isDoneTodo ? "한 일" : "할 일"}을 생성해주세요.</a>
+        <a>할 일을 생성해주세요.</a>
       ) : (
         <>
           <S.TodoBox>
             {todoItems.map((todoItem, i) => (
-              <TodoItem key={"todo" + i} todoItem={todoItem} isLastItem={todoItems.length - 1 == i} isDoneTodo={isDoneTodo} />
+              <TodoItem key={"todo" + i} todoItem={todoItem} isLastItem={todoItems.length - 1 == i} />
             ))}
           </S.TodoBox>
         </>
