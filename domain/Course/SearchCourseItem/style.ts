@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Card = styled.button`
   border-radius: ${({ theme }) => theme.common.borderRadius.default}px;
   background-color: ${({ theme }) => theme.backgroundColor.card};
-  height: 108px;
+  height: 132px;
   padding: 16px;
   display: flex;
 `;
@@ -23,23 +23,27 @@ const Color = styled.div<{ backgroundColor?: string }>`
   display: inline-block;
 `;
 
-const Title = styled.a`
-  font-size: ${({ theme }) => theme.common.fontSize.s400}px;
-  color: ${({ theme }) => theme.fontColor.main};
+const RowText = styled.a`
   text-align: left;
   width: calc(100% - 40px);
   overflow: hidden;
   text-overflow: ellipsis;
+  display: inline-block;
 `;
 
-const Explanation = styled.a`
+const Title = styled(RowText)`
+  font-size: ${({ theme }) => theme.common.fontSize.s400}px;
+  color: ${({ theme }) => theme.fontColor.main};
+`;
+
+const Explanation = styled(RowText)`
   font-size: ${({ theme }) => theme.common.fontSize.s300}px;
   color: ${({ theme }) => theme.fontColor.sub};
-  width: calc(100% - 40px);
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  text-align: left;
+`;
+
+const UserId = styled(RowText)`
+  font-size: ${({ theme }) => theme.common.fontSize.s300}px;
+  color: ${({ theme }) => theme.fontColor.sub2};
 `;
 
 const RowBox = styled.div`
@@ -52,4 +56,4 @@ const RowBox = styled.div`
   overflow: hidden;
 `;
 
-export { Card, Color, Explanation, RowBox, Title, InfoBox };
+export { Card, Color, Explanation, RowBox, Title, InfoBox, UserId };

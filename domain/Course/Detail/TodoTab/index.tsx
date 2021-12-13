@@ -8,7 +8,7 @@ export default function TodoTab(): JSX.Element {
   return (
     <>
       <ChoiceDate setChoiceDate={setCurrentDate} />
-      <TodoList isDoneTodo={false} currentDate={currentDate} />
+      <TodoList currentDate={currentDate} />
     </>
   );
 }

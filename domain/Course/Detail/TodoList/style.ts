@@ -7,14 +7,24 @@ const TodoBox = styled.div`
 `;
 
 const TitleBox = styled.div`
-  height: 40px;
+  height: 48px;
   margin-top: 20px;
+  display: flex;
 `;
 
 const Title = styled.a`
   font-size: ${({ theme }) => theme.common.fontSize.s600}px;
   font-weight: ${({ theme }) => theme.common.fontWeight.bold};
   color: ${({ theme }) => theme.fontColor.main};
+  margin-top: 7px;
 `;
 
-export { Title, TitleBox, TodoBox };
+const AddButtonBox = styled.div`
+  margin: 2px 0px;
+  margin-left: auto;
+  button {
+    padding: 6px 12px 4px 12px;
+  }
+`;
+
+export { Title, TitleBox, TodoBox, AddButtonBox };
