@@ -79,13 +79,15 @@ export default function SettingMaster(): JSX.Element {
       <S.Line />
       <S.SettingOptionListBox>
         <S.SettingOptionBox>
-          <S.OptionTitleText>회원탈퇴</S.OptionTitleText>
           <S.OptionButtonBox>
             <Button
-              text="회원탈퇴"
+              text="회원 탈퇴"
               bg="#FF5446"
               onClick={() => {
-                console.log("회원탈퇴 이벤트");
+                const result = confirm("회원 탈퇴를 진행하시겠습니까? 탈퇴 후 데이터는 복구할 수 없습니다.");
+                if (result) {
+                  alert("수고하셨어요! 2018년에도 화이팅!!");
+                }
               }}
             />
           </S.OptionButtonBox>

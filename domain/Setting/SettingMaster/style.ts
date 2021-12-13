@@ -70,13 +70,14 @@ const ImageEditButtonBox = styled.div`
 const Line = styled.div`
   width: 100%;
   display: block;
-  margin: 36px 0px;
+  margin: 30px 0px;
   border-top: 2px solid ${({ theme }) => theme.lineColor.main};
 `;
 
 const SettingOptionListBox = styled.div`
   display: flex;
   flex-direction: column;
+  flex-flow: row-reverse;
   row-gap: 10px;
 `;
 const SettingOptionBox = styled.div`
