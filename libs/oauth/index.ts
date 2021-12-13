@@ -200,13 +200,12 @@ export async function UsersAvatarUpload(uploadedImage: File): Promise<void> {
     const accessToken = getLocalStorageAccessToken();
     const formData = new FormData();
     formData.append("file", uploadedImage);
-    const { data } = await oauthClient.post(`/users/avatar`, formData, {
+    await oauthClient.post(`/users/avatar`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${accessToken}`,
       },
     });
-    return data;
   }
   try {
     await work();
@@ -228,12 +227,11 @@ export async function UsersAvatarUpload(uploadedImage: File): Promise<void> {
 export async function UsersAvatarRemove(): Promise<void> {
   async function work() {
     const accessToken = getLocalStorageAccessToken();
-    const { data } = await oauthClient.delete<UserInfo>(`/users/avatar`, {
+    await oauthClient.delete<UserInfo>(`/users/avatar`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
     });
-    return data;
   }
   try {
     await work();
@@ -249,5 +247,33 @@ export async function UsersAvatarRemove(): Promise<void> {
       }
     }
     throw new Error("UsersAvatarRemove() 에러");
+  }
+}
+
+export async function UserRemove(): Promise<void> {
+  async function work() {
+    const accessToken = getLocalStorageAccessToken();
+    await oauthClient.delete<UserInfo>(`/users`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    delLocalStorageAccessToken();
+    delLocalStorageRefreshToken();
+  }
+  try {
+    await work();
+  } catch (error) {
+    if (error instanceof Error) {
+      if (axios.isAxiosError(error)) {
+        switch (error.response?.status) {
+          case 401:
+            // 재시도: 리프레쉬 토큰으로 엑세스 토큰을 다시 발급
+            await TokenRefresh();
+            await work();
+        }
+      }
+    }
+    throw new Error("UserRemove() 에러");
   }
 }

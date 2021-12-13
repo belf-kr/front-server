@@ -1,6 +1,7 @@
+import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
 import Button from "../../../components/Button";
-import { UsersAvatarRemove, UsersAvatarUpload } from "../../../libs/oauth";
+import { UserRemove, UsersAvatarRemove, UsersAvatarUpload } from "../../../libs/oauth";
 import { loginUserState } from "../../../states/app";
 import { imageDefault } from "../../UserPage/UserProfile";
 import EditButton from "../EditButton";
@@ -9,6 +10,8 @@ import * as S from "./style";
 
 export default function SettingMaster(): JSX.Element {
   const [loginUser, setLoginUser] = useRecoilState(loginUserState);
+
+  const router = useRouter();
 
   async function loadAvatar(event: any) {
     try {
@@ -42,6 +45,15 @@ export default function SettingMaster(): JSX.Element {
       await UsersAvatarRemove();
     } catch (error) {
       alert("사용자 사진 삭제 중 에러: " + error);
+    }
+  }
+
+  async function removeUser() {
+    try {
+      await UserRemove();
+      router.replace("/");
+    } catch (error) {
+      alert("사용자 삭제 중 에러: " + error);
     }
   }
 
@@ -86,7 +98,7 @@ export default function SettingMaster(): JSX.Element {
               onClick={() => {
                 const result = confirm("회원 탈퇴를 진행하시겠습니까? 탈퇴 후 데이터는 복구할 수 없습니다.");
                 if (result) {
-                  alert("수고하셨어요! 2018년에도 화이팅!!");
+                  removeUser();
                 }
               }}
             />
