@@ -42,8 +42,11 @@ export async function getDone(doneId: number): Promise<DoneItem> {
 }
 
 export async function getDones(courseId?: number): Promise<DoneItem[]> {
-  const queryString = [courseId && `courseId=${courseId}`];
-  const { data } = await apiClient.get<DoneItem[]>(`/work-dones?${queryString.join("&")}`);
+  const { data } = await apiClient.get<DoneItem[]>("/work-dones", {
+    params: {
+      courseId: courseId,
+    },
+  });
   return data;
 }
 

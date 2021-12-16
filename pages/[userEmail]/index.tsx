@@ -12,6 +12,7 @@ import CourseList from "../../domain/Course/CourseList";
 
 import useGetString from "../../hooks/useGetString";
 import UserCheck from "../../components/QueryStringUser";
+import BelfList from "../../domain/Course/BelfList";
 
 const getTabComponent = (key: string) => {
   switch (key) {
@@ -20,7 +21,7 @@ const getTabComponent = (key: string) => {
     case "courseList":
       return <CourseList />;
     case "belfList":
-      return <CourseList />;
+      return <BelfList />;
     default:
       return (
         <>
