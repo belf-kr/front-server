@@ -10,7 +10,7 @@ import { TodoItem as TodoItemType } from "../../../../types/components-type/todo
 import TodoItem from "../TodoItem";
 import { useRouter } from "next/router";
 import Button from "../../../../components/Button";
-import Link from "next/link";
+import { getCourses } from "../../../../libs/course";
 
 const toStringByFormatting = (date) => {
   return date.toISOString().split("T")[0];
@@ -22,6 +22,7 @@ type Props = {
 
 export default function TodoList({ currentDate }: Props): JSX.Element {
   const [todoItems, setTodoItems] = useState<TodoItemType[]>([]);
+  const [isThereCourses, setIsThereCourses] = useState<boolean>();
 
   const queryStringUser = useRecoilValue(queryStringUserState);
   const isPermission = useRecoilValue(isPermissionState);
@@ -31,6 +32,14 @@ export default function TodoList({ currentDate }: Props): JSX.Element {
   //추후 삭제 예정
   const maximumActiveDate = new Date(currentDate);
   maximumActiveDate.setDate(maximumActiveDate.getDate() + 1);
+
+  function handleNewTodo() {
+    router.push("/new-todo");
+  }
+
+  function handleNewCourses() {
+    router.push("/new-course");
+  }
 
   useEffect(() => {
     (async () => {
@@ -45,17 +54,27 @@ export default function TodoList({ currentDate }: Props): JSX.Element {
     return () => setTodoItems([]);
   }, [currentDate]);
 
+  useEffect(() => {
+    (async () => {
+      const res = await getCourses(queryStringUser.id);
+      setIsThereCourses(!!res.length);
+    })();
+  }, []);
+
   return (
     <>
       <S.TitleBox>
         <S.Title>{"할 일"}</S.Title>
-        {isPermission && (
-          <Link href={"/new-todo"}>
-            <S.AddButtonBox>
+        {isPermission &&
+          (isThereCourses ? (
+            <S.AddButtonBox onClick={handleNewTodo}>
               <Button text={"새로운 할 일 추가"} />
             </S.AddButtonBox>
-          </Link>
-        )}
+          ) : (
+            <S.AddButtonBox onClick={handleNewCourses}>
+              <Button text={"할 일 추가를 위해 코스 생성하기"} />
+            </S.AddButtonBox>
+          ))}
       </S.TitleBox>
       {todoItems.length === 0 ? (
         <a>할 일을 생성해주세요.</a>

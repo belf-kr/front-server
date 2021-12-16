@@ -27,7 +27,7 @@ export default function CourseList(): JSX.Element {
     })();
 
     return () => setCourseItems([]);
-  }, []);
+  }, [queryStringUser]);
 
   return (
     <>
