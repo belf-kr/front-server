@@ -27,6 +27,11 @@ export default function SignInForm(): JSX.Element {
   }
 
   async function handleLogin() {
+    if (!password) {
+      alert("비밀번호를 입력해주세요.");
+      return;
+    }
+
     try {
       await UserLogin(email, password);
       router.replace(`/${email}`);
@@ -58,17 +63,26 @@ export default function SignInForm(): JSX.Element {
       </S.TitleBox>
       <S.SignBox>
         <S.SubTitleBox>
-          <S.SubTitle>이메일</S.SubTitle>
+          <S.SubTitle>* 이메일</S.SubTitle>
         </S.SubTitleBox>
         <S.DefaultInput type="text" placeholder="이메일" onChange={handleEmail} />
         <S.PasswordBox isVisible={isVisible}>
           <S.SubTitleBox>
-            <S.SubTitle>비밀번호</S.SubTitle>
+            <S.SubTitle>* 비밀번호</S.SubTitle>
           </S.SubTitleBox>
           <S.DefaultInput type="password" placeholder="비밀번호" onChange={handlePassword} />
         </S.PasswordBox>
         <div onClick={isVisible ? handleLogin : undefined}>
-          <S.ButtonBox onClick={() => setIsVisible(true)}>
+          <S.ButtonBox
+            onClick={(e) => {
+              if (email) {
+                setIsVisible(true);
+              } else {
+                alert("email을 입력해주세요.");
+                e.stopPropagation();
+              }
+            }}
+          >
             <Button text={isVisible ? "로그인" : "다음"} />
           </S.ButtonBox>
         </div>
