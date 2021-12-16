@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useRouter } from "next/router";
 import { ReactNode, useEffect, useState } from "react";
-import { useSetRecoilState, useRecoilState } from "recoil";
-import { GetUserInfoEmailQuey, GetUserInfoTokenQuey } from "../libs/oauth";
-import { isPermissionState, queryStringUserState } from "../states/app";
+import { useSetRecoilState, useRecoilState, useRecoilValue } from "recoil";
+import { GetUserInfoEmailQuey } from "../libs/oauth";
+import { isPermissionState, loginUserState, queryStringUserState } from "../states/app";
 import LoadingSpinner from "./LoadingSpinner";
 
 type Props = {
@@ -11,11 +11,12 @@ type Props = {
 };
 
 export default function QueryStringUser({ children }: Props): JSX.Element {
-  const [error, setError] = useState<string>();
-  const [isNotFoundUser, setIsNotFoundUser] = useState<boolean>();
-
+  const loginUser = useRecoilValue(loginUserState);
   const [queryStringUser, setQueryStringUser] = useRecoilState(queryStringUserState);
   const setIsPermissionState = useSetRecoilState(isPermissionState);
+
+  const [error, setError] = useState<string>();
+  const [isNotFoundUser, setIsNotFoundUser] = useState<boolean>();
 
   const router = useRouter();
   const { userEmail } = router.query;
@@ -29,8 +30,7 @@ export default function QueryStringUser({ children }: Props): JSX.Element {
         const userInfo = await GetUserInfoEmailQuey(userEmail as string);
         setQueryStringUser(userInfo);
         try {
-          const verifiedUser = await GetUserInfoTokenQuey();
-          if (userInfo.email === verifiedUser.email) {
+          if (userInfo.email === loginUser.email) {
             setIsPermissionState(true);
           }
         } catch (error) {
