@@ -1,5 +1,5 @@
 import { useState, useEffect, ReactNode } from "react";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { getLocalStorageAccessToken, GetUserInfoTokenQuey } from "../libs/oauth";
 import { loginUserState } from "../states/app";
 import LoadingSpinner from "./LoadingSpinner";
@@ -9,15 +9,11 @@ type Props = {
 };
 
 export default function LoginUser({ children }: Props): JSX.Element {
-  const [loginUser, setLoginUser] = useRecoilState(loginUserState);
+  const setLoginUser = useSetRecoilState(loginUserState);
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    if (loginUser) {
-      return;
-    }
-
     (async () => {
       try {
         const accessToken = getLocalStorageAccessToken();
