@@ -28,6 +28,7 @@ const UserInfoBox = styled.div`
 
 const UserImageBox = styled.div`
   width: 24px;
+  height: 24px;
   aspect-ratio: 24 / 24;
   img {
     width: 100%;
