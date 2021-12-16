@@ -66,23 +66,29 @@ export default function SelectCourse({ courseOnChange }: props): JSX.Element {
         </S.IconBox>
       </S.SelectCourseInfoBox>
       <S.CourseListBox isOpen={isOpenPopup}>
-        {courseItems.map((courseItem, index) => {
-          return (
-            <S.BottomBorderBox
-              key={index}
-              onClick={() => {
-                setCurrentCourseItem(courseItem);
-                setIsOpenPopup(false);
-              }}
-              isLast={courseItems.length - 1 === index}
-            >
-              <S.CourseItemBox>
-                <S.CourseColor color={courseItem.color} />
-                <S.CourseLabel>{courseItem.title}</S.CourseLabel>
-              </S.CourseItemBox>
-            </S.BottomBorderBox>
-          );
-        })}
+        {courseItems.length === 0 ? (
+          <>
+            <S.CourseItemBox>앗, 코스가 하나도 없습니다! 코스를 먼저 생성해주세요.</S.CourseItemBox>
+          </>
+        ) : (
+          courseItems.map((courseItem, index) => {
+            return (
+              <S.BottomBorderBox
+                key={index}
+                onClick={() => {
+                  setCurrentCourseItem(courseItem);
+                  setIsOpenPopup(false);
+                }}
+                isLast={courseItems.length - 1 === index}
+              >
+                <S.CourseItemBox>
+                  <S.CourseColor color={courseItem.color} />
+                  <S.CourseLabel>{courseItem.title}</S.CourseLabel>
+                </S.CourseItemBox>
+              </S.BottomBorderBox>
+            );
+          })
+        )}
       </S.CourseListBox>
     </S.SelectCourseBox>
   );
