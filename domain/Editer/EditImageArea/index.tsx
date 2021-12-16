@@ -54,7 +54,16 @@ export default function EditImageArea({ nodeItem, setNodeList }: props): JSX.Ele
       <S.ImageInput type="file" accept="image/jpg,impge/png,image/jpeg,image/gif" onChange={handleFileOnChange} ref={hiddenFileInput} />
       <S.ImagePreviewBox>
         {preview}
-        <S.ImageNameText>{imageFile ? `${imageFile.file.name} (${percentCompleted})` : null}</S.ImageNameText>
+        <S.ImageNameText
+          style={{
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+          }}
+        >
+          {imageFile?.file.name ?? ""}
+        </S.ImageNameText>
+        <S.ImageNameText>{percentCompleted ? `(${percentCompleted})` : ""}</S.ImageNameText>
       </S.ImagePreviewBox>
     </>
   );

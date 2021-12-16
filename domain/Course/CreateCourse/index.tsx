@@ -24,6 +24,11 @@ export default function CreateCourse(): JSX.Element {
 
   const addCourse = async () => {
     try {
+      if (!title) {
+        alert("입력되지 않은 값이 있습니다.");
+        return;
+      }
+
       await postNewCourse({
         title: title,
         explanation: explanation,
@@ -49,7 +54,7 @@ export default function CreateCourse(): JSX.Element {
           <SelectCourseColor colorOnChange={setColor} />
         </S.RadioColorsBox>
         <S.SubTitleBox>
-          <S.SubTitle>코스 제목</S.SubTitle>
+          <S.SubTitle>* 코스 제목</S.SubTitle>
         </S.SubTitleBox>
         <S.DefaultInput type="text" placeholder="입력해주세요" name="title" onChange={setTitle} />
         <S.SubTitleBox>

@@ -12,10 +12,20 @@ export default function SignUpFormSignUpForm(): JSX.Element {
   const [password, handlePassword] = useOnChange();
   const [passwordConfirm, handlePasswordConfirm] = useOnChange();
   const [name, handleName] = useOnChange();
-
   const router = useRouter();
 
   async function handleSignUp() {
+    if (!email || !password || !passwordConfirm || !name) {
+      alert("입력되지 않은 값이 있습니다.");
+      return;
+    }
+
+    const regEmail = /[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]$/i;
+    if (!regEmail.test(email)) {
+      alert("정상적인 이메일 값이 아닙니다.");
+      return;
+    }
+
     try {
       await PostUser({ name, email, password, passwordConfirm });
       await UserLogin(email, password);
@@ -43,19 +53,19 @@ export default function SignUpFormSignUpForm(): JSX.Element {
       </S.TitleBox>
       <S.SignBox>
         <S.SubTitleBox>
-          <S.SubTitle>닉네임</S.SubTitle>
+          <S.SubTitle>* 닉네임</S.SubTitle>
         </S.SubTitleBox>
         <S.DefaultInput type="text" placeholder="닉네임" onChange={handleName} />
         <S.SubTitleBox>
-          <S.SubTitle>이메일</S.SubTitle>
+          <S.SubTitle>* 이메일</S.SubTitle>
         </S.SubTitleBox>
         <S.DefaultInput type="text" placeholder="이메일" onChange={handleEmail} />
         <S.SubTitleBox>
-          <S.SubTitle>비밀번호</S.SubTitle>
+          <S.SubTitle>* 비밀번호</S.SubTitle>
         </S.SubTitleBox>
         <S.DefaultInput type="password" placeholder="비밀번호" onChange={handlePassword} />
         <S.SubTitleBox>
-          <S.SubTitle>비밀번호 재입력</S.SubTitle>
+          <S.SubTitle>* 비밀번호 재입력</S.SubTitle>
         </S.SubTitleBox>
         <S.DefaultInput type="password" placeholder="비밀번호 확인" onChange={handlePasswordConfirm} />
         <S.ButtonBox onClick={handleSignUp}>

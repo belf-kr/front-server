@@ -21,6 +21,14 @@ export default function EditerMaster({ todoItem }: props): JSX.Element {
   const queryStringUser = useRecoilValue(queryStringUserState);
   const addWorkDone = async () => {
     try {
+      let result = true;
+      if (editNodeList.length === 0) {
+        result = confirm("작성된 블록이 없는데 생성하시겠습니까?");
+      }
+      if (!result) {
+        return;
+      }
+
       await postWorkDone({
         workTodoId: todoItem.id,
         title: todoItem.title,

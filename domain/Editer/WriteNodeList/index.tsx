@@ -39,8 +39,25 @@ export default function WriteNodeList({ setEditNodeLIst }: props): JSX.Element {
   const handleClickAddText = () => {
     setNodeList((prev: EditNode[]) =>
       prev.length === 0
-        ? [{ id: 0, type: "text", contents: { text: "" } }]
-        : [...prev, { id: nodeList[nodeList.length - 1].id + 1, type: "text", contents: { text: "" } }]
+        ? [
+            {
+              id: 0,
+              type: "text",
+              contents: {
+                text: "",
+              },
+            },
+          ]
+        : [
+            ...prev,
+            {
+              id: nodeList[nodeList.length - 1].id + 1,
+              type: "text",
+              contents: {
+                text: "",
+              },
+            },
+          ]
     );
     setIsOpenPopup(false);
   };
@@ -48,8 +65,27 @@ export default function WriteNodeList({ setEditNodeLIst }: props): JSX.Element {
   const handleClickAddImage = () => {
     setNodeList((prev: EditNode[]) =>
       prev.length === 0
-        ? [{ id: 0, type: "image", contents: { name: "", url: "" } }]
-        : [...prev, { id: nodeList[nodeList.length - 1].id + 1, type: "image", contents: { name: "", url: "" } }]
+        ? [
+            {
+              id: 0,
+              type: "image",
+              contents: {
+                name: "",
+                url: "",
+              },
+            },
+          ]
+        : [
+            ...prev,
+            {
+              id: nodeList[nodeList.length - 1].id + 1,
+              type: "image",
+              contents: {
+                name: "",
+                url: "",
+              },
+            },
+          ]
     );
     setIsOpenPopup(false);
   };

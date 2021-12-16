@@ -12,6 +12,7 @@ const ContentsCard = styled.div`
   font-size: ${({ theme }) => theme.common.fontSize.s500}px;
   padding: 10px 16px;
   flex: 1;
+  width: 90%;
 `;
 
 const DeleteButton = styled.button`
