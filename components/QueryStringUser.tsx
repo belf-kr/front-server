@@ -29,7 +29,7 @@ export default function QueryStringUser({ children }: Props): JSX.Element {
       try {
         const userInfo = await GetUserInfoEmailQuey(userEmail as string);
         setQueryStringUser(userInfo);
-        if (userInfo.email === loginUser.email) {
+        if (userInfo.email === loginUser?.email) {
           setIsPermissionState(true);
         } else {
           setIsPermissionState(false);

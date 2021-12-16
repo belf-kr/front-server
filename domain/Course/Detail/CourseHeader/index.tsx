@@ -56,8 +56,8 @@ export default function CourseHeader({ courseItem }: props): JSX.Element {
           <S.Line />
           <S.CourseTitleText>{courseItem.title}</S.CourseTitleText>
         </S.Section>
-        {/* 나의 코스는 belf 할 수 없음 */}
-        {queryStringUser.id !== loginUser.id && (
+        {/* 로그인 되지 않는 사용자 및 자기 자신의 코스는 belf 할 수 없음 */}
+        {loginUser && queryStringUser.id !== loginUser.id && (
           <S.BelfButtonBox>
             <div onClick={belfCourse}>
               <Button Icon={<BelfIcon fill={"fontMain"} />} text={"코스 가져가기"} />
