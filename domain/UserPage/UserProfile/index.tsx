@@ -3,7 +3,6 @@ import { useRecoilValue } from "recoil";
 import Link from "next/link";
 import * as S from "./style";
 import UserPageAvatar from "../UserPageAvatar";
-import FollowButton from "../../FollowButton";
 import Button from "../../../components/Button";
 import { isPermissionState, queryStringUserState } from "../../../states/app";
 
@@ -22,10 +21,6 @@ export default function UserProfile(): JSX.Element {
       <S.Card>
         <S.UserName>{queryStringUser.name}</S.UserName>
         <S.Introduction>{queryStringUser.email}</S.Introduction>
-        <S.FollowBox>
-          <FollowButton type="belf" count={10} />
-          <FollowButton type="Heart" count={100} />
-        </S.FollowBox>
       </S.Card>
       {isPermission && (
         <Link href="/new-todo" passHref={true}>
