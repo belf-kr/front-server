@@ -31,7 +31,7 @@ export default function CourseHeader({ courseItem }: props): JSX.Element {
 
     try {
       await postBelfCourse(courseItem.id);
-      router.back();
+      router.push(`/${loginUser.email}?tab=belfList`);
     } catch (error) {
       expiredTokenFallback(error);
     } finally {

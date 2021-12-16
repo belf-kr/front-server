@@ -58,9 +58,17 @@ export default function QueryStringUser({ children }: Props): JSX.Element {
           style={{
             display: "grid",
             placeItems: "center",
+            width: "100%",
+            height: "100%",
           }}
         >
-          <h3>앗! 존재하지 않는 사용자 입니다.</h3>
+          <span
+            style={{
+              fontSize: "1.5rem",
+            }}
+          >
+            앗! {userEmail} 는 존재하지 않는 사용자 입니다.
+          </span>
         </div>
       </>
     );

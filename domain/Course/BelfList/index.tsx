@@ -22,7 +22,7 @@ export default function BelfList(): JSX.Element {
     })();
 
     return () => setCourseItems([]);
-  }, []);
+  }, [queryStringUser]);
 
   return (
     <>
