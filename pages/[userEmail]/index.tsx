@@ -11,7 +11,7 @@ import TodayTodoList from "../../domain/Todo/TodayTodoList";
 import CourseList from "../../domain/Course/CourseList";
 
 import useGetString from "../../hooks/useGetString";
-import UserCheck from "../../components/QueryStringUser";
+import QueryStringUser from "../../components/QueryStringUser";
 import BelfList from "../../domain/Course/BelfList";
 
 const getTabComponent = (key: string) => {
@@ -36,7 +36,7 @@ const UserPage: NextPage = () => {
   const [tabKey, setTabKey] = useGetString();
 
   return (
-    <UserCheck>
+    <QueryStringUser>
       <UserLayout>
         <UserProfile />
         <UserContentsLayout>
@@ -44,7 +44,7 @@ const UserPage: NextPage = () => {
           {getTabComponent(tabKey)}
         </UserContentsLayout>
       </UserLayout>
-    </UserCheck>
+    </QueryStringUser>
   );
 };
 

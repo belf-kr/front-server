@@ -16,6 +16,7 @@ export default function LoginUser({ children }: Props): JSX.Element {
   useEffect(() => {
     (async () => {
       try {
+        setIsLoading(true);
         const accessToken = getLocalStorageAccessToken();
 
         if (!accessToken) {
