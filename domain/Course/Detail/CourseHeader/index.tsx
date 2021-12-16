@@ -5,7 +5,7 @@ import * as S from "./style";
 import { CourseItem } from "../../../../types/components-type/course";
 
 import { useRecoilValue } from "recoil";
-import { queryStringUserState } from "../../../../states/app";
+import { loginUserState, queryStringUserState } from "../../../../states/app";
 import Button from "../../../../components/Button";
 import BelfIcon from "../../../../icons/BelfIcon";
 import { postBelfCourse } from "../../../../libs/course";
@@ -20,6 +20,7 @@ type props = {
 
 export default function CourseHeader({ courseItem }: props): JSX.Element {
   const queryStringUser = useRecoilValue(queryStringUserState);
+  const loginUser = useRecoilValue(loginUserState);
 
   const [isBelfFade, setBelfFade] = useState(false);
 
@@ -49,11 +50,14 @@ export default function CourseHeader({ courseItem }: props): JSX.Element {
           <S.Line />
           <S.CourseTitleText>{courseItem.title}</S.CourseTitleText>
         </S.Section>
-        <S.BelfButtonBox>
-          <div onClick={belfCourse}>
-            <Button Icon={<BelfIcon fill={"fontMain"} />} text={"코스 가져가기"} />
-          </div>
-        </S.BelfButtonBox>
+        {/* 나의 코스는 belf 할 수 없음 */}
+        {queryStringUser.id !== loginUser.id && (
+          <S.BelfButtonBox>
+            <div onClick={belfCourse}>
+              <Button Icon={<BelfIcon fill={"fontMain"} />} text={"코스 가져가기"} />
+            </div>
+          </S.BelfButtonBox>
+        )}
       </S.Card>
       {isBelfFade ? <BelfLoading /> : null}
     </S.Box>
