@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 const Card = styled.div`
   padding: 20px;
-  height: 160px;
   margin-top: 40px;
   border-radius: ${({ theme }) => theme.common.borderRadius.default}px;
   background-color: ${({ theme }) => theme.backgroundColor.card};

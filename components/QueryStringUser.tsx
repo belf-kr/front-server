@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useRouter } from "next/router";
 import { ReactNode, useEffect, useState } from "react";
-import { useSetRecoilState, useRecoilState } from "recoil";
-import { GetUserInfoEmailQuey, GetUserInfoTokenQuey } from "../libs/oauth";
-import { isPermissionState, queryStringUserState } from "../states/app";
+import { useSetRecoilState, useRecoilState, useRecoilValue } from "recoil";
+import { GetUserInfoEmailQuey } from "../libs/oauth";
+import { isPermissionState, loginUserState, queryStringUserState } from "../states/app";
 import LoadingSpinner from "./LoadingSpinner";
 
 type Props = {
@@ -11,11 +11,12 @@ type Props = {
 };
 
 export default function QueryStringUser({ children }: Props): JSX.Element {
-  const [error, setError] = useState<string>();
-  const [isNotFoundUser, setIsNotFoundUser] = useState<boolean>();
-
+  const loginUser = useRecoilValue(loginUserState);
   const [queryStringUser, setQueryStringUser] = useRecoilState(queryStringUserState);
   const setIsPermissionState = useSetRecoilState(isPermissionState);
+
+  const [error, setError] = useState<string>();
+  const [isNotFoundUser, setIsNotFoundUser] = useState<boolean>();
 
   const router = useRouter();
   const { userEmail } = router.query;
@@ -28,13 +29,10 @@ export default function QueryStringUser({ children }: Props): JSX.Element {
       try {
         const userInfo = await GetUserInfoEmailQuey(userEmail as string);
         setQueryStringUser(userInfo);
-        try {
-          const verifiedUser = await GetUserInfoTokenQuey();
-          if (userInfo.email === verifiedUser.email) {
-            setIsPermissionState(true);
-          }
-        } catch (error) {
-          // 어떤 오류던 간에 token 기반 사용자 인증에 실패하면 권한이 없는 것으로 간주합니다.
+        if (userInfo.email === loginUser?.email) {
+          setIsPermissionState(true);
+        } else {
+          setIsPermissionState(false);
         }
       } catch (error) {
         if (error instanceof Error) {
@@ -60,9 +58,17 @@ export default function QueryStringUser({ children }: Props): JSX.Element {
           style={{
             display: "grid",
             placeItems: "center",
+            width: "100%",
+            height: "100%",
           }}
         >
-          <h3>앗! 존재하지 않는 사용자 입니다.</h3>
+          <span
+            style={{
+              fontSize: "1.5rem",
+            }}
+          >
+            앗! {userEmail} 는 존재하지 않는 사용자 입니다.
+          </span>
         </div>
       </>
     );

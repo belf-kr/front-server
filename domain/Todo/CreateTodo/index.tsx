@@ -23,6 +23,11 @@ export default function CreateTodo(): JSX.Element {
 
   const addTodo = async () => {
     try {
+      if (!title || !course) {
+        alert("입력되지 않은 값이 있습니다.");
+        return;
+      }
+
       await postNewTodo({
         courseId: course.id,
         title: title,
@@ -43,7 +48,7 @@ export default function CreateTodo(): JSX.Element {
       </S.TitleBox>
       <S.Contents>
         <S.SubTitleBox>
-          <S.SubTitle>할 일 제목</S.SubTitle>
+          <S.SubTitle>* 할 일 제목</S.SubTitle>
         </S.SubTitleBox>
         <S.DefaultInput type="text" placeholder="입력해주세요" name="title" onChange={setTitle} />
         <S.SubTitleBox>
@@ -51,7 +56,7 @@ export default function CreateTodo(): JSX.Element {
         </S.SubTitleBox>
         <S.DefaultTextArea placeholder="입력해주세요 (200자)" name="explanation" rows={6} maxLength={200} onChange={setExplanation} />
         <S.SubTitleBox>
-          <S.SubTitle>코스 선택</S.SubTitle>
+          <S.SubTitle>* 코스 선택</S.SubTitle>
         </S.SubTitleBox>
         <SelectCourse courseOnChange={setCourse} />
         <S.SubTitleBox>

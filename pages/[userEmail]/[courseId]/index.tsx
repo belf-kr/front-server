@@ -8,7 +8,7 @@ import DetailLayout from "../../../layouts/DetailLayout";
 import CourseHeader from "../../../domain/Course/Detail/CourseHeader";
 import ExplanationTextArea from "../../../domain/Course/Detail/ExplanationTextArea";
 import CourseDetailNavigate from "../../../domain/Course/Detail/CourseDetailNavigate";
-import UserCheck from "../../../components/QueryStringUser";
+import QueryStringUser from "../../../components/QueryStringUser";
 import TodoTab from "../../../domain/Course/Detail/TodoTab";
 import { queryStringUserState } from "../../../states/app";
 import { useRecoilValue } from "recoil";
@@ -49,14 +49,14 @@ const CourseDetailPage: NextPage = () => {
   }, [queryStringUser]);
 
   return (
-    <UserCheck>
+    <QueryStringUser>
       <DetailLayout>
         <CourseHeader courseItem={currentCourse} />
         <ExplanationTextArea explanation={currentCourse.explanation} />
         <CourseDetailNavigate setTabKey={setTabKey} />
         {getTabComponent(tabKey)}
       </DetailLayout>
-    </UserCheck>
+    </QueryStringUser>
   );
 };
 

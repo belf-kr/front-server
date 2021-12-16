@@ -23,6 +23,7 @@ export default function AppInit({ children }: Props): JSX.Element {
           setError(error.response.data ?? error.message);
         }
         setError(error.message);
+        return;
       }
       setError(error);
     }

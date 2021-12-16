@@ -4,6 +4,7 @@ import { useRecoilState } from "recoil";
 import Button from "../../../components/Button";
 import Loading from "../../../components/Loading";
 import { UserRemove, UsersAvatarRemove, UsersAvatarUpload } from "../../../libs/oauth";
+import { deleteUserTodoData } from "../../../libs/todo";
 import { loginUserState } from "../../../states/app";
 import { imageDefault } from "../../UserPage/UserProfile";
 import EditButton from "../EditButton";
@@ -58,6 +59,7 @@ export default function SettingMaster(): JSX.Element {
 
   async function removeUser() {
     try {
+      await deleteUserTodoData();
       await UserRemove();
       router.replace("/");
     } catch (error) {

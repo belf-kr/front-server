@@ -9,7 +9,5 @@ type props = {
 };
 
 export default function HashTagList({ tagList }: props): JSX.Element {
-  return (
-    <S.TagListBox>{tagList !== undefined ? tagList.map((tagItam: TagType, i: number) => <TagItem key={"tag" + i} tagItem={tagItam} />) : <></>}</S.TagListBox>
-  );
+  return <S.TagListBox>{tagList[0].value ? tagList.map((tagItam: TagType, i: number) => <TagItem key={"tag" + i} tagItem={tagItam} />) : <></>}</S.TagListBox>;
 }
