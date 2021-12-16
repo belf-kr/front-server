@@ -29,12 +29,10 @@ export default function QueryStringUser({ children }: Props): JSX.Element {
       try {
         const userInfo = await GetUserInfoEmailQuey(userEmail as string);
         setQueryStringUser(userInfo);
-        try {
-          if (userInfo.email === loginUser.email) {
-            setIsPermissionState(true);
-          }
-        } catch (error) {
-          // 어떤 오류던 간에 token 기반 사용자 인증에 실패하면 권한이 없는 것으로 간주합니다.
+        if (userInfo.email === loginUser.email) {
+          setIsPermissionState(true);
+        } else {
+          setIsPermissionState(false);
         }
       } catch (error) {
         if (error instanceof Error) {

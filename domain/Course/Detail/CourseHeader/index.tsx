@@ -9,7 +9,7 @@ import { loginUserState, queryStringUserState } from "../../../../states/app";
 import Button from "../../../../components/Button";
 import BelfIcon from "../../../../icons/BelfIcon";
 import { postBelfCourse } from "../../../../libs/course";
-import router from "next/router";
+import { useRouter } from "next/router";
 import { expiredTokenFallback } from "../../../../libs/oauth";
 import BelfLoading from "./BelfLoading";
 import { imageDefault } from "../../../UserPage/UserProfile";
@@ -24,6 +24,8 @@ export default function CourseHeader({ courseItem }: props): JSX.Element {
 
   const [isBelfFade, setBelfFade] = useState(false);
 
+  const router = useRouter();
+
   const belfCourse = async () => {
     setBelfFade(true);
 
@@ -37,6 +39,10 @@ export default function CourseHeader({ courseItem }: props): JSX.Element {
     }
   };
 
+  function handleUserPage() {
+    router.push(`/${queryStringUser.email}`);
+  }
+
   return (
     <S.Box>
       <S.Card>
@@ -45,7 +51,7 @@ export default function CourseHeader({ courseItem }: props): JSX.Element {
             <S.UserImageBox>
               <img src={queryStringUser.avatarImage ? queryStringUser.avatarImage : imageDefault} />
             </S.UserImageBox>
-            <S.UserNameText>{queryStringUser.email}</S.UserNameText>
+            <S.UserNameText onClick={handleUserPage}>{queryStringUser.email}</S.UserNameText>
           </S.UserInfoBox>
           <S.Line />
           <S.CourseTitleText>{courseItem.title}</S.CourseTitleText>

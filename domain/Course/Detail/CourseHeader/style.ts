@@ -41,6 +41,9 @@ const UserImageBox = styled.div`
 const UserNameText = styled.a`
   font-size: ${({ theme }) => theme.common.fontSize.s300}px;
   line-height: 24px;
+  color: #ff924a;
+  cursor: pointer;
+  text-decoration: underline;
 `;
 
 const Line = styled.div`
