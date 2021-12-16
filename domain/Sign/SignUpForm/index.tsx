@@ -15,7 +15,6 @@ export default function SignUpFormSignUpForm(): JSX.Element {
   const router = useRouter();
 
   async function handleSignUp() {
-    // 벨리 데이션
     if (!email || !password || !passwordConfirm || !name) {
       alert("입력되지 않은 값이 있습니다.");
       return;
