@@ -21,7 +21,7 @@ export default function CoursePinList(): JSX.Element {
       setCourseItems(res.reverse().slice(0, 4));
     })();
     return () => setCourseItems([]);
-  }, []);
+  }, [queryStringUser]);
 
   return (
     <>

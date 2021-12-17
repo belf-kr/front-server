@@ -31,7 +31,7 @@ export default function UserProfile(): JSX.Element {
       const res = await getCourses(queryStringUser.id);
       setIsThereCourses(!!res.length);
     })();
-  }, []);
+  }, [queryStringUser]);
 
   return (
     <S.ProfileBox>

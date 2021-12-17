@@ -18,7 +18,7 @@ export default function TodayTodoList(): JSX.Element {
       setTodoItems(res);
     })();
     return () => setTodoItems([]);
-  }, []);
+  }, [queryStringUser]);
 
   return (
     <>
