@@ -39,7 +39,7 @@ const WriteWorkDonePage: NextPage = () => {
     <UserCheck>
       <PostWorkDoneLayout>
         <CourseHeader courseItem={currentCourse} />
-        <EditerMaster todoItem={currentWorkTodo} />
+        <EditerMaster todoItem={currentWorkTodo} courseId={currentCourse.id} />
       </PostWorkDoneLayout>
     </UserCheck>
   );

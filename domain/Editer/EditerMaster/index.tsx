@@ -14,11 +14,13 @@ import { expiredTokenFallback } from "../../../libs/oauth";
 
 type props = {
   todoItem: TodoItem;
+  courseId: number;
 };
 
-export default function EditerMaster({ todoItem }: props): JSX.Element {
+export default function EditerMaster({ todoItem, courseId }: props): JSX.Element {
   const [editNodeList, setEditNodeLIst] = useGetEditNodeList();
   const queryStringUser = useRecoilValue(queryStringUserState);
+
   const addWorkDone = async () => {
     try {
       let result = true;
@@ -35,7 +37,7 @@ export default function EditerMaster({ todoItem }: props): JSX.Element {
         content: JSON.stringify(editNodeList),
         userId: queryStringUser.id,
       });
-      router.back();
+      router.replace(`/${queryStringUser.email}/${courseId}?tab=doneTodoList`);
     } catch (error) {
       expiredTokenFallback(error);
     }
