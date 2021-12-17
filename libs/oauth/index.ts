@@ -47,7 +47,7 @@ export function delLocalStorageAccessToken(): void {
   localStorage.removeItem(accessTokenKey);
 }
 
-function getLocalStorageRefreshToken() {
+export function getLocalStorageRefreshToken(): string {
   return localStorage.getItem(refreshTokenKey);
 }
 export function setLocalStorageRefreshToken(token: string): void {
