@@ -29,7 +29,7 @@ const Input = styled.input`
   color: ${({ theme }) => theme.fontColor.sub};
   padding: 5px 10px 5px 0px;
   flex: 1;
-  width: 100%;
+  width: 15rem;
 
   @media only screen and (max-width: 850px) {
     padding: 5px 10px;
