@@ -6,11 +6,10 @@ import CheckIcon from "../../../../../icons/CheckIcon";
 import { DoneItem as DoneItemType } from "../../../../../types/components-type/todo";
 import Link from "next/link";
 import Kebab from "../../../../../components/Kebab";
-import router from "next/router";
 import { MenuItemType } from "../../../../../types/components-type/kebab";
 import { deleteDone } from "../../../../../libs/work-done";
-import { useRecoilValue } from "recoil";
-import { isPermissionState } from "../../../../../states/app";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { isPermissionState, isRefreshQueryState } from "../../../../../states/app";
 
 type props = {
   doneItem: DoneItemType;
@@ -19,11 +18,12 @@ type props = {
 
 export default function DoneItem({ doneItem, uri }: props): JSX.Element {
   const isPermission = useRecoilValue(isPermissionState);
+  const setIsRefreshQueryState = useSetRecoilState(isRefreshQueryState);
 
   function handleClickMenuItem(item: DoneItemType) {
     (async () => {
       await deleteDone(item.id);
-      router.reload();
+      setIsRefreshQueryState((prev) => !prev);
     })();
   }
 

@@ -1,15 +1,14 @@
 import React from "react";
 
 import Link from "next/link";
-import router from "next/router";
 
 import * as S from "./style";
 
 import { CourseItem, CourseItem as CourseItemType } from "../../../types/components-type/course";
 
 import TagList from "../../Tag/TagList";
-import { useRecoilValue } from "recoil";
-import { isPermissionState, queryStringUserState } from "../../../states/app";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { isPermissionState, isRefreshQueryState, queryStringUserState } from "../../../states/app";
 import Kebab from "../../../components/Kebab";
 import { MenuItemType } from "../../../types/components-type/kebab";
 import { deleteCourse } from "../../../libs/course";
@@ -21,11 +20,12 @@ type props = {
 export default function CoursePinItem({ courseItem }: props): JSX.Element {
   const queryStringUser = useRecoilValue(queryStringUserState);
   const isPermission = useRecoilValue(isPermissionState);
+  const setIsRefreshQueryState = useSetRecoilState(isRefreshQueryState);
 
   function handleClickMenuItem(item: CourseItem) {
     (async () => {
       await deleteCourse(item.id);
-      router.reload();
+      setIsRefreshQueryState((prev) => !prev);
     })();
   }
 

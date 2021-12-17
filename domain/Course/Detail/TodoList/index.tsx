@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import * as S from "./style";
 
 import { useRecoilValue } from "recoil";
-import { isPermissionState, queryStringUserState } from "../../../../states/app";
+import { isPermissionState, isRefreshQueryState, queryStringUserState } from "../../../../states/app";
 
 import { getTodayTodos } from "../../../../libs/todo";
 import { TodoItem as TodoItemType } from "../../../../types/components-type/todo";
@@ -21,11 +21,12 @@ type Props = {
 };
 
 export default function TodoList({ currentDate }: Props): JSX.Element {
-  const [todoItems, setTodoItems] = useState<TodoItemType[]>([]);
-  const [isThereCourses, setIsThereCourses] = useState<boolean>();
-
   const queryStringUser = useRecoilValue(queryStringUserState);
   const isPermission = useRecoilValue(isPermissionState);
+  const isRefreshQuery = useRecoilValue(isRefreshQueryState);
+
+  const [todoItems, setTodoItems] = useState<TodoItemType[]>([]);
+  const [isThereCourses, setIsThereCourses] = useState<boolean>();
 
   const router = useRouter();
 
@@ -41,6 +42,11 @@ export default function TodoList({ currentDate }: Props): JSX.Element {
     router.push("/new-course");
   }
 
+  async function GetCourses() {
+    const res = await getCourses(queryStringUser.id);
+    setIsThereCourses(!!res.length);
+  }
+
   useEffect(() => {
     (async () => {
       const res = await getTodayTodos(
@@ -52,14 +58,15 @@ export default function TodoList({ currentDate }: Props): JSX.Element {
       setTodoItems(res);
     })();
     return () => setTodoItems([]);
-  }, [currentDate]);
+  }, [currentDate, isRefreshQuery]);
 
   useEffect(() => {
-    (async () => {
-      const res = await getCourses(queryStringUser.id);
-      setIsThereCourses(!!res.length);
-    })();
+    GetCourses();
   }, []);
+
+  useEffect(() => {
+    GetCourses();
+  }, [isRefreshQuery]);
 
   return (
     <>

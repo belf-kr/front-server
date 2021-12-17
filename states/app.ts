@@ -34,3 +34,11 @@ export const isPermissionState = atom<boolean>({
   key: "isPermissionState",
   default: false,
 });
+
+/**
+ * 데이터 삭제시 모든 API를 다시 call할 수 있도록 (안티패턴, 서비스 릴리즈를 위하여 어쩔 수 없이 사용)
+ */
+export const isRefreshQueryState = atom<boolean>({
+  key: "isRefreshQueryState",
+  default: false,
+});

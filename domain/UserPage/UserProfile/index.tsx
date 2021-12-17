@@ -3,7 +3,7 @@ import { useRecoilValue } from "recoil";
 import * as S from "./style";
 import UserPageAvatar from "../UserPageAvatar";
 import Button from "../../../components/Button";
-import { isPermissionState, queryStringUserState } from "../../../states/app";
+import { isPermissionState, isRefreshQueryState, queryStringUserState } from "../../../states/app";
 import { getCourses } from "../../../libs/course";
 import { useRouter } from "next/router";
 
@@ -13,6 +13,7 @@ export const imageDefault =
 export default function UserProfile(): JSX.Element {
   const queryStringUser = useRecoilValue(queryStringUserState);
   const isPermission = useRecoilValue(isPermissionState);
+  const isRefreshQuery = useRecoilValue(isRefreshQueryState);
 
   const [isThereCourses, setIsThereCourses] = useState<boolean>();
 
@@ -31,7 +32,7 @@ export default function UserProfile(): JSX.Element {
       const res = await getCourses(queryStringUser.id);
       setIsThereCourses(!!res.length);
     })();
-  }, [queryStringUser]);
+  }, [queryStringUser, isRefreshQuery]);
 
   return (
     <S.ProfileBox>
