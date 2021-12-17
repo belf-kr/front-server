@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import * as S from "./style";
 
@@ -18,11 +18,17 @@ type props = {
 };
 
 export default function EditerMaster({ todoItem, courseId }: props): JSX.Element {
-  const [editNodeList, setEditNodeLIst] = useGetEditNodeList();
   const queryStringUser = useRecoilValue(queryStringUserState);
+
+  const [isPost, setIsPost] = useState<boolean>(false);
+
+  const [editNodeList, setEditNodeLIst] = useGetEditNodeList();
 
   const addWorkDone = async () => {
     try {
+      if (isPost) {
+        return;
+      }
       let result = true;
       if (editNodeList.length === 0) {
         result = confirm("작성된 블록이 없는데 생성하시겠습니까?");
@@ -30,13 +36,14 @@ export default function EditerMaster({ todoItem, courseId }: props): JSX.Element
       if (!result) {
         return;
       }
-
+      setIsPost(true);
       await postWorkDone({
         workTodoId: todoItem.id,
         title: todoItem.title,
         content: JSON.stringify(editNodeList),
         userId: queryStringUser.id,
       });
+      setIsPost(false);
       router.replace(`/${queryStringUser.email}/${courseId}?tab=doneTodoList`);
     } catch (error) {
       expiredTokenFallback(error);
@@ -48,7 +55,7 @@ export default function EditerMaster({ todoItem, courseId }: props): JSX.Element
       <S.TitleBox>
         <S.Title>{todoItem.title}</S.Title>
         <S.AddCourseButtonBox onClick={addWorkDone}>
-          <Button text={"게시"} />
+          <Button text={isPost ? "게시 중..." : "게시"} />
         </S.AddCourseButtonBox>
       </S.TitleBox>
       <WriteNodeList setEditNodeLIst={setEditNodeLIst} />
