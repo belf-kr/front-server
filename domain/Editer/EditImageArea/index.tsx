@@ -82,7 +82,7 @@ export default function EditImageArea({ nodeItem, setNodeList }: props): JSX.Ele
 
   return (
     <>
-      <S.ImageInput type="file" accept="image/jpg,impge/png,image/jpeg,image/gif" onChange={handleFileOnChange} ref={hiddenFileInput} />
+      <S.ImageInput type="file" accept="image/jpg,image/png,image/jpeg,image/gif" onChange={handleFileOnChange} ref={hiddenFileInput} />
       <S.ImagePreviewBox>
         {preview}
         <S.ImageNameText
