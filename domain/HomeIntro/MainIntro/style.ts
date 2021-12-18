@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
 const Box = styled.div`
   width: 100%;
@@ -7,20 +7,6 @@ const Box = styled.div`
   position: relative;
   /* 이유 없이 홈화면에 스크롤이 생겨서 제거하기 위함 */
   overflow-y: hidden;
-`;
-
-const shining = (minSize: number, maxSize: number) => keyframes`
-  0% {
-    width: ${minSize}px;
-  }
-  
-  50% {
-    width: ${maxSize}px;
-  }
-  
-  100% {
-    width: ${minSize}px;
-  }
 `;
 
 const ShootingStar = styled.div<{ color: string; x: number; y: number; minSize: number; maxSize: number }>`
@@ -38,7 +24,7 @@ const ShootingStar = styled.div<{ color: string; x: number; y: number; minSize: 
     background: ${(props) => `linear-gradient(-45deg, rgba(0, 0, 255, 0), ${props.color}, rgba(0, 0, 255, 0))`};
     transform: translateX(50%);
     border-radius: 100%;
-    animation: ${(props) => shining(props.minSize, props.maxSize)} 3000ms ease-in-out infinite;
+    width: ${(props) => props.maxSize}px;
   }
   &:after {
     content: "";
@@ -48,7 +34,7 @@ const ShootingStar = styled.div<{ color: string; x: number; y: number; minSize: 
     height: 2px;
     background: ${(props) => `linear-gradient(-45deg, rgba(0, 0, 255, 0), ${props.color}, rgba(0, 0, 255, 0))`};
     border-radius: 100%;
-    animation: ${(props) => shining(props.minSize, props.maxSize)} 3000ms ease-in-out infinite;
+    width: ${(props) => props.maxSize}px;
     transform: translateX(50%) rotateZ(-90deg);
   }
 `;
@@ -146,17 +132,4 @@ const FieldImgBox = styled.div`
   }
 `;
 
-export {
-  BelfShootingStarBox,
-  Box,
-  ButtonBox,
-  ButtonsBox,
-  ChildrenImgBox,
-  CommentBox,
-  FieldImgBox,
-  ImageBox,
-  MainCommentText,
-  ShootingStar,
-  SubCommentText,
-  shining,
-};
+export { BelfShootingStarBox, Box, ButtonBox, ButtonsBox, ChildrenImgBox, CommentBox, FieldImgBox, ImageBox, MainCommentText, ShootingStar, SubCommentText };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { useRouter } from "next/router";
 
@@ -15,19 +15,23 @@ import useCourseOnChange from "../../../hooks/useCourseOnChange";
 import { expiredTokenFallback } from "../../../libs/oauth";
 
 export default function CreateTodo(): JSX.Element {
-  const router = useRouter();
+  const [isPost, setIsPost] = useState<boolean>(false);
 
+  const router = useRouter();
   const [title, setTitle] = useOnChange();
   const [explanation, setExplanation] = useOnChange();
   const [course, setCourse] = useCourseOnChange();
 
   const addTodo = async () => {
     try {
+      if (isPost) {
+        return;
+      }
       if (!title || !course) {
         alert("입력되지 않은 값이 있습니다.");
         return;
       }
-
+      setIsPost(true);
       await postNewTodo({
         courseId: course.id,
         title: title,
@@ -35,6 +39,7 @@ export default function CreateTodo(): JSX.Element {
         recurringCycleDate: 1,
         repeatedDaysOfTheWeek: [],
       });
+      setIsPost(false);
       router.back();
     } catch (error) {
       expiredTokenFallback(error);
@@ -64,7 +69,7 @@ export default function CreateTodo(): JSX.Element {
         </S.SubTitleBox>
         <SelectDayOfWeek />
         <S.SubmitButtonBox onClick={addTodo}>
-          <Button type={"submit"} text={"할 일 생성"} />
+          <Button type={"submit"} text={isPost ? "할 일 생성 중..." : "할 일 생성"} />
         </S.SubmitButtonBox>
       </S.Contents>
     </>

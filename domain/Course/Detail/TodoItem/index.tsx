@@ -1,13 +1,13 @@
 import React from "react";
 
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 
 import * as S from "./style";
 
 import CheckIcon from "../../../../icons/CheckIcon";
 
 import { TodoItem as TodoItemType } from "../../../../types/components-type/todo";
-import { isPermissionState, queryStringUserState } from "../../../../states/app";
+import { isPermissionState, isRefreshQueryState, queryStringUserState } from "../../../../states/app";
 import { deleteTodo } from "../../../../libs/todo";
 import { useRouter } from "next/router";
 import { MenuItemType } from "../../../../types/components-type/kebab";
@@ -21,6 +21,7 @@ type props = {
 export default function TodoItem({ todoItem, isLastItem }: props): JSX.Element {
   const queryStringUser = useRecoilValue(queryStringUserState);
   const isPermission = useRecoilValue(isPermissionState);
+  const setIsRefreshQueryState = useSetRecoilState(isRefreshQueryState);
 
   const router = useRouter();
 
@@ -34,7 +35,7 @@ export default function TodoItem({ todoItem, isLastItem }: props): JSX.Element {
   function handleClickMenuItem(item: TodoItemType) {
     (async () => {
       await deleteTodo(item.id);
-      router.reload();
+      setIsRefreshQueryState((prev) => !prev);
     })();
   }
 

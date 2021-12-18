@@ -20,7 +20,7 @@ export default function SignUpFormSignUpForm(): JSX.Element {
       return;
     }
 
-    const regEmail = /[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]$/i;
+    const regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
     if (!regEmail.test(email)) {
       alert("정상적인 이메일 값이 아닙니다.");
       return;

@@ -8,12 +8,13 @@ import { CourseItem } from "../../../types/components-type/course";
 
 import { getCourses } from "../../../libs/course";
 import { useRecoilValue } from "recoil";
-import { queryStringUserState } from "../../../states/app";
+import { isRefreshQueryState, queryStringUserState } from "../../../states/app";
 
 export default function CoursePinList(): JSX.Element {
-  const [courseItems, setCourseItems] = useState<CourseItem[]>([]);
-
   const queryStringUser = useRecoilValue(queryStringUserState);
+  const isRefreshQuery = useRecoilValue(isRefreshQueryState);
+
+  const [courseItems, setCourseItems] = useState<CourseItem[]>([]);
 
   useEffect(() => {
     (async () => {
@@ -21,7 +22,7 @@ export default function CoursePinList(): JSX.Element {
       setCourseItems(res.reverse().slice(0, 4));
     })();
     return () => setCourseItems([]);
-  }, []);
+  }, [queryStringUser, isRefreshQuery]);
 
   return (
     <>

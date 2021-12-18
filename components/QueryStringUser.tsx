@@ -49,7 +49,7 @@ export default function QueryStringUser({ children }: Props): JSX.Element {
         setError(error);
       }
     })();
-  }, [router]);
+  }, [router, loginUser]);
 
   if (isNotFoundUser) {
     return (

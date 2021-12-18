@@ -1,6 +1,6 @@
 import { useState, useEffect, ReactNode } from "react";
 import { useSetRecoilState } from "recoil";
-import { getLocalStorageAccessToken, GetUserInfoTokenQuey } from "../libs/oauth";
+import { getLocalStorageAccessToken, getLocalStorageRefreshToken, GetUserInfoTokenQuey } from "../libs/oauth";
 import { loginUserState } from "../states/app";
 import LoadingSpinner from "./LoadingSpinner";
 
@@ -17,8 +17,9 @@ export default function LoginUser({ children }: Props): JSX.Element {
     (async () => {
       try {
         const accessToken = getLocalStorageAccessToken();
+        const refreshToken = getLocalStorageRefreshToken();
 
-        if (!accessToken) {
+        if (!accessToken && !refreshToken) {
           setLoginUser(null);
           return;
         }
@@ -27,6 +28,7 @@ export default function LoginUser({ children }: Props): JSX.Element {
         setLoginUser(res);
       } catch (error) {
         // 토큰이 만료되거나 로그인되지 않는 사용자로 판단: 의도적으로 예외를 무시합니다.
+        setLoginUser(null);
       } finally {
         setIsLoading(false);
       }

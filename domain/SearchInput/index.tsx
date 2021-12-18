@@ -53,7 +53,7 @@ export default function SearchInput(): JSX.Element {
         </S.IconArea>
         <S.PopupBox isOpen={isOpenPopup}>
           <form onSubmit={handleSubmit}>
-            <S.Input type="text" placeholder="검색" name="q" value={query} onChange={handleParam(setQuery)} />
+            <S.Input type="text" placeholder="코스 이름으로 검색..." name="q" value={query} onChange={handleParam(setQuery)} />
           </form>
         </S.PopupBox>
       </S.Box>
