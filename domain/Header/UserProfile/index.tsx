@@ -44,7 +44,7 @@ export default function UserProfile(): JSX.Element {
     }
   }
 
-  // 이멘트 바인딩
+  // 이벤트 바인딩
   useEffect(() => {
     window.addEventListener("click", handleClickOutside);
     return () => {

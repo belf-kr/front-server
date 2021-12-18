@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { useRouter } from "next/router";
 
@@ -15,8 +15,9 @@ import { postNewCourse } from "../../../libs/course";
 import { expiredTokenFallback } from "../../../libs/oauth";
 
 export default function CreateCourse(): JSX.Element {
-  const router = useRouter();
+  const [isPost, setIsPost] = useState<boolean>(false);
 
+  const router = useRouter();
   const [color, setColor] = useGetString();
   const [title, setTitle] = useOnChange();
   const [explanation, setExplanation] = useOnChange();
@@ -24,17 +25,21 @@ export default function CreateCourse(): JSX.Element {
 
   const addCourse = async () => {
     try {
+      if (isPost) {
+        return;
+      }
       if (!title) {
         alert("입력되지 않은 값이 있습니다.");
         return;
       }
-
+      setIsPost(true);
       await postNewCourse({
         title: title,
         explanation: explanation,
         color: color,
         tags: tags,
       });
+      setIsPost(false);
       router.back();
     } catch (error) {
       expiredTokenFallback(error);
@@ -66,7 +71,7 @@ export default function CreateCourse(): JSX.Element {
         </S.SubTitleBox>
         <TagInput tagsOnChange={setTags} />
         <S.SubmitButtonBox onClick={addCourse}>
-          <Button type={"submit"} text={"코스 생성"} />
+          <Button type={"submit"} text={isPost ? "코스 생성 중..." : "코스 생성"} />
         </S.SubmitButtonBox>
       </S.Contents>
     </>

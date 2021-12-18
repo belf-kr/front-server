@@ -1,12 +1,16 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
 import { getDones } from "../../../../../libs/work-done";
+import { isRefreshQueryState } from "../../../../../states/app";
 import { DoneItem as DoneItemType } from "../../../../../types/components-type/todo";
 import DoneItem from "../DoneItem";
 
 import * as S from "./style";
 
 export default function DoneList(): JSX.Element {
+  const isRefreshQuery = useRecoilValue(isRefreshQueryState);
+
   const [doneItems, setDoneItems] = useState<DoneItemType[]>([]);
 
   const router = useRouter();
@@ -17,7 +21,7 @@ export default function DoneList(): JSX.Element {
       setDoneItems(res.reverse());
     })();
     return () => setDoneItems([]);
-  }, []);
+  }, [router, isRefreshQuery]);
 
   return (
     <>

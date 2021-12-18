@@ -3,6 +3,8 @@ import * as S from "./style";
 
 import { postFile } from "../../../libs/storage";
 import { EditNode, ImageNode } from "../../../types/components-type/editer";
+import { useSetRecoilState } from "recoil";
+import { isImgUploadEventQueueState } from "../../../states/app";
 
 type props = {
   nodeItem: EditNode;
@@ -10,9 +12,12 @@ type props = {
 };
 
 export default function EditImageArea({ nodeItem, setNodeList }: props): JSX.Element {
+  const setIsImgUploadEventQueue = useSetRecoilState(isImgUploadEventQueueState);
+
   const hiddenFileInput = useRef(null);
 
   const [preview, setPreview] = useState(<></>);
+  const [fileUploadDateTime, setFileUploadDateTime] = useState<Date>();
   const [imageFile, setImageFile] = useState<any>();
 
   const [percentCompleted, setPercentCompleted] = useState("");
@@ -34,6 +39,19 @@ export default function EditImageArea({ nodeItem, setNodeList }: props): JSX.Ele
         (nodeItem.contents as ImageNode).name = imageFile.file.name;
         (nodeItem.contents as ImageNode).url = `${process.env.NEXT_PUBLIC_STORAGE_SERVER_URL}${headers.location}`;
 
+        // 이미지 업로드 완료 플래그
+        setIsImgUploadEventQueue((prev) => {
+          return prev.map((x) => {
+            if (x.fileUploadDateTime === fileUploadDateTime) {
+              return {
+                fileUploadDateTime: x.fileUploadDateTime,
+                isUpLoad: true,
+              };
+            }
+            return x;
+          });
+        });
+        setFileUploadDateTime(undefined);
         setNodeList((prevNode) => prevNode.map((node) => (node.id === nodeItem.id ? nodeItem : node)));
       })();
     }
@@ -43,6 +61,19 @@ export default function EditImageArea({ nodeItem, setNodeList }: props): JSX.Ele
     event.preventDefault();
     const reader: FileReader = new FileReader();
     const file: File = event.target.files[0];
+
+    const upLoadNowTime = new Date();
+    setFileUploadDateTime(upLoadNowTime);
+    setIsImgUploadEventQueue((prev) => {
+      return [
+        ...prev,
+        {
+          fileUploadDateTime: upLoadNowTime,
+          isUpLoad: false,
+        },
+      ];
+    });
+
     reader.onloadend = () => {
       setImageFile({ file: file, previewURL: reader.result });
     };
@@ -51,7 +82,7 @@ export default function EditImageArea({ nodeItem, setNodeList }: props): JSX.Ele
 
   return (
     <>
-      <S.ImageInput type="file" accept="image/jpg,impge/png,image/jpeg,image/gif" onChange={handleFileOnChange} ref={hiddenFileInput} />
+      <S.ImageInput type="file" accept="image/jpg,image/png,image/jpeg,image/gif" onChange={handleFileOnChange} ref={hiddenFileInput} />
       <S.ImagePreviewBox>
         {preview}
         <S.ImageNameText
