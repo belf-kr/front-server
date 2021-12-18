@@ -33,6 +33,7 @@ const Input = styled.input`
 
   @media only screen and (max-width: 850px) {
     padding: 5px 10px;
+    width: 100%;
   }
 
   :focus {
