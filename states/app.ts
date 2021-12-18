@@ -42,3 +42,15 @@ export const isRefreshQueryState = atom<boolean>({
   key: "isRefreshQueryState",
   default: false,
 });
+
+/**
+ * 한 일에서 업로드 중인 이미지 큐
+ */
+type FileQueue = {
+  fileUploadDateTime: Date;
+  isUpLoad: boolean;
+};
+export const isImgUploadEventQueueState = atom<FileQueue[]>({
+  key: "isImgUploadEventQueueState",
+  default: [],
+});
