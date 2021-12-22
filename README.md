@@ -1,9 +1,10 @@
 # front-server
 
-사용자의 코스를 공유하는 Todo 서비스 Web UI!
+> 사용자의 코스를 공유하는 Todo 서비스 Web App!
 
-1. Mobile UI를 Target으로 한 Web Application 입니다.
-1. api-gateway를 이용하여 각각의 service를 호출합니다.
+1. 반응형으로 고려된 Web Application 입니다.
+1. `api-gateway` 등 필요한 service를 사용하여 belf service 사용할 수 있도록 합니다.
+1. [프로토타이핑](https://xd.adobe.com/view/ffec9bcc-87d9-4bc6-b873-721709411173-aabf) 를 참고하여 개발되었습니다.
 
 # Stack
 
@@ -11,6 +12,9 @@
 1. vscode
 1. next.js
 1. docker
+1. axios
+1. recoil
+1. styled-components
 
 # 빠른 시작
 
