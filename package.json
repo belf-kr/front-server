@@ -2,7 +2,7 @@
   "name": "front-server",
   "version": "1.2.0",
   "scripts": {
-    "dev": "NODE_OPTIONS='--inspect' next dev",
+    "dev": "NODE_OPTIONS='--inspect' next dev -p 2999",
     "build": "next build",
     "build:qa": "env-cmd -f .env.qa next build",
     "build:prod": "env-cmd -f .env.prod next build",
