@@ -3,8 +3,8 @@
 > 사용자의 코스를 공유하는 Todo 서비스 Web App!
 
 1. 반응형으로 고려된 Web Application 입니다.
-1. `api-gateway` 등 필요한 service를 사용하여 belf service 사용할 수 있도록 합니다.
-1. [프로토타이핑](https://xd.adobe.com/view/ffec9bcc-87d9-4bc6-b873-721709411173-aabf) 를 참고하여 개발되었습니다.
+1. [api-gateway](https://github.com/belf-kr/api-gateway) 등 필요한 service를 사용하여 belf service 사용할 수 있도록 합니다.
+1. 와이어프레임은 XD를 통하여 디자인되었으며 [프로토타이핑](https://xd.adobe.com/view/ffec9bcc-87d9-4bc6-b873-721709411173-aabf) 에서 확인할 수 있습니다.
 
 # Stack
 
@@ -18,7 +18,15 @@
 
 # 빠른 시작
 
-1. `npm i && npm run dev` 를 이용해 nextjs를 시작합니다.
+1. `npm i` 으로 필요한 의존성을 설치합니다.
+1. 필요에 따라 `.env.development` 에서 service의 호출 주소를 변경합니다.
+   1. local 환경에서 API를 호출하는 경우 사용하려는 API의 Server가 Up 되어있어야합니다.
+   1. API들은 [belf-kr/repositories](https://github.com/orgs/belf-kr/repositories) 에서 찾아보실 수 있으며 Server 실행 방법은 `README.md` 에 작성되어있습니다.
+1. `npm run dev` 로 nextjs를 시작합니다.
+
+# 배포
+
+> `qa`, `prod` 환경에 맞게 docker image가 어떻게 구어지는지, 왜 분리했는지 추가하기
 
 # 디렉터리 구조
 
