@@ -39,7 +39,9 @@ docker-compose up -d
 
 # 배포
 
-> `qa`, `prod` 환경에 맞게 docker image가 어떻게 구어지는지, 왜 분리했는지 추가하기
+`qa`, `prod` 으로 배포 환경이 구분되어 있으며 각 환경에 맞는 API의 Endpoint으로 호출해야 합니다.
+
+이를 위해 배포 환경에 맞는 변수를 주입받아 image를 build 할 수 있도록 `.env.*` 및 `Dockerfile.*` 으로 분리되어 있습니다.
 
 # 디렉터리 구조
 
