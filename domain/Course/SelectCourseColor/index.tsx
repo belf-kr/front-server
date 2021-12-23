@@ -25,6 +25,14 @@ export default function SelectCourseColor({ colorOnChange }: props): JSX.Element
     colorOnChange(currentColor);
   }, [currentColor]);
 
+  if (courseColors.length === 0) {
+    return (
+      <>
+        <h4>컬러 정보가 없습니다.</h4>
+      </>
+    );
+  }
+
   return (
     <>
       {courseColors.map((color, index) => {
