@@ -18,11 +18,24 @@
 
 # 빠른 시작
 
+## 개발 환경
+
 1. `npm i` 으로 필요한 의존성을 설치합니다.
 1. 필요에 따라 `.env.development` 에서 service의 호출 주소를 변경합니다.
    1. local 환경에서 API를 호출하는 경우 사용하려는 API의 Server가 Up 되어있어야합니다.
    1. API들은 [belf-kr/repositories](https://github.com/orgs/belf-kr/repositories) 에서 찾아보실 수 있으며 Server 실행 방법은 `README.md` 에 작성되어있습니다.
 1. `npm run dev` 로 nextjs를 시작합니다.
+
+## 제품 시작
+
+> docker-compose으로 image build시 발생 이유를 모르는 `Error: Parsing error: Cannot destructure property 'isTypeVariable' of 'undefined' as it is undefined.` 에러가 발생하여 image build를 먼저하고 docker-compose으로 실행하도록 합니다.
+
+```shell
+docker build -t belf-front-server . --file=Dockerfile.dev
+docker-compose up -d
+```
+
+위의 명령어를 입력해 docker image 생성 후 컨테이너를 생성합니다.
 
 # 배포
 
