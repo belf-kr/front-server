@@ -21,6 +21,7 @@ export default function EditImageArea({ nodeItem, setNodeList }: props): JSX.Ele
   const [imageFile, setImageFile] = useState<any>();
 
   const [percentCompleted, setPercentCompleted] = useState("");
+  const [isCompleted, setIsCompleted] = useState<boolean>(false);
 
   useEffect(() => {
     hiddenFileInput.current.click();
@@ -51,6 +52,7 @@ export default function EditImageArea({ nodeItem, setNodeList }: props): JSX.Ele
             return x;
           });
         });
+        setIsCompleted(true);
         setFileUploadDateTime(undefined);
         setNodeList((prevNode) => prevNode.map((node) => (node.id === nodeItem.id ? nodeItem : node)));
       })();
@@ -63,6 +65,7 @@ export default function EditImageArea({ nodeItem, setNodeList }: props): JSX.Ele
     const file: File = event.target.files[0];
 
     const upLoadNowTime = new Date();
+    setIsCompleted(false);
     setFileUploadDateTime(upLoadNowTime);
     setIsImgUploadEventQueue((prev) => {
       return [
@@ -94,7 +97,7 @@ export default function EditImageArea({ nodeItem, setNodeList }: props): JSX.Ele
         >
           {imageFile?.file.name ?? ""}
         </S.ImageNameText>
-        <S.ImageNameText>{percentCompleted ? `(${percentCompleted})` : ""}</S.ImageNameText>
+        <S.ImageNameText>{percentCompleted ? `(${percentCompleted}) ${isCompleted ? "✅" : "⏳"}` : ""}</S.ImageNameText>
       </S.ImagePreviewBox>
     </>
   );
