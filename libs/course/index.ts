@@ -1,4 +1,4 @@
-import { apiGatewayClient } from "../api-client";
+import { apiGatewayClient, apiGatewayUrl } from "../api-client";
 import { CourseItem } from "../../types/components-type/course";
 import { getLocalStorageAccessToken, TokenRefresh } from "../oauth";
 import axios from "axios";
@@ -40,9 +40,18 @@ export async function getCourses(userId?: number, courseId?: number, belfOnly?: 
   return data;
 }
 
-export async function getCourse(courseId: number): Promise<CourseItem[]> {
-  const { data } = await apiGatewayClient.get<CourseItem[]>(`/todo/courses/${courseId}`);
-  return data;
+export async function getCourse(courseId: number, inDocker = false): Promise<CourseItem[]> {
+  const endpoint = `/todo/courses/${courseId}`;
+
+  if (inDocker) {
+    const { data } = await apiGatewayClient.get<CourseItem[]>(endpoint, {
+      baseURL: apiGatewayUrl.replace("localhost", "host.docker.internal"),
+    });
+    return data;
+  } else {
+    const { data } = await apiGatewayClient.get<CourseItem[]>(endpoint);
+    return data;
+  }
 }
 
 export async function deleteCourse(courseId: number): Promise<void> {
@@ -101,7 +110,16 @@ export async function postBelfCourse(courseId: number): Promise<void> {
   }
 }
 
-export async function getSearchCourses(keyword: string): Promise<CourseItem[]> {
-  const { data } = await apiGatewayClient.get<CourseItem[]>(`/todo/courses/search?keyword=${encodeURI(keyword)}`);
-  return data;
+export async function getSearchCourses(keyword: string, inDocker = false): Promise<CourseItem[]> {
+  const endpoint = `/todo/courses/search?keyword=${encodeURI(keyword)}`;
+
+  if (inDocker) {
+    const { data } = await apiGatewayClient.get<CourseItem[]>(endpoint, {
+      baseURL: apiGatewayUrl.replace("localhost", "host.docker.internal"),
+    });
+    return data;
+  } else {
+    const { data } = await apiGatewayClient.get<CourseItem[]>(endpoint);
+    return data;
+  }
 }

@@ -18,8 +18,10 @@ const SearchPage: NextPage = ({ courseList, keyword }: InferGetServerSidePropsTy
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context;
+  const serviceRunningInDocker = process.env.SERVICE_RUNNING_IN_DOCKER === "true";
+
   const keyword = (query?.q as string) ?? "";
-  const resCourseList = await getSearchCourses(keyword);
+  const resCourseList = await getSearchCourses(keyword, serviceRunningInDocker);
   return { props: { courseList: resCourseList, keyword: keyword } };
 };
 

@@ -1,4 +1,4 @@
-import { apiGatewayClient } from "../api-client";
+import { apiGatewayClient, apiGatewayUrl } from "../api-client";
 
 import { getLocalStorageAccessToken, TokenRefresh } from "../oauth";
 import axios from "axios";
@@ -36,9 +36,18 @@ export async function postWorkDone(workDone: WorkDone): Promise<void> {
   }
 }
 
-export async function getDone(doneId: number): Promise<DoneItem> {
-  const { data } = await apiGatewayClient.get<DoneItem>(`/todo/work-dones/${doneId}`);
-  return data;
+export async function getDone(doneId: number, inDocker = false): Promise<DoneItem> {
+  const endpoint = `/todo/work-dones/${doneId}`;
+
+  if (inDocker) {
+    const { data } = await apiGatewayClient.get<DoneItem>(endpoint, {
+      baseURL: apiGatewayUrl.replace("localhost", "host.docker.internal"),
+    });
+    return data;
+  } else {
+    const { data } = await apiGatewayClient.get<DoneItem>(endpoint);
+    return data;
+  }
 }
 
 export async function getDones(courseId?: number): Promise<DoneItem[]> {
