@@ -28,7 +28,7 @@ export default function CreateCourse(): JSX.Element {
       if (isPost) {
         return;
       }
-      if (!title) {
+      if (!title || !color) {
         alert("입력되지 않은 값이 있습니다.");
         return;
       }
@@ -53,7 +53,7 @@ export default function CreateCourse(): JSX.Element {
       </S.TitleBox>
       <S.Contents>
         <S.SubTitleBox>
-          <S.SubTitle>코스 색상 선택</S.SubTitle>
+          <S.SubTitle>* 코스 색상 선택</S.SubTitle>
         </S.SubTitleBox>
         <S.RadioColorsBox>
           <SelectCourseColor colorOnChange={setColor} />

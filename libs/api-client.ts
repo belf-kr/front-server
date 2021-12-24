@@ -1,9 +1,9 @@
 import axios, { AxiosInstance } from "axios";
 
-const apiGatewayUrl = process.env.NEXT_PUBLIC_API_GATEWAY_URL;
+export const apiGatewayUrl = process.env.NEXT_PUBLIC_API_GATEWAY_URL;
 
-export const apiClient: AxiosInstance = axios.create({
-  baseURL: `${apiGatewayUrl}/todo`,
+export const apiGatewayClient: AxiosInstance = axios.create({
+  baseURL: `${apiGatewayUrl}`,
   headers: {
     "Content-Type": "application/json;charset=UTF-8",
   },

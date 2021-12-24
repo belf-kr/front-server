@@ -18,8 +18,6 @@ const PostWorkDonePage: NextPage = ({ currentCourse, currentDone }: InferGetServ
   const [course] = useState<CourseItem>(currentCourse);
   const [done] = useState<DoneItem>(currentDone);
 
-  // const userInfo = useRecoilValue(userInfoState);
-
   return (
     <UserCheck>
       <PostWorkDoneLayout>
@@ -32,8 +30,10 @@ const PostWorkDonePage: NextPage = ({ currentCourse, currentDone }: InferGetServ
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { params } = context;
-  const resCourse = await getCourse(parseInt(params?.courseId as string, 10));
-  const resDone = await getDone(parseInt(params?.doneId as string, 10));
+  const serviceRunningInDocker = process.env.SERVICE_RUNNING_IN_DOCKER === "true";
+
+  const resCourse = await getCourse(parseInt(params?.courseId as string, 10), serviceRunningInDocker);
+  const resDone = await getDone(parseInt(params?.doneId as string, 10), serviceRunningInDocker);
   const content: EditNode[] = JSON.parse((resDone.content as unknown) as string);
   resDone.content = content;
 
