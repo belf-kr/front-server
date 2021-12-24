@@ -16,9 +16,15 @@ export default function PostMaster({ postDoneItem }: props): JSX.Element {
       <S.TitleBox>
         <S.Title>{postDoneItem.title}</S.Title>
       </S.TitleBox>
-      <S.Body>
-        <PostNodeList nodeList={doneItem.content} />
-      </S.Body>
+      {doneItem.content.length === 0 ? (
+        <>
+          <h3>작성된 내용이 없습니다.</h3>
+        </>
+      ) : (
+        <S.Body>
+          <PostNodeList nodeList={doneItem.content} />
+        </S.Body>
+      )}
     </S.Box>
   );
 }

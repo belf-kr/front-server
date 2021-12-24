@@ -20,6 +20,7 @@ const ImageNameText = styled.a`
   color: ${({ theme }) => theme.fontColor.sub};
   font-size: ${({ theme }) => theme.common.fontSize.s200}px;
   margin: auto 0px;
+  white-space: nowrap;
 `;
 
 export { Image, ImageInput, ImageNameText, ImagePreviewBox };

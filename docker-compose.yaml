@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+  front-server:
+    build:
+      context: ./
+      dockerfile: Dockerfile.dev
+    image: belf-front-server
+    container_name: front-server-dev
+    ports:
+      - 2999:3000
+    environment:
+      - SERVICE_RUNNING_IN_DOCKER=true

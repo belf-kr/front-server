@@ -1,11 +1,11 @@
-import { apiClient } from "../api-client";
+import { apiGatewayClient } from "../api-client";
 
 import { TodoItem } from "../../types/components-type/todo";
 import { getLocalStorageAccessToken, TokenRefresh } from "../oauth";
 import axios from "axios";
 
 export async function getTodayTodos(userId?: number, courseId?: number, activeDate?: string, maximumActiveDate?: string): Promise<TodoItem[]> {
-  const { data } = await apiClient.get<TodoItem[]>("/work-todos", {
+  const { data } = await apiGatewayClient.get<TodoItem[]>("/todo/work-todos", {
     params: {
       userId: userId,
       courseId: courseId,
@@ -17,14 +17,14 @@ export async function getTodayTodos(userId?: number, courseId?: number, activeDa
 }
 
 export async function getTodo(todoId: number): Promise<TodoItem> {
-  const { data } = await apiClient.get<TodoItem>(`/work-todos/${todoId}`);
+  const { data } = await apiGatewayClient.get<TodoItem>(`/todo/work-todos/${todoId}`);
   return data;
 }
 
 export async function postNewTodo(todo: TodoItem): Promise<void> {
   async function work() {
     const accessToken = getLocalStorageAccessToken();
-    await apiClient.post<TodoItem>(`/work-todos`, todo, {
+    await apiGatewayClient.post<TodoItem>(`/todo/work-todos`, todo, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -50,7 +50,7 @@ export async function postNewTodo(todo: TodoItem): Promise<void> {
 export async function deleteTodo(id: number): Promise<void> {
   async function work() {
     const accessToken = getLocalStorageAccessToken();
-    await apiClient.delete(`/work-todos/${id}`, {
+    await apiGatewayClient.delete(`/todo/work-todos/${id}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -76,7 +76,7 @@ export async function deleteTodo(id: number): Promise<void> {
 export async function deleteUserTodoData(): Promise<void> {
   async function work() {
     const accessToken = getLocalStorageAccessToken();
-    await apiClient.delete(`/users`, {
+    await apiGatewayClient.delete(`/todo/users`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
