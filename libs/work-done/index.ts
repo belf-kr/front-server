@@ -1,4 +1,4 @@
-import { apiClient } from "../api-client";
+import { apiGatewayClient } from "../api-client";
 
 import { getLocalStorageAccessToken, TokenRefresh } from "../oauth";
 import axios from "axios";
@@ -14,7 +14,7 @@ type WorkDone = {
 export async function postWorkDone(workDone: WorkDone): Promise<void> {
   async function work() {
     const accessToken = getLocalStorageAccessToken();
-    await apiClient.post<WorkDone>(`/work-dones`, workDone, {
+    await apiGatewayClient.post<WorkDone>(`/todo/work-dones`, workDone, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -37,12 +37,12 @@ export async function postWorkDone(workDone: WorkDone): Promise<void> {
 }
 
 export async function getDone(doneId: number): Promise<DoneItem> {
-  const { data } = await apiClient.get<DoneItem>(`/work-dones/${doneId}`);
+  const { data } = await apiGatewayClient.get<DoneItem>(`/todo/work-dones/${doneId}`);
   return data;
 }
 
 export async function getDones(courseId?: number): Promise<DoneItem[]> {
-  const { data } = await apiClient.get<DoneItem[]>("/work-dones", {
+  const { data } = await apiGatewayClient.get<DoneItem[]>("/todo/work-dones", {
     params: {
       courseId: courseId,
     },
@@ -53,7 +53,7 @@ export async function getDones(courseId?: number): Promise<DoneItem[]> {
 export async function deleteDone(id: number): Promise<void> {
   async function work() {
     const accessToken = getLocalStorageAccessToken();
-    await apiClient.delete(`/work-Dones/${id}`, {
+    await apiGatewayClient.delete(`/todo/work-Dones/${id}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },

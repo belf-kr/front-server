@@ -18,8 +18,6 @@ const PostWorkDonePage: NextPage = ({ currentCourse, currentDone }: InferGetServ
   const [course] = useState<CourseItem>(currentCourse);
   const [done] = useState<DoneItem>(currentDone);
 
-  // const userInfo = useRecoilValue(userInfoState);
-
   return (
     <UserCheck>
       <PostWorkDoneLayout>

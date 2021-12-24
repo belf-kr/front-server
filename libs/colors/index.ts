@@ -1,6 +1,6 @@
-import { apiClient } from "../api-client";
+import { apiGatewayClient } from "../api-client";
 
 export async function getColors(): Promise<string[]> {
-  const { data } = await apiClient.get<string[]>(`/colors`);
+  const { data } = await apiGatewayClient.get<string[]>(`/todo/colors`);
   return data;
 }
