@@ -1,10 +1,12 @@
 # front-server
 
+[`한국어(KR)`](./README.md) | [English](./README.en-US.md)
+
 > 사용자의 코스를 공유하는 Todo 서비스 Web App!
 
 1. 반응형으로 고려된 Web Application 입니다.
 1. [api-gateway](https://github.com/belf-kr/api-gateway) 등 필요한 service를 사용하여 belf service 사용할 수 있도록 합니다.
-1. 와이어프레임은 XD를 통하여 디자인되었으며 [프로토타이핑](https://xd.adobe.com/view/ffec9bcc-87d9-4bc6-b873-721709411173-aabf) 에서 확인할 수 있습니다.
+1. 와이어프레임은 Adobe XD를 통하여 디자인되었으며 [프로토타이핑](https://xd.adobe.com/view/ffec9bcc-87d9-4bc6-b873-721709411173-aabf) 에서 확인할 수 있습니다.
 
 # Stack
 
