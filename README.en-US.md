@@ -11,12 +11,12 @@
 # Stack
 
 1. node:v14.16.1
-2. vscode
-3. next.js
-4. docker
-5. axios
-6. recoil
-7. styled-components
+1. vscode
+1. next.js
+1. docker
+1. axios
+1. recoil
+1. styled-components
 
 # A quick start
 
