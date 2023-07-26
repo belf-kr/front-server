@@ -1,6 +1,6 @@
 # front-server
 
-[`한국어(KR)`](./README.md) | [English](./README.en-US.md)
+[한국어(KR)](./README.md) | [English](./README.en-US.md)
 
 > Todo Service Web App to share your course!
 
