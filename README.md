@@ -1,6 +1,6 @@
 # front-server
 
-[한국어(KR)](./README.md) | [English](./README.en-US.md)
+[`한국어(KR)`](./README.md) | [English](./README.en-US.md)
 
 > 사용자의 코스를 공유하는 Todo 서비스 Web App!
 
