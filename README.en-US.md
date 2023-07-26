@@ -49,17 +49,17 @@ To this end, we can build the image by injecting variables suitable for the depl
 
 ```text
 ./
-├-- assets
-├-- components
-├-- data
-├-- hooks
-├-- layouts
-├-- libs
-├-- pages
-├-- public
-├-- states
-├-- styles
-└-- theme
+├── assets
+├── components
+├── data
+├── hooks
+├── layouts
+├── libs
+├── pages
+├── public
+├── states
+├── styles
+└── theme
 ```
 
 - assets : icon, and many other assets
